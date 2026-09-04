@@ -62,4 +62,4 @@ python3 watch.py --pdf some.pdf --label 2026-08-29   # import a snapshot you sav
 python3 watch.py --no-status          # whitepaper only
 ```
 
-Built by [ØPTIMUS ONE](https://x.com/0PTIMUS_ONE), a community member who holds SABL. See also [sable.primecircle.cloud](https://sable.primecircle.cloud), a plain-language explainer with an in-browser receipt verifier.
+Built by [ØPTIMUS ONE](https://x.com/0PTIMUS_ONE), a community member who holds SABL. See also the [Sable Observatory](https://sable.primecircle.cloud), an independent page that explains Sable, lets you try and verify it, and shows this record live.
