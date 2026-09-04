@@ -1,0 +1,40 @@
+NEAR AI — Confidential AI Infrastructure BLOG OUR COMPANY GET IN TOUCH BLOG OUR COMPANY GET IN TOUCH AI agents for the work your team has been afraid to automate. >> CLIENT KEY PAIR >> ENVIRONMENT NEAR AI runs sensitive workloads for enterprises, governments, and AI applications.
+Inference and agents execute inside hardware-enforced enclaves where requests are confidential by design and outputs are independently verifiable.
+IronClaw Your AI agent framework, private by default.
+Run autonomous agents inside hardware-enforced enclaves with zero operator access.
+Explore IronClaw NEAR AI runs sensitive workloads for enterprises, governments, and AI applications.
+Inference and agents execute inside hardware-enforced enclaves where requests are confidential by design and outputs are independently verifiable.
+NEAR AI Cloud Deploy private models.
+Start in minutes.
+Scalable confidential inference for teams that can't afford to compromise.
+Start Building Confidential AI Infrastructure IronClaw An AI agent that connects to your tools, runs your workflows, and gets things done without you babysitting it.
+Secure by default, open source, and built to handle real business tasks.
+Meet IronClaw NEAR AI Cloud Where everything runs.
+Every job executes in a sealed environment with no outside access.
+The infrastructure handles security by default so you don't have to.
+Start Building Agent Marketplace Agents built for real business workflows.
+Finance, legal, ops, research, and security.
+Browse what's available, deploy what you need, list your own.
+Browse The Marketplace How NEAR AI works EXTERNAL WORLD NEAR AI CLOUD TEE How NEAR AI works Hardware Isolation IronClaw runs inside a Trusted Execution Environment.
+Nothing leaks out.
+No one can see in.
+Triple Lockout The host OS, GPU operator, and NEAR AI itself are cryptographically excluded from the execution context.
+Independent Verification Every request returns a hardware-signed attestation certificate any third party can independently verify.
+Read the docs Built for Real Work >> CLIENT KEY PAIR >> ENVIRONMENT #01 Repetitive Work / Ops Automation Your team is spending hours on work an agent can handle.
+Scheduling, data pulls, document processing, reporting, summarization.
+Connect IronClaw to your stack, define the workflow, and let it run.
+Your team gets the output without doing the work. #02 Internal Knowledge & Research Stop losing context across tools, threads, and teammates.
+IronClaw monitors your Slack, email, Notion, and internal docs and builds a live picture of what’s happening across your organization.
+Ask it anything.
+Get the answer from your own data, not a guess. #03 Any Team Buying or Building AI The hardest part isn’t the model — it’s everything around it.
+IronClaw handles the secure execution layer so you don’t have to build it from scratch.
+Drop it into your stack, connect your tools, and ship AI features your customers can trust.
+Every run is verifiable.
+PARTNERS Global enterprises and governments are using NEAR AI in production today.
+NEAR AI Cloud and IronClaw serve production workloads for teams that cannot compromise on data confidentiality.
+Financial Autopilot via IronClaw Financial Autopilot _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ via IronClaw AI Financial Autopilot connecting to regulated Indian bank accounts via IronClaw.
+No credentials stored at any point. >> Backed by Times of India Group Private LLM Platform on NEAR AI Cloud Private LLM Platform _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ on NEAR AI Cloud Privacy-first AI platform running production inference on NEAR AI Cloud. >> venice.ai Browser in Brave Nightly Browser _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ in Brave Nightly Confidential inference integrated into Brave Nightly. >> brave.com Government Sovereign workload Government _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ Sovereign workload Confidential AI workloads running on NEAR AI infrastructure. >> gov.bm Inference & Infrastructure Partners / 02 Your first agent is one command away.
+Everything you need to deploy, manage, and scale AI agents across your organization: open source, TEE-secured, running on NEAR.
+The rest is up to you.
+Contact Us Company Home About us Brand Careers Terms and Policies Privacy Policy NEAR AI Terms of Service Acceptable Use Policy Cookie Policy Data Processing Agreement Company Home About us Brand Careers Terms and Policies Privacy Policy NEAR AI Terms of Service Acceptable Use Policy Cookie Policy Data Processing Agreement Join the community Connect with developers and researchers. © 2026 Jasnah Inc., DBA as NEAR AI.
+All Rights Reserved.

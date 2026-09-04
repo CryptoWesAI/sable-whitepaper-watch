@@ -1,0 +1,12 @@
+[
+  {"id": "sable-trust",    "name": "Sable · trust page",     "url": "https://www.buildsable.com/trust"},
+  {"id": "sable-pricing",  "name": "Sable · pricing",        "url": "https://www.buildsable.com/pricing"},
+  {"id": "sable-careers",  "name": "Sable · careers",        "url": "https://www.buildsable.com/careers"},
+  {"id": "phala",          "name": "Phala · homepage",       "url": "https://phala.com/"},
+  {"id": "near-ai",        "name": "NEAR AI · homepage",     "url": "https://near.ai/"},
+  {"id": "nillion",        "name": "Nillion · docs",         "url": "https://docs.nillion.com/"},
+  {"id": "secret",         "name": "Secret AI · site",       "url": "https://secretai.scrtlabs.com/"},
+  {"id": "oasis",          "name": "Oasis · ROFL docs",      "url": "https://docs.oasis.io/build/rofl/"},
+  {"id": "tinfoil",        "name": "Tinfoil · homepage",     "url": "https://tinfoil.sh/"},
+  {"id": "opengradient",   "name": "OpenGradient · homepage","url": "https://www.opengradient.ai/"}
+]

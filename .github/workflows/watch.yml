@@ -25,7 +25,12 @@ jobs:
 
       - name: Run the watch
         id: watch
-        run: python3 watch.py
+        run: |
+          # The per-project pages are checked once a day (the 06:17 UTC run) and
+          # on a manual run. The whitepaper and the status ledger run hourly.
+          FLAGS=""
+          if [ "$(date -u +%H)" = "06" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then FLAGS="--peers"; fi
+          python3 watch.py $FLAGS
 
       - name: Commit the record
         run: |
@@ -40,22 +45,9 @@ jobs:
             else
               git commit -m "Status ledger $(date -u +%Y-%m-%dT%H:%MZ)"
             fi
+            git pull --rebase origin main
             git push
           fi
-
-      - name: Telegram (only when the whitepaper or the signer changed)
-        if: steps.watch.outputs.changed == 'true' || steps.watch.outputs.signer_changed == 'true'
-        env:
-          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SUMMARY: ${{ steps.watch.outputs.summary }}
-          SIGNER: ${{ steps.watch.outputs.signer_summary }}
-          LABEL: ${{ steps.watch.outputs.label }}
-        run: |
-          if [ -z "$TOKEN" ] || [ -z "$CHAT" ]; then echo "no telegram secrets set, skipping"; exit 0; fi
-          REPO="https://github.com/${{ github.repository }}"
-          MSG="Sable whitepaper watch"
-          [ -n "$SUMMARY" ] && MSG="$MSG%0A%0A$SUMMARY%0A$REPO/blob/main/diffs/$LABEL.diff"
-          [ -n "$SIGNER" ]  && MSG="$MSG%0A%0A$SIGNER%0A$REPO/blob/main/status/log.jsonl"
-          curl -s -o /dev/null -w "telegram: %{http_code}\n" \
-            "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&disable_web_page_preview=true&text=$MSG"
+      # No alert channel on purpose. The record is published as record.json in
+      # this repository, and sable.primecircle.cloud reads it at page load, so
+      # a change is visible on the site within the hour without any deploy.

@@ -226,11 +226,118 @@ def status_ledger():
     return row
 
 
+def html_text(raw):
+    """Visible text of an HTML page: no scripts, styles, tags or comments."""
+    import html as htmlmod
+    s = re.sub(r"(?is)<(script|style|noscript|svg|template)[^>]*>.*?</\1>", " ", raw)
+    s = re.sub(r"(?s)<!--.*?-->", " ", s)
+    s = re.sub(r"(?i)</(p|div|li|h[1-6]|tr|td|th|br|section|article|header|footer|dt|dd)>", "\n", s)
+    s = re.sub(r"<[^>]+>", " ", s)
+    return htmlmod.unescape(s)
+
+
+def peers_watch(label=None):
+    """One canonical public page per project, diffed as sentences. Records
+    only that a page changed and by how much, with the diff. Never what it
+    means. Sable's own pages are on the list too."""
+    cfg = json.loads(read(os.path.join(ROOT, "peers.json"), "[]"))
+    rec_path = os.path.join(ROOT, "peers-record.json")
+    rec = json.loads(read(rec_path, "{}"))
+    t = now()
+    label = label or stamp(t)
+    ts = t.strftime("%Y-%m-%dT%H:%M:%SZ")
+    for p in cfg:
+        pid = p["id"]
+        entry = rec.get(pid) or {"id": pid, "changes": []}
+        entry["name"], entry["url"], entry["last_check"] = p["name"], p["url"], ts
+        try:
+            raw = fetch(p["url"], 25).decode("utf-8", "replace")
+        except Exception as e:
+            entry["ok"] = False
+            entry["error"] = type(e).__name__
+            rec[pid] = entry
+            print(f"peer {pid}: unreachable ({type(e).__name__})")
+            continue
+        entry["ok"] = True
+        entry.pop("error", None)
+        sent = sentences(html_text(raw))
+        if len(sent) < 200:
+            # A page that renders only in the browser has almost no server-side
+            # text. Record that honestly rather than diffing an empty shell.
+            entry["thin"] = True
+        prev_path = os.path.join(STATE, "peers", pid + ".txt")
+        prev = read(prev_path)
+        if prev == sent:
+            rec[pid] = entry
+            print(f"peer {pid}: unchanged")
+            continue
+        if prev:
+            diff = list(difflib.unified_diff(prev.splitlines(), sent.splitlines(),
+                                             fromfile="previous", tofile=label, lineterm="", n=1))
+            added = sum(1 for l in diff if l.startswith("+") and not l.startswith("+++"))
+            removed = sum(1 for l in diff if l.startswith("-") and not l.startswith("---"))
+            diff_rel = f"diffs/peers/{pid}-{label}.diff"
+            write(os.path.join(ROOT, diff_rel), "\n".join(diff) + "\n")
+            entry["changes"] = ([{"label": label, "added": added, "removed": removed, "diff": diff_rel}] + entry.get("changes", []))[:30]
+            entry["last_change"] = label
+            print(f"peer {pid}: CHANGED +{added}/-{removed}")
+        else:
+            entry["first_seen"] = label
+            print(f"peer {pid}: first snapshot")
+        write(prev_path, sent)
+        rec[pid] = entry
+    rec["_generated_at"] = ts
+    write(rec_path, json.dumps(rec, indent=1) + "\n")
+
+
+def record_json():
+    """Machine-readable summary for sable.primecircle.cloud, which reads it
+    from the raw GitHub URL at page load. Built from CHANGELOG.md and the last
+    ledger line, so it is always consistent with the human-readable record."""
+    entries = []
+    changelog = read(os.path.join(ROOT, "CHANGELOG.md"))
+    for block in re.split(r"^## ", changelog, flags=re.M)[1:]:
+        lines = block.strip().splitlines()
+        label = lines[0].strip()
+        e = {"label": label}
+        for l in lines[1:]:
+            m = re.search(r"Cover says: \*\*(.+?)\*\*", l)
+            if m: e["cover"] = m.group(1)
+            m = re.search(r"File: ([\d,]+) bytes, sha256 `([0-9a-f]+)`", l)
+            if m: e["bytes"] = int(m.group(1).replace(",", "")); e["sha256"] = m.group(2)
+            m = re.search(r"Snapshot: \[`([^`]+)`\]", l)
+            if m: e["snapshot"] = m.group(1)
+            m = re.search(r"\*\*(\d+) sentences added, (\d+) removed\*\* \(\[diff\]\(([^)]+)\)\)", l)
+            if m: e["added"] = int(m.group(1)); e["removed"] = int(m.group(2)); e["diff"] = m.group(3)
+            if "First snapshot" in l: e["first"] = True
+        entries.append(e)
+    last = None
+    try:
+        with open(os.path.join(STATUS, "log.jsonl"), encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    last = json.loads(line)
+    except FileNotFoundError:
+        pass
+    out = {
+        "generated_at": now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "pdf_url": PDF_URL,
+        "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
+        "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
+        "cover": entries[0].get("cover") if entries else None,
+        "entries": entries,
+        "last_check": last,
+    }
+    write(os.path.join(ROOT, "record.json"), json.dumps(out, indent=1) + "\n")
+    print(f"record.json: {len(entries)} entries")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pdf", help="seed from a local PDF instead of fetching")
     ap.add_argument("--label", help="label for the snapshot (default: UTC timestamp)")
     ap.add_argument("--no-status", action="store_true")
+    ap.add_argument("--peers", action="store_true", help="also check the per-project pages in peers.json (meant to run daily)")
     ap.add_argument("--reset", action="store_true",
                     help="start the record over: removes the generated files under this directory (snapshots, diffs, status, state, texts, changelog)")
     args = ap.parse_args()
@@ -246,10 +353,13 @@ def main():
         print("record reset")
         if not args.pdf:
             return 0
-    changed = whitepaper(args)
+    whitepaper(args)
     if not args.no_status:
         status_ledger()
-    return 0 if True else 1
+    if args.peers:
+        peers_watch(args.label)
+    record_json()
+    return 0
 
 
 if __name__ == "__main__":

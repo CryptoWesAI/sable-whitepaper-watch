@@ -1,0 +1,4 @@
+Home | Nillion Docs Skip to main content Blacklight Blacklight L2 Blacklight L1 Blind Computer Community Articles Search Nillion Docs Humanity's first blind computer.
+Nillion is a secure computation network that decentralizes trust for high value data in the same way that blockchains decentralized transactions.
+Get Started 🔐 Testnet Blacklight L1 A network for conditional secrets: seal a payload to a committee of nodes and it stays encrypted until an on-chain condition is met. 🌐 Blacklight L2 Blacklight is the verification layer of the Blind Computer.
+Run a node to verify TEE workloads, or have your own apps verified. 💻 Blind Computer Start building on Nillion with one of our developer SDKs. 🤝 Community Join the Nillion community to connect, collaborate, and contribute to the future of blind computation.

@@ -1,0 +1,48 @@
+Tinfoil - Private AI Private Intelligence We build verifiably private AI so that you can trust the hardware, not the pinky-promises.
+Our products For your private thoughts, projects, and apps.
+For your thoughts Private Chat Chat with powerful AI assistants while keeping your conversations private.
+Available in the browser and on iOS. $20/month Access Chat Learn More For your projects Private Inference API Build AI applications that keep all data private.
+Our API is OpenAI-compatible, open-source, and fully verifiable.
+Usage-based pricing Get an API key Learn More For your applications Tinfoil Containers Run any Docker image in a secure enclave.
+Bring privacy and verifiability to applications and custom AI workloads. $20/month + usage Get Started Learn More Industry highlights.
+Tinfoil in case studies, research, and collaborations.
+Featured in a Llama case study as the only multi-GPU infrastructure offering production-ready, verifiably private AI.
+Read more Collaborating with Red Hat on open-source confidential AI infrastructure for private inference.
+Read more Security audit and webinar collaboration on TEE vulnerabilities and confidential computing best practices.
+Read more Our story on building audit-ready, verifiably private AI with Ubuntu as the foundation for multi-platform confidential computing.
+Read more Industry Programs and Collaborations Infrastructure built for privacy.
+Tinfoil makes your AI workloads secure, verifiable, and private.
+SOC 2 Compliant Open Source “ Running our own custom Docker container on Tinfoil Containers is a major unlock.
+It lets us run our full end-to-end system in trusted hardware using the same simple Python SDK we already use to call Tinfoil's embedding and LLM models.
+Serverless enclaves have finally arrived! ” Darya Kaviani , UC Berkeley The Open Anonymity Project “ When building The Open Anonymity Project at Stanford and UMich, we were using Azure's confidential containers (ACI) which is a nightmare to set up correctly, from TLS certificate binding, hardware measurements, reproducible image digests, etc.
+We can do the same thing on Tinfoil Containers in <20mins with the nice attestation SDK, clear docs, debug mode, almost zero update down time, and transparent architecture that everyone can audit. ” Erik Chi , The Open Anonymity Project “ We have fast deployment cycles for servers that we run on Tinfoil TEEs to guarantee customer privacy.
+Tinfoil Containers makes the TEE deployment friction almost nonexistent and lets us iterate quickly.
+It's an important step towards the future where most ML workloads are secured by running on verifiably-private TEEs. ” Rudolf Laine , Workshop Labs Case Study Workshop Labs Workshop Labs built Silo, the first production-ready multi-GPU private post-training and inference stack for frontier models, powered by Tinfoil Containers.
+All customer data is processed inside hardware-isolated secure enclaves with customer-managed encryption keys, with less than 10% performance overhead on production workloads.
+Private Post-Training and Inference for Frontier Models Case Study Pour Demain Pour Demain, a Brussels-based AI policy think tank, used Tinfoil Containers to build a verifiable clean room for auditing frontier models.
+Their work shows the feasibility of running gray-box interpretability evals on a 744B parameter model inside confidential enclaves: the auditor brings the eval, the lab brings its weights, and both get cryptographic proof of exactly what ran, without the weights ever leaving the enclave.
+Auditing a Frontier Model Without Seeing Its Weights Privacy of local.
+Power of cloud.
+Tinfoil runs AI models inside secure hardware enclaves.
+This gives you the privacy of local AI with the power of cloud computing.
+Feature comparison Other providers Closed Source Models Local AI Open-source & Custom Models Open-source & Custom Models Provable Zero Data Retention Not included in Other providers Included in Local AI Included in Tinfoil Cloud Convenience Included in Other providers Not included in Local AI Included in Tinfoil Setup costs Low Low in Other providers High High in Local AI Low Low in Tinfoil Complexity Low Low in Other providers High High in Local AI Low Low in Tinfoil Scalability Good Good in Other providers Poor Poor in Local AI Good Good in Tinfoil Zero Trust Not included in Other providers Not included in Local AI Included in Tinfoil Private Observability Not included in Other providers Not included in Local AI Included in Tinfoil Other providers Local AI Other providers Closed Source Models Provable Zero Data Retention Cloud Convenience Low Setup costs Low Complexity Good Scalability Zero Trust Private Observability Local AI Open-source & Custom Models Provable Zero Data Retention Cloud Convenience High Setup costs High Complexity Poor Scalability Zero Trust Private Observability Open-source & Custom Models Provable Zero Data Retention Cloud Convenience Low Setup costs Low Complexity Good Scalability Zero Trust Private Observability Frequently Asked Questions Have a security or privacy question?
+Detailed answers on what Tinfoil can and cannot see, how secure enclave attestation works, what would happened with legally-compelled disclosure, and more.
+Security and Privacy FAQ Read the Security and Privacy FAQ How does Tinfoil protect my data?
+What does end-to-end privacy mean?
+How is Tinfoil different from typical AI security approaches?
+Is there a performance overhead when using Tinfoil?
+Is Tinfoil compatible with closed-source models like GPT-5 and Claude?
+What analytics and observability does Tinfoil offer?
+Can I deploy my own AI models?
+What type of workloads are suitable for Tinfoil?
+Can I use Tinfoil with coding agents and other third-party clients?
+Can I integrate Tinfoil with my existing application?
+Can I keep server-side data and state?
+Will Tinfoil eventually consider using fully homomorphic encryption?
+Our Mission Tinfoil was founded to create the private garden for thought.
+As AI becomes more personal, omnipresent, and powerful, protecting the privacy of our conversations, thoughts, memories, and intellectual property is what preserves human relevance.
+AI should be an exoskeleton that empowers humans rather than replaces them.
+We are building the technical privacy safeguards to make this possible, using encryption, secure hardware, and other means to make it impossible for third parties to access your brain: a prerequisite for human empowerment and flourishing.
+Read full mission About Company Mission Join Us Blog Docs Pricing Resources Technology Coding Agents with Tinfoil Products Private Chat Private Inference Tinfoil Containers Company Blog About Mission Brand Assets Products Chat Inference Containers Resources Security and Privacy FAQ Models Technology Docs Pricing Legal Terms of Service Privacy Policy Cookie Policy Connect Contact Email us Join Us © 2026 Tinfoil Inc.
+Made in SF Visibility Beta SOC 2 Compliant © 2026 Tinfoil Inc.
+Made in SF SOC 2 Compliant Visibility Beta

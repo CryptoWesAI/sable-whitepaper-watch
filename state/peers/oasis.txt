@@ -1,0 +1,14 @@
+Runtime Off-Chain Logic (ROFL) | Oasis Documentation Skip to main content Use Oasis docs with AI coding assistants — llms.txt and Context7 MCP now available !
+Build Learn Get Involved Run Node Develop Core Overview Use cases Cross-Chain Key Generation Trustless AI Agent Trustless Price Oracle Private Telegram Chat Bot ROFL Quickstart Workflow Features Troubleshooting Sapphire Quickstart Network information Sapphire vs Ethereum Develop Examples Contract Addresses and Deployments Oasis Privacy Layer Tools & Services On this page Runtime Off-Chain Logic (ROFL) ROFL-powered apps are applications running on Oasis nodes inside a Trusted Execution Environment (TEE) that are managed through the Oasis Sapphire blockchain.
+ROFL supports: Docker-like containers or single-executable apps depending on your TCB demand and threat model Privacy and integrity through Intel SGX/TDX including fully auditable history of updates Uncensorable registration, management and deployment of your app on a permissionless pool of ROFL nodes including billing Built-in Key Management Service (KMS) for storing your app secrets and secure derivation of keys within TEE Integration with Oasis Sapphire enables EVM-compatible smart contracts to verify the ROFL transaction origin ROFL powers private trading and chat bots, provable AI learning, price oracles, home automation, VPNs and fair gaming!
+Build Your Application for ROFL ​ Developers can easily wrap their existing apps into a ROFL-powered app!
+Quickstart How to build your app for ROFL in five simple steps.
+Trustless Price Oracle Build an app that fetches latest price quotes from a centralized exchange and stores them to the blockchain.
+ROFL Sapphire appd Private Telegram Chat Bot Build a private Telegram bot running in ROFL containing a simple python script and an Ollama LLM.
+ROFL AI secrets See also ​ Features Apps in ROFL have powerful features.
+Learn how to use them.
+Workflow Detailed instructions for writing an app in ROFL from scratch Sapphire EVM-compatible blockchain featuring encrypted transactions and confidential smart contracts ROFL Node These instructions are for setting up a ROFL node which executes ROFLs inside Edit this page Last updated on Jul 24, 2026 Previous Private Telegram Chat Bot Next Quickstart Build Your Application for ROFL See also Tools Explorer Wallet CLI Status Build Testnet Faucet Demos API Node Mainnet Testnet Community Discord Telegram Youtube GitHub Copyright © 2026 by Oasis Protocol Foundation .
+We respect your privacy .
+Unless otherwise specified, all text and images on this website are licensed under CC BY 4.0 .
+This does not include the Oasis software and the code examples, both of which are licensed under Apache 2.0 .
+Built with ♥ and Docusaurus.

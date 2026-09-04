@@ -1,0 +1,48 @@
+Confidential AI Cloud · Private Inference on GPU TEE | Phala Products Confidential VM GPU TEE Confidential AI Models Model Catalog dstack GPU Marketplace H100 H200 B300 Solutions AI Agents Private AI Inference Private AI Training Private AI Data Phala vs AWS Nitro Phala vs GCP Confidential VM Phala vs Tinfoil Financial Services Healthcare Research AI SaaS Platform Decentralized AI Legal AI All use cases Developers Docs Quickstart CLI Templates Deploy CVM Deploy dstack Run GPU TEE Verify Attestation API Reference Research GitHub DeepWiki Service Status Resources Blog Research Learn Tags By use case Trust Center Security Subprocessors Startups Enterprise AI GPU Providers Partnerships About Us About Phala Build History Contact Wallet, Stake, Bridge About Phala Network Careers Pricing Contact Sign in Start building Products Solutions Developers Resources About Us Pricing Language en zh fr de nl tr Contact Sign in Start building Secured Hardware DNA visual fallback Trusted AI Private execution.
+Verifiable results.
+Run agents, private LLM models, and GPU jobs inside hardware-backed TEEs.
+Keep secrets private, and prove what ran. npm install -g phala Start building Talk to sales AWS $ phala deploy -c docker-compose.yml -n myapp building compose plan selecting CPU TEE: Intel TDX selecting GPU TEE: NVIDIA CC injecting encrypted env cvm ready: https://myapp.phala.network CPU machine GPU machine Confidential VM Confidential AI cloud Move existing Docker Compose workloads into CPU or GPU confidential machines.
+Keep the deploy path familiar; make the runtime verifiable. $ phala deploy -c docker-compose.yml -n myapp Check detail page hardware quote runtime measurement verifier report terminal · attestation.json $ curl https://api.phala.network/attest/<cvm-id> { "quote": "AgABAL8LAAAMAAsA...", "mrenclave": "a7f2c8d9e1b4...", "tcb_level": "UpToDate", "signature": "Intel/NVIDIA signed", } ✓ TEE signature valid · code integrity verified Attestation Every result can carry proof Instead of asking users to trust a cloud claim, Phala emits runtime measurements that software can verify. $ phala cvms attestation <cvm-id> Read attestation docs Trusted by 5,000+ users Trusted by industry leaders and developers worldwide.
+Products Full service for AI privacy: agent sandbox, LLM, and GPU. phala deploy -c docker-compose.yml -n myapp proof path cloud Runtime sandbox Agent sandbox Run agent backends in a confidential VM with sealed keys, private memory, and verifiable execution. $ phala deploy Deploy sandbox H200 US · 24 vCPU 141GB VRAM Intel TDX + NVIDIA CC from $3.20/GPU/hr B300 US · 16 vCPU 288GB VRAM Intel TDX + NVIDIA CC from $5.60/GPU/hr proof path gpu Confidential GPU GPU marketplace Launch H100, H200, and B300 GPU capacity with TEE-backed runtime proof and public attestations. $ nvidia-smi -q Open GPU marketplace Confidential models Private LLM models with real model choice.
+OpenAI-compatible LLM endpoints, private prompts, and verifiable runtime state.
+Check all Qwen Z.ai Z.ai Qwen Meta DeepSeek MoonshotAI Z.ai Qwen DeepSeek Qwen Google Qwen Z.ai Z.ai Qwen Meta DeepSeek MoonshotAI Z.ai Qwen DeepSeek Qwen Google encrypted Qwen: Qwen3 8B 41K context $0.11/M input Check detail $ Copy API encrypted Z.ai: GLM 5.3 1.0M context $1.40/M input Check detail $ Copy API encrypted Z.ai: GLM 5.3 Flash 1.0M context $0.15/M input Check detail $ Copy API encrypted Qwen: Qwen3.8 27B 262K context $0.40/M input Check detail $ Copy API encrypted Meta: Muse Glimmer 30B 131K context $0.30/M input Check detail $ Copy API encrypted DeepSeek: DeepSeek V4 Flash 0731 1.0M context $0.44/M input Check detail $ Copy API encrypted MoonshotAI: Kimi K3 1.0M context $3.00/M input Check detail $ Copy API encrypted Z.ai: GLM 5.2 1.0M context $1.26/M input Check detail $ Copy API encrypted Qwen: Qwen3.6 27B 262K context $0.32/M input Check detail $ Copy API encrypted DeepSeek: DeepSeek V4 Flash 1.0M context $0.20/M input Check detail $ Copy API encrypted Qwen: Qwen3 32B 41K context $0.12/M input Check detail $ Copy API encrypted Google: Gemma 4 31B 262K context $0.15/M input Check detail $ Copy API Check all All-in-one confidential compute platform for AI workloads.
+Platform Built for private AI work Write code, dockerize, and deploy it as trustless TEE apps.
+Easy Build in minutes Open Audit everything Private Hardware-level security Vibe coding marvin@Mac ~/ai-agent % claude code Claude Code bun ‹ claude deploy this agent privately on Phala and prove what ran $ phala deploy -c docker-compose.yml -n ai-agent ✓ CVM created · encrypted env loaded · app booting $ phala cvms get ai-agent --json · public_urls[0].app → https://ai-agent-7bd8.dstack-prod.phala.network $ phala cvms attestation <cvm-id> ✓ Attestation valid.
+Image digest matches.
+Safe to use.
+Proven at Scale Built for enterprise security and regulatory requirements.
+Building with confidential AI 0 + Users Runtime proofs generated and checked 0 + Daily Attestations Near-native confidential GPU execution 0 % TEE Performance Total VMs Live network source from Dune Open source Confidential model tokens/day 2026-09-03 57.4B Crawled from Phala's OpenRouter provider chart during server render. daily tokens 10 active models View token source Real-World Success Stories Discover how leading companies are leveraging Phala's confidential AI to build exceptional digital experiences, while maintaining complete data privacy and regulatory compliance.
+Financial Services Private Financial AI Phala enabled us to process sensitive trading data with AI while maintaining complete regulatory compliance.
+We've reduced compliance costs by 40% while improving model accuracy.
+Healthcare Research Medical AI with Sealed PHI Multi-party collaboration on patient data without privacy compromise.
+Accelerated drug discovery by 60% while maintaining HIPAA compliance.
+AI SaaS Platform Enterprise AI SaaS Phala's confidential AI helped us land Fortune 500 clients who required verifiable data protection.
+Increased enterprise sales by 300%.
+Decentralized AI Decentralized GPU and AI Economy Built autonomous trading agents with verifiable execution.
+Users trust our AI because they can verify every decision on-chain.
+Enterprise-Grade Compliance & Security Deploy confidential AI with confidence.
+Phala is SOC 2 Type I certified and HIPAA compliant, with ISO 27001 certification in progress and privacy-by-design controls aligned with GDPR.
+Visit Trust Center SOC 2 Type I Certified HIPAA Compliant ISO 27001 In Progress 99.9% Uptime SLA GDPR Compliant Processing 24/7 Enterprise Support FAQ Common Questions & Answers Find out all the essential details about our platform and how it can serve your needs.
+1 What is Trusted Execution Environment (TEE)?
+TEE is a secure area inside a processor that protects code and data from the operating system, hypervisor, and other applications.
+2 How does confidential AI protect sensitive data?
+Sensitive data and AI models remain private during processing by running inside hardware-backed secure environments.
+3 Is Phala compatible with existing AI frameworks?
+Yes.
+Phala supports existing Docker services and popular AI frameworks including TensorFlow, PyTorch, and Hugging Face.
+4 What are the performance implications?
+Confidential GPU workloads typically target near-native performance, with roughly 5-10% overhead depending on workload and hardware.
+5 How can I verify the security of my AI workloads?
+Phala exposes cryptographic attestations so users and systems can verify the workload and runtime state.
+6 How do I get started?
+Install the Phala CLI, deploy a Docker workload, then inspect status, logs, and attestation from the command line.
+Start building Build AI you can prove.
+Deploy private workloads, verify execution, and scale from models to GPU jobs.
+Start building Open dashboard Vibe coding Talk to sales install copy $ npm install -g phala Install the CLI, then deploy private workloads with verifiable runtime state.
+Private execution.
+Verifiable results.
+Newsletter Subscribe Build Documentation dStack SDK CLI GitHub Community Platform Confidential AI Models Model Catalog GPU TEE Confidential VM H100 GPU H200 GPU B300 GPU Solutions Private AI Data Private AI Inference Private Training AI Agents Proof By use case Financial Services Healthcare AI SaaS Decentralized AI Learn Explore Learn Research Blog vs AWS Nitro vs Google Cloud vs Tinfoil What is Confidential AI?
+What is TEE?
+Company About Partnerships Pricing Contact Careers Responsible Disclosure © 2026 Hashforest Technology.
+All rights reserved.
+Privacy • Terms

@@ -1,0 +1,36 @@
+Pricing · Sable Network sable network Docs Pricing Compute Vault Trust Explorer Agents Whitepaper Operators 中文 Portal Sable Pro One plan buys limits.
+Not privacy.
+Four tiers, paid in USDT auto-debited from your prepaid balance.
+Every tier is metered at the gateway, capped per key, and signed on the way out.
+A subscription raises your limits, extends retention, unlocks capabilities, and adds support.
+It never changes the price of compute, and it never changes how private your prompts are.
+Choose a plan Read the docs How pricing works Compute is metered on every tier.
+Every request is metered at list plus margin, the same rate on Free as on Business.
+A plan buys limits, retention, capabilities, and support, not cheaper compute.
+Free is a real pay-as-you-go tier, not a crippled trial.
+Privacy is universal.
+Signed receipts and privacy by default are on every tier, including Free.
+A plan gates access to the confidential (TEE-attested) execution path and the double-blind lanes.
+It never gates whether your prompt is protected at all.
+Paid in USDT.
+The monthly fee is auto-debited from your prepaid USDT balance.
+No credit card, no invoice, no minimum.
+Top up the balance that already pays for your compute, and the plan draws from it.
+Plans Free Free Pay as you go.
+Metered, receipted, private by default.
+Retention 7 days Rate limit 60 /min Sandboxes 4 Support community Start free Pro $79 /mo in USDT Higher limits, 90-day retention, and signed compliance audit packs.
+Retention 90 days Rate limit 600 /min Sandboxes 8 Support email support Get Pro Private $199 /mo in USDT Confidential (TEE-attested) and double-blind execution, plus region pinning.
+Retention 90 days Rate limit 600 /min Sandboxes 12 Support email support Get Private Business $399 /mo in USDT Everything in Private, plus Vault issuer tools, org seats, OTel export, and an SLA.
+Retention 365 days Rate limit 1,200 /min Sandboxes 24 Support 99.9% SLA + priority support Get Business Compare tiers Feature Free Free Pro $79 /mo Private $199 /mo Business $399 /mo Limits & retention Monthly fee (USDT) Free $79 $199 $399 Metadata retention 7 days 90 days 90 days 365 days Rate limit 60/min 600/min 600/min 1,200/min Concurrent sandboxes 4 8 12 24 Support community email support email support 99.9% SLA + priority support Universal (every tier) Signed, verifiable receipts ✓ ✓ ✓ ✓ Privacy by default ✓ ✓ ✓ ✓ Metered compute (list plus margin) ✓ ✓ ✓ ✓ Capabilities Confidential (TEE-attested) + double-blind ✓ ✓ Region pinning ✓ ✓ Compliance audit packs ✓ ✓ ✓ Vault issuer tools ✓ Org seats ✓ OpenTelemetry export ✓ Loading live pricing from the gateway… Capability gates are currently in observe-only mode on this deployment: plans are billable, and enforcement of gated capabilities is enabled by the operator.
+Billing & renewal Immediate charge, 30-day period.
+Subscribing to a paid plan debits the full monthly fee from your prepaid balance now and starts a fresh 30-day period.
+There is no proration when you switch, and the current period is not refunded.
+Cancel keeps you until period end.
+Cancelling turns off auto-renew.
+Your plan keeps its capabilities until the period ends, then drops to Free.
+You manage all of this from the portal.
+Get started Start on Free.
+Upgrade when the volume is real.
+Sign in, top up a USDT balance, and pick a plan from the portal.
+Everything is metered, capped per key, and returned with a signed receipt on every tier.
+Choose a plan Top up balance sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Product Portal Sandbox compute Cost & metering Developers Quickstart Whitepaper Embeddings Webhooks Privacy Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health

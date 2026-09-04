@@ -1,0 +1,35 @@
+Sable Network · Compute you can prove sable network Docs Pricing Compute Vault Trust Explorer Agents Whitepaper Operators 中文 Portal Trust Verify, don’t trust.
+Sable sells compute you can prove.
+So every claim on this page is checkable live, by you, right now.
+The numbers below are read straight from the running gateway, not a status graphic.
+Live system posture Recorded gateway health, sampled continuously and served at GET /v1/status .
+Uptime is computed from persisted probes; it is null until enough samples exist, never fabricated.
+Refreshes every 30 seconds.
+Gateway Uptime · 24h Uptime · 30d Database Live attestation The confidential tier is TEE-attested for the sable-confidential-* models.
+Other tiers are not confidential.
+Below is the live, DCAP-verified quote the gateway checks before serving any confidential request.
+Reading attestation state… The fleet Zero third-party machines serve Sable traffic today: one gateway, honestly labeled.
+What runs is this gateway process and its configured confidential backends.
+There is no operator network to overstate.
+Reading the node registry… Signed receipts Every billable response is signed by the key below (secp256k1 / EIP-191).
+Pin this address and verify any receipt offline against it, or paste one here to check it now.
+See the receipts docs .
+Verify a receipt Paste the x-sable-receipt header (or the sable.receipt stream event) and its signature.
+The check runs against the public POST /v1/receipts/verify endpoint and recovers the signer.
+Receipt (base64url) Signature (0x…) Verify What we do not claim.
+Trust is what’s left after the overclaims are removed.
+These are the limits of what Sable proves, stated plainly, because the honesty is the point.
+Standard and anonymized tiers are not confidential On these tiers the model host’s servers see the prompt in plaintext.
+Anonymized routing hides who is asking from the vendor; it does not hide what is asked.
+Only the confidential tier is TEE-attested.
+Operator attribution is not proof of correctness A counter-signed receipt proves which machine served a request (who to hold responsible), not that the work it returned was correct.
+We label attribution as attribution.
+Double-blind hides who, not what The double-blind path (planned, and labeled planned everywhere) separates identity from request.
+It is a privacy property, not a confidentiality guarantee over the payload.
+There is no marketplace Zero third-party machines serve Sable traffic today.
+What runs is this gateway and its configured backends.
+We do not use present-tense network or marketplace language for supply that doesn’t exist yet.
+The Vault is registry infrastructure, not custody Sable Vault records and proves issuer-declared entries with hash-chained events and public anchoring.
+Sable does not custody assets, appraise them, or enforce ownership.
+A receipt fingerprints, it never stores content Prompts, completions, and submitted code are never persisted or logged.
+A receipt carries metadata and a content fingerprint: enough to verify what ran, never enough to reconstruct it. sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Product Portal Sandbox compute Cost & metering Developers Quickstart Whitepaper Embeddings Webhooks Privacy Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health

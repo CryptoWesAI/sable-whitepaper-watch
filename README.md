@@ -22,7 +22,7 @@ Sable's own whitepaper says: *"Infrastructure whitepapers routinely describe a p
 
 A GitHub Action runs [`watch.py`](watch.py) every hour. It downloads the PDF, hashes it, and only does work when the hash changes. The status ledger appends one line per run regardless. Commits are made by the Action; the history of this repository is the record.
 
-If the whitepaper or the signer address changes and the repository has `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` secrets, it sends one message. Without them it stays quiet and just commits.
+There is no alert channel. Every run also writes [`record.json`](record.json), a machine-readable summary of the changelog and the last ledger line, and [sable.primecircle.cloud](https://sable.primecircle.cloud#check) reads that file at page load. A change to the whitepaper is therefore visible on the site within the hour, with no deploy and no bot.
 
 ## Verify it yourself
 

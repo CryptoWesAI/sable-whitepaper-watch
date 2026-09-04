@@ -1,0 +1,20 @@
+Careers · Sable Network sable network Docs Pricing Compute Vault Trust Explorer Agents Whitepaper Operators 中文 Portal Careers Build the substrate for sovereign AI.
+A very small team working on hard cryptography, confidential compute, and developer experience for the agent economy.
+Open roles Engineering Open Backend Engineer, Rust (Gateway & Billing) Own the metering path of a production Rust gateway (axum, sqlx, Postgres): pre-authorization holds, an append-only credit ledger, signed receipts, idempotent settlement.
+Correctness bugs here are money bugs.
+You should enjoy proving code right, not just shipping it.
+Apply: contact@buildsable.com → Engineering Open Senior Backend Engineer, Rust (Confidential Compute) Build the confidential sandbox: a measured Intel TDX runner CVM, DCAP quote verification, per-job response binding, sealed secret delivery.
+You have shipped Rust systems software and are comfortable reading TEE specs; prior enclave work is a plus, not a requirement.
+Apply: contact@buildsable.com → How we work Three principles.
+01 We sell trust, not features.
+Every line in the privacy path holds the cryptographic guarantee or it doesn't ship.
+02 Calm, not loud.
+Infrastructure people don't want confetti.
+We write code and copy with the same restraint.
+03 Crypto-native, not crypto-bro.
+On-chain in service of decentralization, not speculation.
+Platform economics stay dollar-denominated: Sable is always priced in dollars, the SABL community token's only role is an optional way to pay, and supply is never paid in emissions.
+Inbound No fit?
+Write anyway.
+What you do, what you'd build, a link or two.
+We read every email. contact@buildsable.com Read the manifesto sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Product Portal Sandbox compute Cost & metering Developers Quickstart Whitepaper Embeddings Webhooks Privacy Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health
