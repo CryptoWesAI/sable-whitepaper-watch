@@ -91,13 +91,31 @@ def set_output(key, value):
 
 def whitepaper(args):
     t = now()
+    fail_path = os.path.join(STATE, "pdf_fetch_failures.txt")
     if args.pdf:
         with open(args.pdf, "rb") as f:
             pdf = f.read()
         source = f"{PDF_URL}, from a copy saved on {args.label or 'an earlier date'} and imported into this record"
     else:
-        pdf = fetch(PDF_URL)
+        try:
+            pdf = fetch(PDF_URL)
+        except Exception as e:
+            # Sable's site stalls now and then. One miss is not news; a day of
+            # misses means the URL moved or the watch is broken, and then the
+            # job must go red so a human gets GitHub's failure email.
+            n = int(read(fail_path, "0").strip() or 0) + 1
+            write(fail_path, f"{n}\n")
+            print(f"whitepaper fetch failed ({type(e).__name__}: {e}); consecutive failures: {n}")
+            set_output("changed", "false")
+            if n >= 24:
+                raise SystemExit(f"whitepaper unreachable for {n} consecutive runs; check {PDF_URL}")
+            return False
+        write(fail_path, "0\n")
         source = PDF_URL
+    if not pdf.startswith(b"%PDF"):
+        print("fetched something that is not a PDF; not recording it")
+        set_output("changed", "false")
+        return False
     sha = hashlib.sha256(pdf).hexdigest()
     prev_sha = read(os.path.join(STATE, "whitepaper.sha256")).strip()
     if sha == prev_sha:
@@ -142,9 +160,13 @@ def whitepaper(args):
     body = changelog[len(head):] if changelog.startswith(head) else changelog
     write(os.path.join(ROOT, "CHANGELOG.md"), head + "\n".join(entry) + body)
 
-    summary = f"whitepaper CHANGED: {version}; {len(pdf):,} bytes; +{added}/-{removed} sentences"
+    material = (added + removed) > 0 or not prev_sent
+    summary = f"whitepaper CHANGED: {version}; {len(pdf):,} bytes; +{added}/-{removed} sentences" + ("" if material else " (file re-rendered, no sentence changed)")
     print(summary)
-    set_output("changed", "true")
+    # "changed" drives the commit message and the alert. A re-rendered PDF with
+    # identical sentences is recorded in the changelog but never announced,
+    # so the alert channel only ever carries real changes.
+    set_output("changed", "true" if material else "false")
     set_output("summary", summary)
     set_output("label", label)
     return True
