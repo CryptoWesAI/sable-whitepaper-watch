@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-04T21:33:23Z",
+ "generated_at": "2026-09-05T00:09:33Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -25,13 +25,13 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-04T21:33:21Z",
+  "t": "2026-09-05T00:09:31Z",
   "status": "degraded",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
   "conf_verified": false,
   "conf_error": "measurement_mismatch",
-  "conf_failures": 830,
+  "conf_failures": 1038,
   "conf_backends": "0/1",
   "sandbox_ok": true,
   "nodes": [
