@@ -87,6 +87,10 @@ def build(root, pdftotext, sentences, cover_version, pdf_url):
                     seen[t] = {"first": label, "last": label, "n": s["n"]}
         latest = (label, secs, current, cover_version(text))
     label, secs, current, cover = latest
+    if "not found" in cover:
+        # fall back to the human record, which is written once per change
+        m = re.search(r"Cover says: \*\*(.+?)\*\*", open(os.path.join(root, "CHANGELOG.md"), encoding="utf-8").read() if os.path.exists(os.path.join(root, "CHANGELOG.md")) else "")
+        cover = m.group(1) if m else cover
     first_label = labels[0]
 
     def removed_in(last_seen):

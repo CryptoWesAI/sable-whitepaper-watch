@@ -79,7 +79,8 @@ def sentences(text):
 
 
 def cover_version(text):
-    m = re.search(r"(\d+\.\d+)\s*-+\s*([A-Z][a-z]+ 20\d\d)", text)
+    # poppler on Linux renders the cover's dash as an em dash, on Windows as "--"
+    m = re.search(r"(\d+\.\d+)\s*[-‐-―]+\s*([A-Z][a-z]+ 20\d\d)", text)
     return f"v{m.group(1)}, {m.group(2)}" if m else "version line not found"
 
 
