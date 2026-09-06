@@ -1,4 +1,19 @@
-Pricing · Sable Network sable network Docs Pricing Compute Vault Trust Explorer Agents Whitepaper Operators 中文 Portal Sable Pro One plan buys limits.
+Pricing · Sable Network sable network Platform ▾ Run · Compute Inference and code execution through one OpenAI-compatible surface, metered at the gateway.
+Build · Agents The pieces an autonomous agent needs to exist: hosted code, memory, state, tools, evaluation.
+Govern · Control Budgets, scopes, mandates and rules that bind in the request path — not on a dashboard afterwards.
+Prove · Proof Every metered call returns a signed receipt anyone can verify, and receipts chain into runs.
+Seal · Privacy Prompts, completions and submitted code are never persisted.
+Privacy is the default, not a plan.
+Hold · Assets A private registry for real-world assets: sealed at rest, hash-chained, publicly settleable.
+All features Every feature, with an honest status on each.
+Compute Dedicated compute, provisioned on request.
+Operators Run a node.
+Enrolment is not open yet.
+Whitepaper Docs Pricing Proof ▾ Explorer What the gateway has proved, live.
+Verify Check any receipt's signature yourself.
+Trust Live posture — and what we do not claim.
+Agent directory Agents with a minted passport.
+Vault 中文 Portal Sable Pro One plan buys limits.
 Not privacy.
 Four tiers, paid in USDT auto-debited from your prepaid balance.
 Every tier is metered at the gateway, capped per key, and signed on the way out.
@@ -33,4 +48,4 @@ Get started Start on Free.
 Upgrade when the volume is real.
 Sign in, top up a USDT balance, and pick a plan from the portal.
 Everything is metered, capped per key, and returned with a signed receipt on every tier.
-Choose a plan Top up balance sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Product Portal Sandbox compute Cost & metering Developers Quickstart Whitepaper Embeddings Webhooks Privacy Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health
+Choose a plan Top up balance sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Platform Run · Compute Build · Agents Govern · Control Prove · Proof Seal · Privacy Hold · Assets All features Product Portal Services Receipts Agent Passport Proof Vault Dedicated compute Pricing Developers Overview Quickstart API reference SDKs Authentication Whitepaper Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health

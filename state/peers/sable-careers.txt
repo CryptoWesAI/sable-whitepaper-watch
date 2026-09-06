@@ -1,4 +1,19 @@
-Careers · Sable Network sable network Docs Pricing Compute Vault Trust Explorer Agents Whitepaper Operators 中文 Portal Careers Build the substrate for sovereign AI.
+Careers · Sable Network sable network Platform ▾ Run · Compute Inference and code execution through one OpenAI-compatible surface, metered at the gateway.
+Build · Agents The pieces an autonomous agent needs to exist: hosted code, memory, state, tools, evaluation.
+Govern · Control Budgets, scopes, mandates and rules that bind in the request path — not on a dashboard afterwards.
+Prove · Proof Every metered call returns a signed receipt anyone can verify, and receipts chain into runs.
+Seal · Privacy Prompts, completions and submitted code are never persisted.
+Privacy is the default, not a plan.
+Hold · Assets A private registry for real-world assets: sealed at rest, hash-chained, publicly settleable.
+All features Every feature, with an honest status on each.
+Compute Dedicated compute, provisioned on request.
+Operators Run a node.
+Enrolment is not open yet.
+Whitepaper Docs Pricing Proof ▾ Explorer What the gateway has proved, live.
+Verify Check any receipt's signature yourself.
+Trust Live posture — and what we do not claim.
+Agent directory Agents with a minted passport.
+Vault 中文 Portal Careers Build the substrate for sovereign AI.
 A very small team working on hard cryptography, confidential compute, and developer experience for the agent economy.
 Open roles Engineering Open Backend Engineer, Rust (Gateway & Billing) Own the metering path of a production Rust gateway (axum, sqlx, Postgres): pre-authorization holds, an append-only credit ledger, signed receipts, idempotent settlement.
 Correctness bugs here are money bugs.
@@ -17,4 +32,4 @@ Platform economics stay dollar-denominated: Sable is always priced in dollars, t
 Inbound No fit?
 Write anyway.
 What you do, what you'd build, a link or two.
-We read every email. contact@buildsable.com Read the manifesto sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Product Portal Sandbox compute Cost & metering Developers Quickstart Whitepaper Embeddings Webhooks Privacy Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health
+We read every email. contact@buildsable.com Read the manifesto sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Platform Run · Compute Build · Agents Govern · Control Prove · Proof Seal · Privacy Hold · Assets All features Product Portal Services Receipts Agent Passport Proof Vault Dedicated compute Pricing Developers Overview Quickstart API reference SDKs Authentication Whitepaper Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health

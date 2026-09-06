@@ -1,0 +1,33 @@
+--- previous
++++ 2026-09-06-1938
+@@ -1,2 +1,17 @@
+-Sable Network · Compute you can prove sable network Docs Pricing Compute Vault Trust Explorer Agents Whitepaper Operators 中文 Portal Trust Verify, don’t trust.
++Sable Network · Compute you can prove sable network Platform ▾ Run · Compute Inference and code execution through one OpenAI-compatible surface, metered at the gateway.
++Build · Agents The pieces an autonomous agent needs to exist: hosted code, memory, state, tools, evaluation.
++Govern · Control Budgets, scopes, mandates and rules that bind in the request path — not on a dashboard afterwards.
++Prove · Proof Every metered call returns a signed receipt anyone can verify, and receipts chain into runs.
++Seal · Privacy Prompts, completions and submitted code are never persisted.
++Privacy is the default, not a plan.
++Hold · Assets A private registry for real-world assets: sealed at rest, hash-chained, publicly settleable.
++All features Every feature, with an honest status on each.
++Compute Dedicated compute, provisioned on request.
++Operators Run a node.
++Enrolment is not open yet.
++Whitepaper Docs Pricing Proof ▾ Explorer What the gateway has proved, live.
++Verify Check any receipt's signature yourself.
++Trust Live posture — and what we do not claim.
++Agent directory Agents with a minted passport.
++Vault 中文 Portal Trust Verify, don’t trust.
+ Sable sells compute you can prove.
+@@ -10,6 +25,3 @@
+ Below is the live, DCAP-verified quote the gateway checks before serving any confidential request.
+-Reading attestation state… The fleet Zero third-party machines serve Sable traffic today: one gateway, honestly labeled.
+-What runs is this gateway process and its configured confidential backends.
+-There is no operator network to overstate.
+-Reading the node registry… Signed receipts Every billable response is signed by the key below (secp256k1 / EIP-191).
++Reading attestation state… The fleet Reading the node registry… Signed receipts Every billable response is signed by the key below (secp256k1 / EIP-191).
+ Pin this address and verify any receipt offline against it, or paste one here to check it now.
+@@ -34,2 +46,2 @@
+ A receipt fingerprints, it never stores content Prompts, completions, and submitted code are never persisted or logged.
+-A receipt carries metadata and a content fingerprint: enough to verify what ran, never enough to reconstruct it. sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Product Portal Sandbox compute Cost & metering Developers Quickstart Whitepaper Embeddings Webhooks Privacy Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health
++A receipt carries metadata and a content fingerprint: enough to verify what ran, never enough to reconstruct it. sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Platform Run · Compute Build · Agents Govern · Control Prove · Proof Seal · Privacy Hold · Assets All features Product Portal Services Receipts Agent Passport Proof Vault Dedicated compute Pricing Developers Overview Quickstart API reference SDKs Authentication Whitepaper Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health

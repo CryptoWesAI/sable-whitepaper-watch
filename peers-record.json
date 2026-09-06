@@ -1,46 +1,78 @@
 {
  "sable-trust": {
   "id": "sable-trust",
-  "changes": [],
+  "changes": [
+   {
+    "label": "2026-09-06-1938",
+    "added": 18,
+    "removed": 6,
+    "diff": "diffs/peers/sable-trust-2026-09-06-1938.diff"
+   }
+  ],
   "name": "Sable \u00b7 trust page",
   "url": "https://www.buildsable.com/trust",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
-  "first_seen": "2026-09-04-1853"
+  "first_seen": "2026-09-04-1853",
+  "last_change": "2026-09-06-1938"
  },
  "sable-pricing": {
   "id": "sable-pricing",
-  "changes": [],
+  "changes": [
+   {
+    "label": "2026-09-06-1938",
+    "added": 17,
+    "removed": 2,
+    "diff": "diffs/peers/sable-pricing-2026-09-06-1938.diff"
+   }
+  ],
   "name": "Sable \u00b7 pricing",
   "url": "https://www.buildsable.com/pricing",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
-  "first_seen": "2026-09-04-1853"
+  "first_seen": "2026-09-04-1853",
+  "last_change": "2026-09-06-1938"
  },
  "sable-careers": {
   "id": "sable-careers",
-  "changes": [],
+  "changes": [
+   {
+    "label": "2026-09-06-1938",
+    "added": 17,
+    "removed": 2,
+    "diff": "diffs/peers/sable-careers-2026-09-06-1938.diff"
+   }
+  ],
   "name": "Sable \u00b7 careers",
   "url": "https://www.buildsable.com/careers",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
-  "first_seen": "2026-09-04-1853"
+  "first_seen": "2026-09-04-1853",
+  "last_change": "2026-09-06-1938"
  },
  "phala": {
   "id": "phala",
-  "changes": [],
+  "changes": [
+   {
+    "label": "2026-09-06-1938",
+    "added": 2,
+    "removed": 2,
+    "diff": "diffs/peers/phala-2026-09-06-1938.diff"
+   }
+  ],
   "name": "Phala \u00b7 homepage",
   "url": "https://phala.com/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
-  "first_seen": "2026-09-04-1853"
+  "first_seen": "2026-09-04-1853",
+  "last_change": "2026-09-06-1938"
  },
  "near-ai": {
   "id": "near-ai",
   "changes": [],
   "name": "NEAR AI \u00b7 homepage",
   "url": "https://near.ai/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -49,7 +81,7 @@
   "changes": [],
   "name": "Nillion \u00b7 docs",
   "url": "https://docs.nillion.com/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -58,7 +90,7 @@
   "changes": [],
   "name": "Secret AI \u00b7 site",
   "url": "https://secretai.scrtlabs.com/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -67,7 +99,7 @@
   "changes": [],
   "name": "Oasis \u00b7 ROFL docs",
   "url": "https://docs.oasis.io/build/rofl/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -76,7 +108,7 @@
   "changes": [],
   "name": "Tinfoil \u00b7 homepage",
   "url": "https://tinfoil.sh/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -85,9 +117,9 @@
   "changes": [],
   "name": "OpenGradient \u00b7 homepage",
   "url": "https://www.opengradient.ai/",
-  "last_check": "2026-09-04T18:53:00Z",
+  "last_check": "2026-09-06T19:38:33Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
- "_generated_at": "2026-09-04T18:53:00Z"
+ "_generated_at": "2026-09-06T19:38:33Z"
 }
