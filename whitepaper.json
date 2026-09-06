@@ -1,7 +1,7 @@
 {
-"generated_at": "2026-09-06T18:47:45Z",
+"generated_at": "2026-09-06T19:15:23Z",
 "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
-"cover": "v2.0, August 2026",
+"cover": "version line not found",
 "snapshots": [
 "2026-08-29",
 "2026-09-04"
@@ -28,7 +28,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "When an autonomous agent uses one, it discloses everything -- its objectives, its tools, its private state, the contents of the documents it is reasoning over, and increasingly the code it wants executed and the secrets that code needs.",
+"t": "When an autonomous agent uses one, it discloses everything — its objectives, its tools, its private state, the contents of the documents it is reasoning over, and increasingly the code it wants executed and the secrets that code needs.",
 "s": "2026-08-29"
 },
 {
@@ -60,7 +60,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "And when the bill arrives, the questions that matter -- what ran, on what hardware, under whose budget, and can you prove it -- have no answer, because the systems in the middle were built for a human clicking a button, not for a machine spending money unsupervised.",
+"t": "And when the bill arrives, the questions that matter — what ran, on what hardware, under whose budget, and can you prove it — have no answer, because the systems in the middle were built for a human clicking a button, not for a machine spending money unsupervised.",
 "s": "2026-08-29"
 },
 {
@@ -80,7 +80,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "The wedge is deliberately narrow: a developer adopts it by changing one line. # Before client = OpenAI() # After -- sealed on ingress, metered, budget-bounded, receipted client = Sable(base_url=\"https://api.buildsable.com/v1\") Everything else -- chat completions, embeddings, streaming, tool use -- keeps working unchanged, and the Anthropic Messages API is served from the same gateway, so an Anthropic-shaped client works by pointing ANTHROPIC_BASE_URL at it.",
+"t": "The wedge is deliberately narrow: a developer adopts it by changing one line. # Before client = OpenAI() # After — sealed on ingress, metered, budget-bounded, receipted client = Sable(base_url=\"https://api.buildsable.com/v1\") Everything else — chat completions, embeddings, streaming, tool use — keeps working unchanged, and the Anthropic Messages API is served from the same gateway, so an Anthropic-shaped client works by pointing ANTHROPIC_BASE_URL at it.",
 "s": "2026-08-29"
 },
 {
@@ -92,7 +92,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Trust that requires lock-in is not trust -- it is capture.",
+"t": "Trust that requires lock-in is not trust — it is capture.",
 "s": "2026-08-29"
 }
 ],
@@ -120,11 +120,11 @@
 "s": "2026-08-29"
 },
 {
-"t": "It accepts two kinds of work through one credential, one balance, and one policy surface: Inference -- chat completions and embeddings, metered in tokens.",
+"t": "It accepts two kinds of work through one credential, one balance, and one policy surface: Inference — chat completions and embeddings, metered in tokens.",
 "s": "2026-08-29"
 },
 {
-"t": "Sandboxes -- short-lived code execution, metered in vCPU-seconds and gigabyte-seconds.",
+"t": "Sandboxes — short-lived code execution, metered in vCPU-seconds and gigabyte-seconds.",
 "s": "2026-08-29"
 },
 {
@@ -140,7 +140,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A few of them are load-bearing: the flagship family -- sable , sable-fast , sable-max -- where each id is kept pointed at a strong frontier engine (currently Claude Opus 5 behind sable ), disclosed rather than hidden: each flagship id carries a chain of engines it can fail over across, and the engine that actually served is recorded in every signed receipt.",
+"t": "A few of them are load-bearing: the flagship family — sable , sable-fast , sable-max — where each id is kept pointed at a strong frontier engine (currently Claude Opus 5 behind sable ), disclosed rather than hidden: each flagship id carries a chain of engines it can fail over across, and the engine that actually served is recorded in every signed receipt.",
 "s": "2026-08-29"
 },
 {
@@ -160,7 +160,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A pinned route never fails over -- a failover that changed the privacy path would be worse than an error -- and the intermediary's default system prompt is disabled at egress.",
+"t": "A pinned route never fails over — a failover that changed the privacy path would be worse than an error — and the intermediary’s default system prompt is disabled at egress.",
 "s": "2026-08-29"
 },
 {
@@ -180,7 +180,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "The backend is, deliberately, the least trusted component in the system -- which is precisely what makes it replaceable.",
+"t": "The backend is, deliberately, the least trusted component in the system — which is precisely what makes it replaceable.",
 "s": "2026-08-29"
 },
 {
@@ -188,7 +188,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A caller written against the gateway on its first day keeps working as the compute underneath changes -- different upstream providers, attested enclaves, and eventually machines Sable does not own.",
+"t": "A caller written against the gateway on its first day keeps working as the compute underneath changes — different upstream providers, attested enclaves, and eventually machines Sable does not own.",
 "s": "2026-08-29"
 },
 {
@@ -312,7 +312,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Abuse response is necessarily account-level rather than content-level -- we cannot search content we never stored, so reports are actioned against accounts and against fingerprints a reporter supplies, never by scanning traffic.",
+"t": "Abuse response is necessarily account-level rather than content-level — we cannot search content we never stored, so reports are actioned against accounts and against fingerprints a reporter supplies, never by scanning traffic.",
 "s": "2026-08-29"
 },
 {
@@ -336,11 +336,11 @@
 "s": "2026-08-29"
 },
 {
-"t": "The control plane is a single deployed component: an HTTP gateway speaking the OpenAI wire protocol, with an Anthropic-shaped fa�ade and an MCP server on the same port.",
+"t": "The control plane is a single deployed component: an HTTP gateway speaking the OpenAI wire protocol, with an Anthropic-shaped façade and an MCP server on the same port.",
 "s": "2026-08-29"
 },
 {
-"t": "Sandbox work is dispatched from it to an enrolled runner node -- the gateway claims a per-job concurrency lease transactionally before it dials anything.",
+"t": "Sandbox work is dispatched from it to an enrolled runner node — the gateway claims a per-job concurrency lease transactionally before it dials anything.",
 "s": "2026-08-29"
 },
 {
@@ -348,11 +348,11 @@
 "s": "2026-08-29"
 },
 {
-"t": "SABLE GATEWAY seal() � fingerprint authorize � hold plaintext (in-frame) Model host upstream, or attested TEE Agent sealed OpenAI / Anthropic attest (confidential) open() � dispatch / MCP client meter � settle hold � sign receipt Sandbox runner metadata-only event � append-only credit ledger POST {base}/run secp256k1 / EIP-191 receipt FIG.",
+"t": "SABLE GATEWAY Model host seal() · fingerprint authorize · hold plaintext (in-frame) upstream, or attested TEE Agent sealed attest (confidential) open() · dispatch OpenAI / Anthropic / MCP client meter · settle hold · sign receipt Sandbox runner POST {base}/run metadata-only event · append-only credit ledger secp256k1 / EIP-191 receipt FIG.",
 "s": "2026-08-29"
 },
 {
-"t": "1 -- ONE PIPELINE, TWO KINDS OF WORK.",
+"t": "1 — ONE PIPELINE, TWO KINDS OF WORK.",
 "s": "2026-08-29"
 },
 {
@@ -372,7 +372,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A short SHA-256 fingerprint is computed pre-seal for safe logging and correlation -- it identifies a request without revealing it, and it is the value that later appears on the receipt.",
+"t": "A short SHA-256 fingerprint is computed pre-seal for safe logging and correlation — it identifies a request without revealing it, and it is the value that later appears on the receipt.",
 "s": "2026-08-29"
 },
 {
@@ -388,19 +388,19 @@
 "s": "2026-08-29"
 },
 {
-"t": "Backend error text is reduced to fixed classes rather than forwarded, because a backend's own error message is one of the easiest ways to leak a payload -- or, as we learned by shipping it, the gateway host's filesystem layout.",
+"t": "Backend error text is reduced to fixed classes rather than forwarded, because a backend's own error message is one of the easiest ways to leak a payload — or, as we learned by shipping it, the gateway host's filesystem layout.",
 "s": "2026-08-29"
 },
 {
-"t": "An opt-in scrub ( sable_scrub ) can additionally redact secret-and PII-shaped spans -- emails, wallet addresses, API-key shapes, long hex -- from the outbound payload inside this same frame, before it reaches any vendor; nothing scrubbed or unscrubbed is persisted, and only the redaction count is ever traced.",
+"t": "An opt-in scrub ( sable_scrub ) can additionally redact secret-and PII-shaped spans — emails, wallet addresses, API-key shapes, long hex — from the outbound payload inside this same frame, before it reaches any vendor; nothing scrubbed or unscrubbed is persisted, and only the redaction count is ever traced.",
 "s": "2026-08-29"
 },
 {
-"t": "Metadata-only accounting What Sable retains per unit of work is one row: usage_events ( kind � unit � quantity � resource model � provider � privacy_tier � node_id prompt_tokens � completion_tokens � total_tokens � cost_micro_usd latency_ms � status � error_class � created_at ) // absent by construction: prompts, completions, embeddings, submitted // code, stdout, stderr, or anything they could be reconstructed from.",
+"t": "Metadata-only accounting What Sable retains per unit of work is one row: usage_events ( kind · unit · quantity · resource model · provider · privacy_tier · node_id prompt_tokens · completion_tokens · total_tokens · cost_micro_usd latency_ms · status · error_class · created_at ) // absent by construction: prompts, completions, embeddings, submitted // code, stdout, stderr, or anything they could be reconstructed from.",
 "s": "2026-08-29"
 },
 {
-"t": "One table describes tokens and vCPU-seconds alike -- the kind / unit / quantity triple is what makes a single billing, budgeting, and reporting path work across both.",
+"t": "One table describes tokens and vCPU-seconds alike — the kind / unit / quantity triple is what makes a single billing, budgeting, and reporting path work across both.",
 "s": "2026-08-29"
 },
 {
@@ -418,7 +418,7 @@
 "n": "05",
 "title": "Metering, budgets & delegation",
 "count": 20,
-"words": 520,
+"words": 521,
 "changed": null,
 "added": 0,
 "removed": 0,
@@ -436,7 +436,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A cached balance column is maintained inside the same database transaction as every ledger append, purely as an index -- a reconciliation job recomputes the sum on a schedule and alerts on drift without silently repairing it, because a self-healing cache destroys the evidence of the bug that caused the drift.",
+"t": "A cached balance column is maintained inside the same database transaction as every ledger append, purely as an index — a reconciliation job recomputes the sum on a schedule and alerts on drift without silently repairing it, because a self-healing cache destroys the evidence of the bug that caused the drift.",
 "s": "2026-08-29"
 },
 {
@@ -444,7 +444,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Before any upstream call the gateway places a hold for the request's worst-case cost -- for a sandbox, every second of its declared timeout at its declared vCPU and memory; for inference, an estimate floored at a configured minimum.",
+"t": "Before any upstream call the gateway places a hold for the request's worst-case cost — for a sandbox, every second of its declared timeout at its declared vCPU and memory; for inference, an estimate floored at a configured minimum.",
 "s": "2026-08-29"
 },
 {
@@ -476,11 +476,11 @@
 "s": "2026-08-29"
 },
 {
-"t": "POST /v1/keys/delegate is authenticated by the parent API key rather than a wallet session, and issues a child that is its parent on every axis.",
+"t": "POST /v1/keys/delegate is authenticated by the parent API key rather than a wallet session, and issues a child that is ≤ its parent on every axis.",
 "s": "2026-08-29"
 },
 {
-"t": "Two rules are deliberately the opposite of the obvious implementation, because the obvious implementation silently defeats the feature: Omitting a field inherits the parent's limit -- it does not mean \"unlimited\".",
+"t": "Two rules are deliberately the opposite of the obvious implementation, because the obvious implementation silently defeats the feature: Omitting a field inherits the parent's limit — it does not mean \"unlimited\".",
 "s": "2026-08-29"
 },
 {
@@ -496,7 +496,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Depth is capped, and tier is inherited rather than settable -- because tier selects routing, and on the confidential tier it selects which hardware attests the call.",
+"t": "Depth is capped, and tier is inherited rather than settable — because tier selects routing, and on the confidential tier it selects which hardware attests the call.",
 "s": "2026-08-29"
 },
 {
@@ -636,7 +636,7 @@
 "s": "2026-09-04"
 },
 {
-"t": "The only official mint address is the one above, republished on Sable's official channels; anything else using the name is an impersonation.",
+"t": "The only official mint address is the one above, republished on Sable’s official channels; anything else using the name is an impersonation.",
 "s": "2026-08-29"
 },
 {
@@ -651,7 +651,7 @@
 "gone": "2026-09-04"
 },
 {
-"t": "What has changed since the previous version of this document -- which said Sable would not issue a token at all -- is that in August 2026 the team launched SABL, a community token on Solana (mint DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump ; fixed supply, mint and freeze authority revoked).",
+"t": "What has changed since the previous version of this document — which said Sable would not issue a token at all — is that in August 2026 the team launched SABL, a community token on Solana (mint DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump ; fixed supply, mint and freeze authority revoked).",
 "s": "2026-08-29",
 "gone": "2026-09-04"
 },
@@ -671,10 +671,10 @@
 "n": "07",
 "title": "Verifiable receipts",
 "count": 10,
-"words": 318,
-"changed": "2026-09-04",
-"added": 1,
-"removed": 1,
+"words": 319,
+"changed": null,
+"added": 0,
+"removed": 0,
 "sentences": [
 {
 "t": "A guarantee you can check beats a guarantee you have to believe.",
@@ -689,8 +689,8 @@
 "s": "2026-08-29"
 },
 {
-"t": "Inference and compute use distinct shapes -- v:1 describes a token-metered call, v:2 a unit-metered execution -- so a verifier is never asked to reinterpret one as the other. { \"v\": 2, \"request_id\": \"3f9c...\", \"content_fingerprint\": \"a1b2c3d4...\", // sha256 prefix, NOT content \"kind\": \"sandbox\", \"resource\": \"python:3.12-slim\", \"unit\": \"vcpu_seconds\", \"quantity\": 12, \"cost_micro_usd\": 178, \"status\": \"ok\", \"exit_code\": 0, \"duration_ms\": 6042, \"logging\": \"metadata-only\", \"issued_at\": \"2026-08-07T12:00:00Z\" } Because the scheme is standard secp256k1 / EIP-191, a receipt verifies with tooling the wider ecosystem already trusts -- no Sable-specific library required: // viem -- verify against the published signer address // true await verifyMessage({ address, message: atob(receipt), signature }) The gateway also exposes GET /v1/receipts/pubkey and POST /v1/receipts/verify for parties who prefer a hosted check.",
-"s": "2026-09-04"
+"t": "Inference and compute use distinct shapes — v:1 describes a token-metered call, v:2 a unit-metered execution — so a verifier is never asked to reinterpret one as the other. { \"v\": 2, \"request_id\": \"3f9c…\", \"content_fingerprint\": \"a1b2c3d4…\", // sha256 prefix, NOT content \"kind\": \"sandbox\", \"resource\": \"python:3.12-slim\", \"unit\": \"vcpu_seconds\", \"quantity\": 12, \"cost_micro_usd\": 178, \"status\": \"ok\", \"exit_code\": 0, \"duration_ms\": 6042, \"logging\": \"metadata-only\", \"issued_at\": \"2026-08-07T12:00:00Z\" } Because the scheme is standard secp256k1 / EIP-191, a receipt verifies with tooling the wider ecosystem already trusts — no Sable-specific library required: // viem — verify against the published signer address await verifyMessage({ address, message: atob(receipt), signature }) // → true The gateway also exposes GET /v1/receipts/pubkey and POST /v1/receipts/verify for parties who prefer a hosted check.",
+"s": "2026-08-29"
 },
 {
 "t": "Non-streaming responses carry the receipt in headers; streaming responses emit it as a trailing sable.receipt event, since the headers are long gone by then.",
@@ -701,7 +701,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A gateway-signed receipt proves that this deployment attests to having processed a payload with that fingerprint, under that tier, at that metered cost -- and that no field has been altered since.",
+"t": "A gateway-signed receipt proves that this deployment attests to having processed a payload with that fingerprint, under that tier, at that metered cost — and that no field has been altered since.",
 "s": "2026-08-29"
 },
 {
@@ -717,13 +717,7 @@
 "s": "2026-08-29"
 }
 ],
-"ghosts": [
-{
-"t": "Inference and compute use distinct shapes -- v:1 describes a token-metered call, v:2 a unit-metered execution -- so a verifier is never asked to reinterpret one as the other. { \"v\": 2, \"request_id\": \"3f9c...\", \"content_fingerprint\": \"a1b2c3d4...\", // sha256 prefix, NOT content \"kind\": \"sandbox\", \"resource\": \"python:3.12-slim\", \"unit\": \"vcpu_seconds\", \"quantity\": 12, \"cost_micro_usd\": 178, \"status\": \"ok\", \"exit_code\": 0, \"duration_ms\": 6042, \"logging\": \"metadata-only\", \"issued_at\": \"2026-08-07T12:00:00Z\" } Because the scheme is standard secp256k1 / EIP-191, a receipt verifies with tooling the wider ecosystem already trusts -- no Sable-specific library required: // viem -- verify against the published signer address await verifyMessage({ address, message: atob(receipt), signature }) // true The gateway also exposes GET /v1/receipts/pubkey and POST /v1/receipts/verify for parties who prefer a hosted check.",
-"s": "2026-08-29",
-"gone": "2026-09-04"
-}
-]
+"ghosts": []
 },
 {
 "n": "08",
@@ -735,7 +729,7 @@
 "removed": 0,
 "sentences": [
 {
-"t": "Verify the hardware before you send it anything -- and refuse rather than downgrade.",
+"t": "Verify the hardware before you send it anything — and refuse rather than downgrade.",
 "s": "2026-08-29"
 },
 {
@@ -747,7 +741,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Anything less fails closed -- the request is refused with an error, never served in plaintext by a different path.",
+"t": "Anything less fails closed — the request is refused with an error, never served in plaintext by a different path.",
 "s": "2026-08-29"
 },
 {
@@ -775,7 +769,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Attest-then-call, enforced by types Attesting one enclave and then sending the payload to another would produce a receipt describing hardware that never saw the request -- the worst failure this system could have, and an easy one to introduce during a refactor.",
+"t": "Attest-then-call, enforced by types Attesting one enclave and then sending the payload to another would produce a receipt describing hardware that never saw the request — the worst failure this system could have, and an easy one to introduce during a refactor.",
 "s": "2026-08-29"
 },
 {
@@ -807,7 +801,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "What is not yet true is that Sable owns the enclave -- that is the direction, and it changes the trust story from \"a verified third party\" to \"verified hardware, whoever runs it.\" The verification machinery is indifferent to which, which is the point.",
+"t": "What is not yet true is that Sable owns the enclave — that is the direction, and it changes the trust story from \"a verified third party\" to \"verified hardware, whoever runs it.\" The verification machinery is indifferent to which, which is the point.",
 "s": "2026-08-29"
 }
 ],
@@ -831,7 +825,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "POST /v1/sandboxes executes a short-lived job -- an image, an argv, code on stdin, a timeout, a vCPU and memory request -- and returns its stdout, stderr, and exit code exactly once.",
+"t": "POST /v1/sandboxes executes a short-lived job — an image, an argv, code on stdin, a timeout, a vCPU and memory request — and returns its stdout, stderr, and exit code exactly once.",
 "s": "2026-08-29"
 },
 {
@@ -839,7 +833,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "In production the work runs on a Sable-operated house node under gVisor isolation, enrolled through the same registry, heartbeat, and lease machinery a future fleet would use -- one machine today, and the listing says so.",
+"t": "In production the work runs on a Sable-operated house node under gVisor isolation, enrolled through the same registry, heartbeat, and lease machinery a future fleet would use — one machine today, and the listing says so.",
 "s": "2026-08-29"
 },
 {
@@ -859,7 +853,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "The submitted code, its environment variables, and both output streams cross the module in-frame, are returned once, and are never persisted or logged -- the table has no column that could hold them.",
+"t": "The submitted code, its environment variables, and both output streams cross the module in-frame, are returned once, and are never persisted or logged — the table has no column that could hold them.",
 "s": "2026-08-29"
 },
 {
@@ -891,7 +885,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "But a backend that was never reachable, or a runner that failed to start, is recorded and costs nothing -- an early version billed for runs that never happened because a daemon-level failure exit code went down the success path, which is the kind of bug that is only ever found by running the thing for real.",
+"t": "But a backend that was never reachable, or a runner that failed to start, is recorded and costs nothing — an early version billed for runs that never happened because a daemon-level failure exit code went down the success path, which is the kind of bug that is only ever found by running the thing for real.",
 "s": "2026-08-29"
 }
 ],
@@ -919,19 +913,19 @@
 "s": "2026-08-29"
 },
 {
-"t": "CAPABILITY STATUS NOTE OpenAI-compatible chat Built Multi-provider failover; 4xx short-circuits & embeddings, streaming Translates and delegates to the chat path -- not a second implementation The privacy contract, �03 Anthropic Messages API Built secp256k1 / EIP-191 Sealed ingress, Built Live in production on a Sable-operated house node (gVisor; egress denied metadata-only by default) persistence Enforcement is a deployment flag; metering runs regardless Live on Ethereum, Arbitrum One, and Solana; sanctions screening is a Signed receipts + public Built configurable hook, off by default verification Monotone clamping, subtree spend, cascading revoke Bearer-key auth; OAuth 2.1 / DCR is not implemented Metered sandbox Built On a third-party enclave; availability depends on a verified backend execution Inference only; pinned routing never fails over; not yet on the sandbox surface Credit ledger, pre-auth Built Enrollment, heartbeats, transactional per-job leases -- serving exactly one holds, spend caps Sable-operated house node Sealed-at-rest asset metadata and positions, per-asset hash-chained USDT deposits, x402 Built ledgers, signed selective-disclosure proofs, Solana memo-transaction settlement anchoring.",
+"t": "CAPABILITY STATUS NOTE OpenAI-compatible chat Built Multi-provider failover; 4xx short-circuits & embeddings, streaming Anthropic Messages API Built Translates and delegates to the chat path — not a second implementation Sealed ingress, Built The privacy contract, §03 metadata-only persistence Signed receipts + public Built secp256k1 / EIP-191 verification Metered sandbox Built Live in production on a Sable-operated house node (gVisor; egress denied execution by default) Credit ledger, pre-auth Built Enforcement is a deployment flag; metering runs regardless holds, spend caps USDT deposits, x402 Built Live on Ethereum, Arbitrum One, and Solana; sanctions screening is a settlement configurable hook, off by default Delegated sub-keys Built Monotone clamping, subtree spend, cascading revoke Remote MCP server Built Bearer-key auth; OAuth 2.1 / DCR is not implemented TDX attestation, fail- Built On a third-party enclave; availability depends on a verified backend closed, response binding Double-blind private lane Built Inference only; pinned routing never fails over; not yet on the sandbox (pinned second surface intermediary) Node registry, scheduler Built Enrollment, heartbeats, transactional per-job leases — serving exactly one & node agent Sable-operated house node Sable Vault — private Built Sealed-at-rest asset metadata and positions, per-asset hash-chained RWA registry ledgers, signed selective-disclosure proofs, Solana memo-transaction anchoring.",
 "s": "2026-09-04"
 },
 {
-"t": "Registry infrastructure: entries are issuer-declared; no custody, no offers, no legal enforcement of ownership; attested + Delegated sub-keys Built anchored, not zero-knowledge Direction -- �11 Remote MCP server Built The next major build; needs a TDX host TDX attestation, fail- Built Arrive with the operator programme closed, response binding Zero third-party machines serve traffic today Double-blind private lane Built (pinned second intermediary) Node registry, scheduler Built & node agent Sable Vault -- private Built RWA registry Sable-owned enclaves Not built Confidential sandboxes Not built (host cannot read your code) Not built Sealed env delivery; node-countersigned Not built receipts (v:3) Third-party operators, earnings, payouts Multi-region routing Not built A region pin is honoured only if it matches this deployment's declared On-chain node registry, Not built region, and refused otherwise staking, slashing Contingent on operators existing at all Pay for Sable in SABL Rolling out Optional and never required.",
+"t": "Registry infrastructure: entries are issuer-declared; no custody, no offers, no legal enforcement of ownership; attested + anchored, not zero-knowledge Sable-owned enclaves Not built Direction — §11 Confidential sandboxes Not built The next major build; needs a TDX host (host cannot read your code) Sealed env delivery; Not built Arrive with the operator programme node-countersigned receipts (v:3) Third-party operators, Not built Zero third-party machines serve traffic today earnings, payouts Multi-region routing Not built A region pin is honoured only if it matches this deployment's declared region, and refused otherwise On-chain node registry, Not built Contingent on operators existing at all staking, slashing Pay for Sable in SABL Rolling out Optional and never required.",
 "s": "2026-09-04"
 },
 {
-"t": "Sable is always priced in dollars and payable (optional): burns the Never in USDT; does not gate access; no yield, revenue share, governance, or token, earns a discount claim. �06 Token-incentivized �06 supply, token-gated access Exists, Aug �06 SABL community token 2026 (one optional pay-in utility, rolling out) Region pinning deserves its own sentence, because the previous version of this document described it incorrectly.",
+"t": "Sable is always priced in dollars and payable (optional): burns the in USDT; does not gate access; no yield, revenue share, governance, or token, earns a discount claim. §06 Token-incentivized Never §06 supply, token-gated access SABL community token Exists, Aug §06 (one optional pay-in 2026 utility, rolling out) Region pinning deserves its own sentence, because the previous version of this document described it incorrectly.",
 "s": "2026-09-04"
 },
 {
-"t": "A pinned request used to be mapped onto one of four labelled nodes that did not exist, and the caller's chosen region was then stamped onto a signed receipt -- a jurisdiction claim backed by nothing.",
+"t": "A pinned request used to be mapped onto one of four labelled nodes that did not exist, and the caller's chosen region was then stamped onto a signed receipt — a jurisdiction claim backed by nothing.",
 "s": "2026-08-29"
 },
 {
@@ -949,12 +943,12 @@
 ],
 "ghosts": [
 {
-"t": "CAPABILITY STATUS NOTE OpenAI-compatible chat Built Multi-provider failover; 4xx short-circuits & embeddings, streaming Translates and delegates to the chat path -- not a second implementation Anthropic Messages API Built The privacy contract, �03 Sealed ingress, Built secp256k1 / EIP-191 metadata-only Live in production on a Sable-operated house node (gVisor; egress denied by persistence default) Enforcement is a deployment flag; metering runs regardless Signed receipts + public Built Live on Ethereum, Arbitrum One, and Solana; sanctions screening is a verification configurable hook, off by default Monotone clamping, subtree spend, cascading revoke Metered sandbox Built Bearer-key auth; OAuth 2.1 / DCR is not implemented execution On a third-party enclave; availability depends on a verified backend Inference only; pinned routing never fails over; not yet on the sandbox surface Credit ledger, pre-auth Built holds, spend caps Enrollment, heartbeats, transactional per-job leases -- serving exactly one Sable-operated house node USDT deposits, x402 Built Sealed-at-rest asset metadata and positions, per-asset hash-chained ledgers, settlement signed selective-disclosure proofs, Solana memo-transaction anchoring.",
+"t": "CAPABILITY STATUS NOTE OpenAI-compatible chat Built Multi-provider failover; 4xx short-circuits & embeddings, streaming Anthropic Messages API Built Translates and delegates to the chat path — not a second implementation Sealed ingress, Built The privacy contract, §03 metadata-only persistence Signed receipts + public Built secp256k1 / EIP-191 verification Metered sandbox Built Live in production on a Sable-operated house node (gVisor; egress denied by execution default) Credit ledger, pre-auth Built Enforcement is a deployment flag; metering runs regardless holds, spend caps USDT deposits, x402 Built Live on Ethereum, Arbitrum One, and Solana; sanctions screening is a settlement configurable hook, off by default Delegated sub-keys Built Monotone clamping, subtree spend, cascading revoke Remote MCP server Built Bearer-key auth; OAuth 2.1 / DCR is not implemented TDX attestation, fail- Built On a third-party enclave; availability depends on a verified backend closed, response binding Double-blind private lane Built Inference only; pinned routing never fails over; not yet on the sandbox surface (pinned second intermediary) Node registry, scheduler Built Enrollment, heartbeats, transactional per-job leases — serving exactly one & node agent Sable-operated house node Sable Vault — private Built Sealed-at-rest asset metadata and positions, per-asset hash-chained ledgers, RWA registry signed selective-disclosure proofs, Solana memo-transaction anchoring.",
 "s": "2026-08-29",
 "gone": "2026-09-04"
 },
 {
-"t": "Registry infrastructure: entries are issuer-declared; no custody, no offers, no Delegated sub-keys Built legal enforcement of ownership; attested + anchored, not zero-knowledge Direction -- �11 Remote MCP server Built The next major build; needs a TDX host TDX attestation, fail- Built Arrive with the operator programme closed, response binding Zero third-party machines serve traffic today Double-blind private lane Built (pinned second intermediary) Node registry, scheduler Built & node agent Sable Vault -- private Built RWA registry Sable-owned enclaves Not built Confidential sandboxes Not built (host cannot read your code) Sealed env delivery; Not built node-countersigned receipts (v:3) Third-party operators, Not built earnings, payouts Multi-region routing Not built A region pin is honoured only if it matches this deployment's declared region, and refused otherwise On-chain node registry, Not built Contingent on operators existing at all staking, slashing Token-incentivized Never �06 supply, token-settled compute, token-gated access SABL community token Exists -- �06; mint republished at buildsable.com/token (no platform role) Aug 2026 Region pinning deserves its own sentence, because the previous version of this document described it incorrectly.",
+"t": "Registry infrastructure: entries are issuer-declared; no custody, no offers, no legal enforcement of ownership; attested + anchored, not zero-knowledge Sable-owned enclaves Not built Direction — §11 Confidential sandboxes Not built The next major build; needs a TDX host (host cannot read your code) Sealed env delivery; Not built Arrive with the operator programme node-countersigned receipts (v:3) Third-party operators, Not built Zero third-party machines serve traffic today earnings, payouts Multi-region routing Not built A region pin is honoured only if it matches this deployment's declared region, and refused otherwise On-chain node registry, Not built Contingent on operators existing at all staking, slashing Token-incentivized Never §06 supply, token-settled compute, token-gated access SABL community token Exists — §06; mint republished at buildsable.com/token (no platform role) Aug 2026 Region pinning deserves its own sentence, because the previous version of this document described it incorrectly.",
 "s": "2026-08-29",
 "gone": "2026-09-04"
 }
@@ -982,7 +976,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "The first step is no longer hypothetical: the control machinery a fleet requires -- a node registry with hardware descriptors and per-node credentials, heartbeats, and a scheduler that claims a per-job lease transactionally before dialing a node -- is built and serving production sandbox traffic, on exactly one node, which Sable operates.",
+"t": "The first step is no longer hypothetical: the control machinery a fleet requires — a node registry with hardware descriptors and per-node credentials, heartbeats, and a scheduler that claims a per-job lease transactionally before dialing a node — is built and serving production sandbox traffic, on exactly one node, which Sable operates.",
 "s": "2026-08-29"
 },
 {
@@ -990,7 +984,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "What Sable would sell is never the machine -- it is gateway-authoritative metering, hard budgets, signed receipts, fail-closed attestation, and agent-native payment over hardware nobody has to trust.",
+"t": "What Sable would sell is never the machine — it is gateway-authoritative metering, hard budgets, signed receipts, fail-closed attestation, and agent-native payment over hardware nobody has to trust.",
 "s": "2026-08-29"
 },
 {
@@ -1010,7 +1004,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "What fails, repeatedly and in the same way, is paying for existence rather than for work -- which reliably produces fabricated supply -- along with points and emissions treadmills, volunteer swarms, verification-first marketplaces that never found buyers, and undifferentiated machine listing, where the market is already won by incumbents.",
+"t": "What fails, repeatedly and in the same way, is paying for existence rather than for work — which reliably produces fabricated supply — along with points and emissions treadmills, volunteer swarms, verification-first marketplaces that never found buyers, and undifferentiated machine listing, where the market is already won by incumbents.",
 "s": "2026-08-29"
 },
 {
@@ -1018,7 +1012,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "That is a trust-and-payments layer, and it is what makes commodity compute sellable at a premium -- the buyer is paying for the proof, not the silicon.",
+"t": "That is a trust-and-payments layer, and it is what makes commodity compute sellable at a premium — the buyer is paying for the proof, not the silicon.",
 "s": "2026-08-29"
 },
 {
@@ -1030,7 +1024,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "The wedge is provable compute rather than cheap compute, because at commodity prices nobody buys code execution on a stranger's readable machine -- the buyer for whom this is better rather than merely cheaper is the one who needs their code kept from the host, or a portable proof of what ran.",
+"t": "The wedge is provable compute rather than cheap compute, because at commodity prices nobody buys code execution on a stranger's readable machine — the buyer for whom this is better rather than merely cheaper is the one who needs their code kept from the host, or a portable proof of what ran.",
 "s": "2026-08-29"
 },
 {
@@ -1078,7 +1072,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A subpoena, a breach, or a curious engineer finds metadata -- never content.",
+"t": "A subpoena, a breach, or a curious engineer finds metadata — never content.",
 "s": "2026-08-29"
 },
 {
@@ -1094,7 +1088,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "A confidential request whose backend fails verification is refused, not downgraded -- including when the failure is our own misconfiguration.",
+"t": "A confidential request whose backend fails verification is refused, not downgraded — including when the failure is our own misconfiguration.",
 "s": "2026-08-29"
 },
 {
@@ -1114,7 +1108,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Not yet solved -- and how it changes The gateway operator at the egress frame.",
+"t": "Not yet solved — and how it changes The gateway operator at the egress frame.",
 "s": "2026-08-29"
 },
 {
@@ -1162,7 +1156,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "The roadmap is, in effect, the systematic shrinking of this boundary -- and every step of it should be checkable from outside, by a buyer who has no reason to take our word for anything.",
+"t": "The roadmap is, in effect, the systematic shrinking of this boundary — and every step of it should be checkable from outside, by a buyer who has no reason to take our word for anything.",
 "s": "2026-08-29"
 }
 ],
@@ -1182,7 +1176,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Whether that layer becomes an unaccountable one -- where nobody can say what ran, on what, for whom, or how much -- is being decided now, by the defaults the infrastructure ships with.",
+"t": "Whether that layer becomes an unaccountable one — where nobody can say what ran, on what, for whom, or how much — is being decided now, by the defaults the infrastructure ships with.",
 "s": "2026-08-29"
 },
 {
@@ -1190,7 +1184,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "Build that, and the machine underneath stops needing to be trusted -- which is exactly what makes it replaceable, and exactly why the trust layer is the part worth owning.",
+"t": "Build that, and the machine underneath stops needing to be trusted — which is exactly what makes it replaceable, and exactly why the trust layer is the part worth owning.",
 "s": "2026-08-29"
 },
 {
@@ -1222,7 +1216,7 @@
 "s": "2026-08-29"
 },
 {
-"t": "METHOD PATH PURPOSE POST /v1/chat/completions OpenAI-shape chat; stream supported; accepts sable_privacy_tier, sable_region, sable_scrub POST /v1/embeddings OpenAI-shape embeddings, same sealed path POST /v1/messages Anthropic Messages API; translates and delegates to the chat handler POST /v1/sandboxes Metered code execution; accepts Idempotency-Key POST /v1/mcp Remote MCP server (JSON-RPC): chat, run code, verify receipt, attestation, balance, models POST /v1/keys/delegate Mint a bounded child of the calling key -- parent-key authenticated GET /v1/credit Key-authenticated balance -- an agent's remaining runway GET /v1/models Catalog under stable Sable IDs, with per-token pricing GET /v1/attestation Live verified TEE attestation -- pre-flight, before you send anything GET /v1/receipts/pubkey Receipt-signer address & scheme POST /v1/receipts/verify Verify a {receipt, signature} -- public, no key required GET /v1/billing/methods Treasury address, chains, token contracts, confirmations GET /v1/nodes What is actually serving: this gateway and its configured backends Response headers on every metered call: x-sable-node , x-sable-region , x-sable-privacy-tier , and the receipt triplet x-sable-receipt / -sig / -signer .",
+"t": "METHOD PATH PURPOSE POST /v1/chat/completions OpenAI-shape chat; stream supported; accepts sable_privacy_tier, sable_region, sable_scrub POST /v1/embeddings OpenAI-shape embeddings, same sealed path POST /v1/messages Anthropic Messages API; translates and delegates to the chat handler POST /v1/sandboxes Metered code execution; accepts Idempotency-Key POST /v1/mcp Remote MCP server (JSON-RPC): chat, run code, verify receipt, attestation, balance, models POST /v1/keys/delegate Mint a bounded child of the calling key — parent-key authenticated GET /v1/credit Key-authenticated balance — an agent's remaining runway GET /v1/models Catalog under stable Sable IDs, with per-token pricing GET /v1/attestation Live verified TEE attestation — pre-flight, before you send anything GET /v1/receipts/pubkey Receipt-signer address & scheme POST /v1/receipts/verify Verify a {receipt, signature} — public, no key required GET /v1/billing/methods Treasury address, chains, token contracts, confirmations GET /v1/nodes What is actually serving: this gateway and its configured backends Response headers on every metered call: x-sable-node , x-sable-region , x-sable-privacy-tier , and the receipt triplet x-sable-receipt / -sig / -signer .",
 "s": "2026-08-29"
 },
 {
