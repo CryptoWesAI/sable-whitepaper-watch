@@ -22,6 +22,7 @@ Usage:
   python watch.py --no-status     # skip the status ledger
 """
 import argparse, datetime, difflib, hashlib, json, os, re, subprocess, sys, urllib.request
+import sections
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PDF_URL = "https://www.buildsable.com/sable-whitepaper.pdf"
@@ -338,6 +339,8 @@ def main():
     ap.add_argument("--label", help="label for the snapshot (default: UTC timestamp)")
     ap.add_argument("--no-status", action="store_true")
     ap.add_argument("--peers", action="store_true", help="also check the per-project pages in peers.json (meant to run daily)")
+    ap.add_argument("--whitepaper-json", action="store_true",
+                    help="only rebuild whitepaper.json (sections and sentences, with the snapshot each first appeared in) from the PDFs in snapshots/")
     ap.add_argument("--reset", action="store_true",
                     help="start the record over: removes the generated files under this directory (snapshots, diffs, status, state, texts, changelog)")
     args = ap.parse_args()
@@ -353,7 +356,11 @@ def main():
         print("record reset")
         if not args.pdf:
             return 0
+    if args.whitepaper_json:
+        sections.build(ROOT, pdftotext, sentences, cover_version, PDF_URL)
+        return 0
     whitepaper(args)
+    sections.build(ROOT, pdftotext, sentences, cover_version, PDF_URL)
     if not args.no_status:
         status_ledger()
     if args.peers:
