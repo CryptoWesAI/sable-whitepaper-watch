@@ -48,6 +48,23 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+
+      - name: Tell the phones (the Observatory app) that the whitepaper changed
+        if: steps.watch.outputs.changed == 'true'
+        env:
+          PUSH_SECRET: ${{ secrets.PUSH_SECRET }}
+          SUMMARY: ${{ steps.watch.outputs.summary }}
+        run: |
+          if [ -z "$PUSH_SECRET" ]; then echo "no PUSH_SECRET, no push"; exit 0; fi
+          python3 - <<'EOF'
+          import json, os, urllib.request
+          body = json.dumps({"title": "Sable's whitepaper changed", "body": (os.environ.get("SUMMARY") or "The hourly watcher saw a change. The Log has the diff.")[:200], "url": "/#log", "tag": "whitepaper"}).encode()
+          req = urllib.request.Request("https://sable.primecircle.cloud/api/game/push/notify", data=body, headers={"Content-Type": "application/json", "x-push-secret": os.environ["PUSH_SECRET"]})
+          try:
+              print(urllib.request.urlopen(req, timeout=20).read().decode())
+          except Exception as e:
+              print("push failed:", type(e).__name__, e)
+          EOF
       # No alert channel on purpose. The record is published as record.json in
       # this repository, and sable.primecircle.cloud reads it at page load, so
       # a change is visible on the site within the hour without any deploy.
