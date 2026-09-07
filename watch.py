@@ -48,6 +48,53 @@ def fetch(url, timeout=25):
         return r.read()
 
 
+def post_json(url, body, timeout=25):
+    data = json.dumps(body).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers={"User-Agent": UA, "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read())
+
+
+# The token, as the chain and the market report it. SABL's mint on Solana; the
+# supply can only fall (no mint authority), so the row records it every hour
+# next to the market figures, and the site draws the burn and the day-by-day
+# movement from this ledger rather than from an API's own change field.
+SABL_MINT = "DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump"
+SOLANA_RPC = "https://api.mainnet-beta.solana.com"
+DEXSCREENER = "https://api.dexscreener.com/latest/dex/tokens/" + SABL_MINT
+
+
+def token_row():
+    """supply (whole tokens), mint authority, market cap, price, liquidity, 24 h volume."""
+    out = {}
+    try:
+        r = post_json(SOLANA_RPC, {"jsonrpc": "2.0", "id": 1, "method": "getTokenSupply", "params": [SABL_MINT]}, 20)
+        v = r["result"]["value"]
+        out["supply"] = round(int(v["amount"]) / (10 ** int(v["decimals"])), 6)
+    except Exception as e:
+        out["supply"] = f"unreachable: {type(e).__name__}"
+    try:
+        r = post_json(SOLANA_RPC, {"jsonrpc": "2.0", "id": 1, "method": "getAccountInfo", "params": [SABL_MINT, {"encoding": "jsonParsed"}]}, 20)
+        info = r["result"]["value"]["data"]["parsed"]["info"]
+        out["mint_authority"] = info.get("mintAuthority")
+        out["freeze_authority"] = info.get("freezeAuthority")
+    except Exception as e:
+        out["mint_authority"] = f"unreachable: {type(e).__name__}"
+    try:
+        d = json.loads(fetch(DEXSCREENER, 20))
+        pairs = d.get("pairs") or []
+        pair = next((x for x in pairs if x.get("dexId") == "pumpswap"), pairs[0] if pairs else None)
+        if pair:
+            out["mcap"] = pair.get("marketCap")
+            out["price_usd"] = float(pair["priceUsd"]) if pair.get("priceUsd") else None
+            out["liq_usd"] = (pair.get("liquidity") or {}).get("usd")
+            out["vol_24h"] = (pair.get("volume") or {}).get("h24")
+            out["change_24h"] = (pair.get("priceChange") or {}).get("h24")
+    except Exception as e:
+        out["mcap"] = f"unreachable: {type(e).__name__}"
+    return out
+
+
 def read(path, default=""):
     try:
         with open(path, encoding="utf-8") as f:
@@ -219,6 +266,7 @@ def status_ledger():
             row["sable_fast_usd_per_mtok"] = [fast.get("prompt_usd_per_mtok"), fast.get("completion_usd_per_mtok")]
     except Exception as e:
         row["models"] = f"unreachable: {type(e).__name__}"
+    row["token"] = token_row()
     write(os.path.join(STATUS, "log.jsonl"), json.dumps(row, separators=(",", ":")) + "\n", "a")
     print("status:", json.dumps(row))
     if signer_flag:
