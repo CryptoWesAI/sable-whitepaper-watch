@@ -3,6 +3,7 @@ name: watch
 on:
   schedule:
     - cron: "17 * * * *"   # hourly, at :17 so it never lines up with the top of the hour
+    - cron: "47 * * * *"   # a second chance each hour: GitHub delays or drops scheduled runs under load (about 7 of 24 landed per day in the first week)
   workflow_dispatch:
 
 permissions:
