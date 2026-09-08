@@ -42,6 +42,8 @@ jobs:
           else
             if [ "${{ steps.watch.outputs.changed }}" = "true" ]; then
               git commit -m "Whitepaper changed: ${{ steps.watch.outputs.summary }}"
+            elif [ "${{ steps.watch.outputs.supply_fell }}" = "true" ]; then
+              git commit -m "${{ steps.watch.outputs.supply_summary }}"
             else
               git commit -m "Status ledger $(date -u +%Y-%m-%dT%H:%MZ)"
             fi
@@ -59,6 +61,22 @@ jobs:
           python3 - <<'EOF'
           import json, os, urllib.request
           body = json.dumps({"title": "Sable's whitepaper changed", "body": (os.environ.get("SUMMARY") or "The hourly watcher saw a change. The Log has the diff.")[:200], "url": "/#log", "tag": "whitepaper"}).encode()
+          req = urllib.request.Request("https://sable.primecircle.cloud/api/game/push/notify", data=body, headers={"Content-Type": "application/json", "x-push-secret": os.environ["PUSH_SECRET"]})
+          try:
+              print(urllib.request.urlopen(req, timeout=20).read().decode())
+          except Exception as e:
+              print("push failed:", type(e).__name__, e)
+          EOF
+      - name: Tell the phones that the SABL supply fell
+        if: steps.watch.outputs.supply_fell == 'true'
+        env:
+          PUSH_SECRET: ${{ secrets.PUSH_SECRET }}
+          SUMMARY: ${{ steps.watch.outputs.supply_summary }}
+        run: |
+          if [ -z "$PUSH_SECRET" ]; then echo "no PUSH_SECRET, no push"; exit 0; fi
+          python3 - <<'EOF'
+          import json, os, urllib.request
+          body = json.dumps({"title": "SABL supply fell on Solana", "body": (os.environ.get("SUMMARY") or "The hourly watcher saw the mint supply fall. The Token topic has the line.")[:200], "url": "/#token", "tag": "supply"}).encode()
           req = urllib.request.Request("https://sable.primecircle.cloud/api/game/push/notify", data=body, headers={"Content-Type": "application/json", "x-push-secret": os.environ["PUSH_SECRET"]})
           try:
               print(urllib.request.urlopen(req, timeout=20).read().decode())
