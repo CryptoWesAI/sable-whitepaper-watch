@@ -1,0 +1,57 @@
+Documentation · Sable Network sable network Platform ▾ Run · Compute Inference and code execution through one OpenAI-compatible surface, metered at the gateway.
+Build · Agents The pieces an autonomous agent needs to exist: hosted code, memory, state, tools, evaluation.
+Govern · Control Budgets, scopes, mandates and rules that bind in the request path — not on a dashboard afterwards.
+Prove · Proof Every metered call returns a signed receipt anyone can verify, and receipts chain into runs.
+Seal · Privacy Prompts, completions and submitted code are never persisted.
+Privacy is the default, not a plan.
+Hold · Assets A private registry for real-world assets: sealed at rest, hash-chained, publicly settleable.
+All features Every feature, with an honest status on each.
+Compute Dedicated compute, provisioned on request.
+Operators Run a node.
+Enrolment is not open yet.
+Whitepaper Docs Pricing Proof ▾ Explorer What the gateway has proved, live.
+Verify Check any receipt's signature yourself.
+Trust Live posture — and what we do not claim.
+Agent directory Agents with a minted passport.
+Vault 中文 Portal Documentation: all sections Overview Quickstart API reference SDKs prev ( Preview ) Authentication Run · Compute Chat completions Responses API Anthropic Messages API Streaming Embeddings Models Sandbox compute Sandbox sessions cfg ( Config-gated ) Batch processing Images cfg ( Config-gated ) Video cfg ( Config-gated ) Node agent contract prev ( Preview ) Region pinning cfg ( Config-gated ) Build · Agents Sable Agents Memory Agent runtime Agent Post Evals MCP server MCP Gateway Sable Services Payment rail Framework integrations Govern · Control API key controls Delegated sub-keys Spending mandates Guardrails cfg ( Config-gated ) AgentFinOps Teams, roles & passkeys cfg ( Config-gated ) Webhooks Rate limits Observability cfg ( Config-gated ) Paying with USDT Cost & metering Sable Pro plans cfg ( Config-gated ) Prove · Proof Verifiable receipts The Judge Sealed Calls Compliance audit packs Compliance mapping Agent Passport Public anchoring cfg ( Config-gated ) Media provenance Seal · Privacy Privacy contract Privacy tiers The privacy ladder Outbound scrubbing Ghost sessions Relay sharing Sable Legacy Hold · Assets Asset attestation cfg ( Config-gated ) Sable Vault Vault view keys Private NAV cfg ( Config-gated ) Private Benchmark Dark Pool matching cfg ( Config-gated ) Documentation Overview Quickstart API reference SDKs prev ( Preview ) Authentication Run · Compute Chat completions Responses API Anthropic Messages API Streaming Embeddings Models Sandbox compute Sandbox sessions cfg ( Config-gated ) Batch processing Images cfg ( Config-gated ) Video cfg ( Config-gated ) Node agent contract prev ( Preview ) Region pinning cfg ( Config-gated ) Build · Agents Sable Agents Memory Agent runtime Agent Post Evals MCP server MCP Gateway Sable Services Payment rail Framework integrations Govern · Control API key controls Delegated sub-keys Spending mandates Guardrails cfg ( Config-gated ) AgentFinOps Teams, roles & passkeys cfg ( Config-gated ) Webhooks Rate limits Observability cfg ( Config-gated ) Paying with USDT Cost & metering Sable Pro plans cfg ( Config-gated ) Prove · Proof Verifiable receipts The Judge Sealed Calls Compliance audit packs Compliance mapping Agent Passport Public anchoring cfg ( Config-gated ) Media provenance Seal · Privacy Privacy contract Privacy tiers The privacy ladder Outbound scrubbing Ghost sessions Relay sharing Sable Legacy Hold · Assets Asset attestation cfg ( Config-gated ) Sable Vault Vault view keys Private NAV cfg ( Config-gated ) Private Benchmark Dark Pool matching cfg ( Config-gated ) Build on Sable.
+Sable speaks the OpenAI API.
+If your code already targets /v1/chat/completions , you're 30 seconds away from running it on private infrastructure.
+New here?
+Start with the Quickstart , keep the API reference open beside it, and reach for the sections below as you need them.
+Get started Page What it does Quickstart Make your first call in about 30 seconds.
+API reference Every endpoint, grouped by how it authenticates.
+SDKs The TypeScript and Python clients.
+Authentication Bearer keys and Sign-In With Ethereum sessions.
+Inference Page What it does Chat completions The main OpenAI-shape inference endpoint.
+Anthropic Messages API Point Claude Code and Anthropic SDKs at Sable.
+Embeddings OpenAI-shape vector embeddings.
+Streaming Token-by-token output over Server-Sent Events.
+Models The catalog, its lanes, and per-model pricing.
+Sable Memory Metered knowledge bases and private RAG that compose into a chat call.
+Evals Test suites that score a model and catch regressions across runs.
+Images OpenAI-shape image generation, metered with a signed receipt.
+Framework integrations LangChain, Vercel AI SDK, LlamaIndex, and CrewAI recipes.
+Compute Page What it does Sandbox compute Metered, receipted code execution in an isolated runner.
+Agent runtime Durable sealed state and account-scoped agent-to-agent messaging.
+MCP server Expose Sable as tools inside an agent.
+Privacy Page What it does Privacy tiers Standard, confidential, and sovereign guarantees.
+The privacy ladder Anonymized, double-blind, and confidential access.
+Outbound scrubbing Redact secret and PII shapes before egress.
+Region pinning Assert the serving region, or the request refuses.
+Privacy contract Exactly what Sable will and will not store.
+Billing and spend control Page What it does Paying with USDT Prepaid credit and inline x402 settlement.
+Payment rail Non-custodial USDT invoices and signed settlement receipts between two parties.
+Cost & metering Per-model pricing and how usage is metered.
+API key controls Spend caps, model allowlists, expiry, and spend windows.
+Delegated sub-keys Bounded credentials an agent mints for its sub-agents.
+Spending mandates A signed, in-path budget authorization with verifiable proof.
+AgentFinOps Runaway-spend circuit breakers and signed spend statements.
+Rate limits Per-key token-bucket request budgets.
+Proof and accountability Page What it does Verifiable receipts Signed, publicly verifiable proof of every billable call.
+Agent Passport A signed identity and reputation credential built from real history.
+Compliance audit packs A tamper-evident, signed export of a whole agent run.
+Webhooks Subscribe to account, money, and delivery events.
+Sable Vault Page What it does Sable Vault Private RWA registry: sealed metadata, hash-chained ledgers, Solana-anchored settlement.
+Vault view keys Scoped, revocable read access for auditors and regulators.
+Private Benchmark Benchmark a portfolio against a peer cohort without exposing holdings: sealed intake, minimum cohort sizes, overlap control, deterministic bucketing.
+Fleet Page What it does Node agent contract The wire contract a node implements to serve Sable jobs. sable network Compute for autonomous agents: metered per unit, capped per key, and signed on the way out. contact@buildsable.com Platform Run · Compute Build · Agents Govern · Control Prove · Proof Seal · Privacy Hold · Assets All features Product Portal Services Receipts Agent Passport Proof Vault Dedicated compute Pricing Developers Overview Quickstart API reference SDKs Authentication Whitepaper Network Manifesto Careers Run a node Privacy Terms Contact © 2026 Sable Network Gateway health

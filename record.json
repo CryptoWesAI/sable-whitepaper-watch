@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-08T14:37:18Z",
+ "generated_at": "2026-09-08T14:52:32Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -25,13 +25,13 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-08T14:37:17Z",
+  "t": "2026-09-08T14:52:27Z",
   "status": "degraded",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
   "conf_verified": false,
   "conf_error": "measurement_mismatch",
-  "conf_failures": 7966,
+  "conf_failures": 7986,
   "conf_backends": "0/1",
   "sandbox_ok": true,
   "nodes": [
@@ -55,17 +55,27 @@
    "supply": 958374438.918883,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 394489,
-   "price_usd": 0.0004116,
-   "liq_usd": 62113.6,
-   "vol_24h": 100872.63,
-   "change_24h": 3.38
+   "mcap": 392364,
+   "price_usd": 0.0004094,
+   "liq_usd": 62065.33,
+   "vol_24h": 100228.9,
+   "change_24h": 7.42
   },
   "sabl_supply": {
    "amount": "958374438918883",
    "decimals": 6,
    "ui_amount": 958374438.918883,
-   "slot": 445362841
+   "slot": 445365675
+  },
+  "claims": {
+   "mcp-gateway": {
+    "state": "absent",
+    "http": {
+     "POST /v1/mcp-servers": 404,
+     "POST /v1/mcp/servers/mcp_probe": 404
+    },
+    "control": 401
+   }
   }
  },
  "sabl_supply": {
@@ -74,10 +84,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-08T14:37:17Z",
+   "t": "2026-09-08T14:52:27Z",
    "amount": "958374438918883",
    "ui_amount": 958374438.918883,
-   "slot": 445362841
+   "slot": 445365675
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -98,5 +108,37 @@
    "ui_amount": 0.0
   },
   "ledger": "status/supply.jsonl"
- }
+ },
+ "claims": [
+  {
+   "id": "mcp-gateway",
+   "title": "MCP Gateway",
+   "announced": "2026-09-08",
+   "announcement": "MCP Gateway is live on Sable. MCP tools, with budgets and policies around them. Every call is metered and receipted. Shipped.",
+   "source": "Sable on X, 8 September 2026",
+   "docs": "https://www.buildsable.com/docs/mcp-gateway",
+   "docs_say": "Register a third-party MCP server and get a proxy URL; every tools/call through it is allowlist-checked, metered per call and receipted as kind mcp_call.",
+   "probes": [
+    "POST /v1/mcp-servers",
+    "POST /v1/mcp/servers/mcp_probe"
+   ],
+   "control": "GET /v1/mandates",
+   "first_checked": "2026-09-08T14:52:27Z",
+   "checks": 1,
+   "latest": {
+    "t": "2026-09-08T14:52:27Z",
+    "state": "absent",
+    "http": {
+     "POST /v1/mcp-servers": 404,
+     "POST /v1/mcp/servers/mcp_probe": 404
+    },
+    "control": 401
+   },
+   "state": "absent",
+   "state_since": "2026-09-08T14:52:27Z",
+   "reachable_since": null,
+   "changes": [],
+   "ledger": "status/claims.jsonl"
+  }
+ ]
 }
