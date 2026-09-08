@@ -1,6 +1,6 @@
 # Sable whitepaper changelog
 
-Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change.
+Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change. Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.
 
 ## 2026-09-04
 

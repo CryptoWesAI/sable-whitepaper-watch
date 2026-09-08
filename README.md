@@ -1,6 +1,6 @@
 # Sable whitepaper watch
 
-A public, independent record of what the [Sable Network](https://www.buildsable.com) whitepaper says, when it changed, and what changed. Plus an hourly line from Sable's public status endpoints, so a long fail-closed streak or a change of the receipt signer becomes a matter of record rather than memory.
+A public, independent record of what the [Sable Network](https://www.buildsable.com) whitepaper says, when it changed, and what changed. Plus an hourly line from Sable's public status endpoints, so a long fail-closed streak or a change of the receipt signer becomes a matter of record rather than memory. Since 8 September 2026 the same hourly line reads the SABL supply on Solana, so the first burn is on record the hour it happens.
 
 Sable's own whitepaper says: *"Infrastructure whitepapers routinely describe a planned system in the present tense. We think that is the single most corrosive habit in this category."* It also says where its previous version was wrong. This repository exists because on 2 September 2026 the PDF changed (section 06 and section 10, on the token) without the cover version changing, and nobody would have known unless they happened to compare file sizes. A document that everything else is judged against deserves a witness.
 
@@ -10,13 +10,14 @@ Sable's own whitepaper says: *"Infrastructure whitepapers routinely describe a p
 
 | Path | What |
 |---|---|
-| [`CHANGELOG.md`](CHANGELOG.md) | Newest first. One entry per change of the PDF: cover version, size, hash, snapshot, diff. |
+| [`CHANGELOG.md`](CHANGELOG.md) | Newest first. One entry per change of the PDF: cover version, size, hash, snapshot, diff. Also one entry per fall of the SABL supply, see below. |
 | [`whitepaper.txt`](whitepaper.txt) | Current text, extracted with `pdftotext -layout`. Faithful, including line breaks. |
 | [`whitepaper.sentences.txt`](whitepaper.sentences.txt) | Current text, one sentence per line. This is what gets diffed, so a re-rendered PDF with different line wrapping does not count as a change. |
 | `diffs/` | Unified diff of the sentences for each change. |
 | `snapshots/` | The PDF as served, for each change. Evidence, not summary. |
-| [`status/log.jsonl`](status/log.jsonl) | One line per hour: gateway status, uptime, confidential backend verified or failing closed and why, node list, receipt signer address, model count and the `sable-fast` list price. |
-| [`watch.py`](watch.py) | The whole thing. About 200 lines, standard library only. |
+| [`status/log.jsonl`](status/log.jsonl) | One line per hour: gateway status, uptime, confidential backend verified or failing closed and why, node list, receipt signer address, model count, the `sable-fast` list price, the token's market figures, and the SABL supply as Solana reports it (`sabl_supply`: raw amount, decimals, uiAmount, slot; `null` plus `sabl_supply_error` when the node did not answer). |
+| [`status/supply.jsonl`](status/supply.jsonl) | The supply watch. A line only when the SABL supply changes: time, slot, previous amount, new amount, delta. The first line is the baseline. |
+| [`watch.py`](watch.py) | The whole thing. Standard library only. |
 
 ## How it runs
 
@@ -49,6 +50,21 @@ python3 -c "import sys,watch;print(watch.sentences(open('b.txt').read()))" > b.s
 diff -u a.s b.s
 ```
 
+## The supply watch
+
+Sable's whitepaper, section 06, in its own words: *"SABL gains a single utility: it can be used to pay for Sable compute and Sable Pro subscriptions, and paying in SABL burns it and earns a discount. This rail is rolling out, not yet live on the deployment."* The same section names the mint, `DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump`, and says its mint and freeze authority are revoked, which the mint account on Solana confirms. A supply that cannot rise can only fall, and it falls only when someone burns. So the first fall of the mint supply is the moment SABL payment is live for real, whoever announces what.
+
+Every hourly run asks a public Solana node for the supply (`getTokenSupply` on the mint, default node `https://api.mainnet-beta.solana.com`, override with the `SOLANA_RPC` environment variable) and writes the raw amount, decimals, `uiAmount` and the slot into the hourly line. When the raw amount differs from the last line of [`status/supply.jsonl`](status/supply.jsonl), a line is added there with the previous amount, the new amount and the delta. When it fell, [`CHANGELOG.md`](CHANGELOG.md) gets an entry saying by how much, from what to what, and when. [`record.json`](record.json) carries the latest read, the baseline, the change since the baseline and the last change under `sabl_supply`, and the Observatory shows it on the Token topic. The chain says how much was burned and when; it does not say who burned it or why. A node that does not answer is recorded as such and the run carries on.
+
+Verify it yourself, same call, no key needed:
+
+```sh
+curl -s https://api.mainnet-beta.solana.com -X POST -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"getTokenSupply","params":["DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump"]}'
+```
+
+The answer's `value.amount` is the supply in base units (six decimals), `value.uiAmount` in whole SABL, and `context.slot` is the slot it was read at. Compare `amount` with the last line of `status/supply.jsonl`.
+
 ## Why the sentence diff
 
 `pdftotext` output changes whenever the PDF is re-rendered, even when no word changed, because line breaks move. The first real change to this document was exactly that: 824 lines of diff, of which almost all was reflow and one paragraph was new. Collapsing whitespace and splitting on sentence boundaries makes the diff show the sentences, not the typesetting.
@@ -59,7 +75,8 @@ diff -u a.s b.s
 pip install nothing   # standard library only; you need pdftotext (poppler-utils) on PATH
 python3 watch.py                      # normal run
 python3 watch.py --pdf some.pdf --label 2026-08-29   # import a snapshot you saved earlier
-python3 watch.py --no-status          # whitepaper only
+python3 watch.py --no-status          # whitepaper only, no ledger and no supply watch
+SOLANA_RPC=https://your.node python3 watch.py   # read the supply from another Solana node
 ```
 
 Built by [ØPTIMUS ONE](https://x.com/0PTIMUS_ONE), a community member who holds SABL. See also the [Sable Observatory](https://sable.primecircle.cloud), an independent page that explains Sable, lets you try and verify it, and shows this record live.

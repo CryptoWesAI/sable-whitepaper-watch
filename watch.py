@@ -14,6 +14,12 @@ public endpoints: /v1/status, /v1/nodes, /v1/receipts/pubkey, /v1/models.
 A change of the receipt signer address is flagged loudly, because every
 receipt ever issued verifies against it.
 
+The same line carries the SABL supply as Solana reports it (getTokenSupply on
+the mint). status/supply.jsonl gets a line only when that supply changes, and
+a fall gets a CHANGELOG entry: the whitepaper says paying in SABL burns it and
+that the rail is not live yet, so the first fall of the mint supply is that
+rail going live on-chain, whatever the announcements say.
+
 Independent. Not affiliated with Sable Network. Reads only public URLs.
 
 Usage:
@@ -60,17 +66,49 @@ def post_json(url, body, timeout=25):
 # next to the market figures, and the site draws the burn and the day-by-day
 # movement from this ledger rather than from an API's own change field.
 SABL_MINT = "DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump"
-SOLANA_RPC = "https://api.mainnet-beta.solana.com"
+# A public read-only JSON-RPC node. Set SOLANA_RPC=https://... to read from
+# another one. The watch only ever reads; it holds no key and signs nothing.
+SOLANA_RPC = os.environ.get("SOLANA_RPC") or "https://api.mainnet-beta.solana.com"
 DEXSCREENER = "https://api.dexscreener.com/latest/dex/tokens/" + SABL_MINT
+SUPPLY_LEDGER = os.path.join(STATUS, "supply.jsonl")
 
 
-def token_row():
-    """supply (whole tokens), mint authority, market cap, price, liquidity, 24 h volume."""
+def read_supply():
+    """One getTokenSupply call. Raises on any failure; the callers decide what
+    a miss means. The amount is kept as the integer string the node gave, so
+    no float ever touches it, and the slot says when the answer was read."""
+    r = post_json(SOLANA_RPC, {"jsonrpc": "2.0", "id": 1, "method": "getTokenSupply", "params": [SABL_MINT]}, 15)
+    if "error" in r:
+        raise RuntimeError(f"rpc error {r['error'].get('code')}: {r['error'].get('message')}")
+    v = r["result"]["value"]
+    amount = str(v["amount"])
+    if not amount.isdigit():
+        raise ValueError(f"amount is not an integer string: {amount!r}")
+    dec = int(v["decimals"])
+    ui = v.get("uiAmount")
+    if not isinstance(ui, (int, float)):
+        ui = int(amount) / (10 ** dec)
+    return {"amount": amount, "decimals": dec, "ui_amount": float(ui), "slot": (r["result"].get("context") or {}).get("slot")}
+
+
+def fmt_sabl(base_units, decimals):
+    """'958,374,438.918883' from an integer number of base units, no float."""
+    sign = "-" if base_units < 0 else ""
+    q, r = divmod(abs(int(base_units)), 10 ** decimals)
+    return f"{sign}{q:,}" + (f".{r:0{decimals}d}" if decimals else "")
+
+
+def token_row(sup=None):
+    """supply (whole tokens), mint authority, market cap, price, liquidity, 24 h volume.
+    `sup` is the run's getTokenSupply answer (or the exception it raised), so
+    the node is asked once per run."""
     out = {}
     try:
-        r = post_json(SOLANA_RPC, {"jsonrpc": "2.0", "id": 1, "method": "getTokenSupply", "params": [SABL_MINT]}, 20)
-        v = r["result"]["value"]
-        out["supply"] = round(int(v["amount"]) / (10 ** int(v["decimals"])), 6)
+        if sup is None:
+            sup = read_supply()
+        if isinstance(sup, Exception):
+            raise sup
+        out["supply"] = round(int(sup["amount"]) / (10 ** int(sup["decimals"])), 6)
     except Exception as e:
         out["supply"] = f"unreachable: {type(e).__name__}"
     try:
@@ -93,6 +131,61 @@ def token_row():
     except Exception as e:
         out["mcap"] = f"unreachable: {type(e).__name__}"
     return out
+
+
+def supply_watch(t, sup, err):
+    """The burn watch. status/supply.jsonl gets a line only when the raw amount
+    differs from its last line (the first run writes the baseline), and a fall
+    gets a CHANGELOG entry: the whitepaper says paying in SABL burns it, so the
+    first fall of the mint supply is that rail live on-chain. Returns the
+    fields for the hourly ledger row. Never raises: a miss is recorded, not
+    fatal."""
+    ts = t.strftime("%Y-%m-%dT%H:%M:%SZ")
+    if sup is None:
+        print(f"sabl supply: unreadable ({err})")
+        return {"sabl_supply": None, "sabl_supply_error": err}
+    fields = {"sabl_supply": {"amount": sup["amount"], "decimals": sup["decimals"], "ui_amount": sup["ui_amount"], "slot": sup["slot"]}}
+    try:
+        dec = sup["decimals"]
+        cur = int(sup["amount"])
+        slot_s = f"{sup['slot']:,}" if isinstance(sup["slot"], int) else str(sup["slot"])
+        last = None
+        for line in read(SUPPLY_LEDGER).splitlines():
+            if line.strip():
+                last = json.loads(line)
+        if last is None:
+            entry = {"t": ts, "slot": sup["slot"], "decimals": dec, "prev_amount": None, "amount": sup["amount"],
+                     "delta": None, "ui_amount": sup["ui_amount"], "ui_delta": None, "baseline": True}
+            write(SUPPLY_LEDGER, json.dumps(entry, separators=(",", ":")) + "\n", "a")
+            print(f"sabl supply: baseline {fmt_sabl(cur, dec)} SABL at slot {slot_s}")
+        elif str(last.get("amount")) != sup["amount"]:
+            prev = int(last["amount"])
+            delta = cur - prev
+            entry = {"t": ts, "slot": sup["slot"], "decimals": dec, "prev_amount": str(prev), "amount": sup["amount"],
+                     "delta": str(delta), "ui_amount": sup["ui_amount"], "ui_delta": delta / (10 ** dec)}
+            write(SUPPLY_LEDGER, json.dumps(entry, separators=(",", ":")) + "\n", "a")
+            if delta < 0:
+                summary = f"SABL supply FELL by {fmt_sabl(-delta, dec)} SABL: {fmt_sabl(prev, dec)} -> {fmt_sabl(cur, dec)} at slot {slot_s}"
+                print(summary)
+                changelog_prepend([
+                    f"## {stamp(t)}: SABL supply fell", "",
+                    f"- Supply fell by **{fmt_sabl(-delta, dec)} SABL** ({-delta:,} base units), from {fmt_sabl(prev, dec)} to {fmt_sabl(cur, dec)}.",
+                    f"- Seen at {ts}, Solana slot {slot_s}, by `getTokenSupply` on {SOLANA_RPC} for mint `{SABL_MINT}`.",
+                    "- The whitepaper (section 06) says paying in SABL burns it. A fall of the mint supply is a burn; the chain does not say who burned it or why. Every change of the supply is in [`status/supply.jsonl`](status/supply.jsonl).",
+                    "", ""])
+                set_output("supply_fell", "true")
+                set_output("supply_summary", summary)
+            else:
+                # The mint authority is revoked, so a rise cannot be a mint.
+                # Recorded as read, flagged here, never announced.
+                print(f"SABL SUPPLY ROSE by {fmt_sabl(delta, dec)}: {fmt_sabl(prev, dec)} -> {fmt_sabl(cur, dec)}; "
+                      "impossible with the mint authority revoked, so suspect the node's answer")
+        else:
+            print(f"sabl supply: unchanged {fmt_sabl(cur, dec)} SABL (slot {slot_s})")
+    except Exception as e:
+        print(f"sabl supply ledger failed: {type(e).__name__}: {e}")
+        fields["sabl_supply_error"] = f"ledger: {type(e).__name__}: {e}"
+    return fields
 
 
 def read(path, default=""):
@@ -136,6 +229,23 @@ def set_output(key, value):
     if path:
         with open(path, "a", encoding="utf-8") as f:
             f.write(f"{key}={value}\n")
+
+
+CHANGELOG_HEAD = ("# Sable whitepaper changelog\n\n"
+                  "Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, "
+                  "with the extracted text diffed sentence by sentence so that line reflow does not count as a change. "
+                  "Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper "
+                  "says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.\n\n")
+
+
+def changelog_prepend(entry_lines):
+    """Newest first. The head paragraph is rewritten on every entry, so it can
+    change without leaving two copies of itself in the file."""
+    path = os.path.join(ROOT, "CHANGELOG.md")
+    old = read(path)
+    m = re.search(r"(?m)^## ", old)
+    body = old[m.start():] if m else ""
+    write(path, CHANGELOG_HEAD + "\n".join(entry_lines) + body)
 
 
 def whitepaper(args):
@@ -204,10 +314,7 @@ def whitepaper(args):
     else:
         entry.append("- First snapshot in this record; nothing to diff against.")
     entry += ["", ""]
-    changelog = read(os.path.join(ROOT, "CHANGELOG.md"))
-    head = "# Sable whitepaper changelog\n\nNewest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change.\n\n"
-    body = changelog[len(head):] if changelog.startswith(head) else changelog
-    write(os.path.join(ROOT, "CHANGELOG.md"), head + "\n".join(entry) + body)
+    changelog_prepend(entry)
 
     material = (added + removed) > 0 or not prev_sent
     summary = f"whitepaper CHANGED: {version}; {len(pdf):,} bytes; +{added}/-{removed} sentences" + ("" if material else " (file re-rendered, no sentence changed)")
@@ -266,7 +373,13 @@ def status_ledger():
             row["sable_fast_usd_per_mtok"] = [fast.get("prompt_usd_per_mtok"), fast.get("completion_usd_per_mtok")]
     except Exception as e:
         row["models"] = f"unreachable: {type(e).__name__}"
-    row["token"] = token_row()
+    sup, sup_err = None, None
+    try:
+        sup = read_supply()
+    except Exception as e:
+        sup_err = f"{type(e).__name__}: {e}"[:200]
+    row["token"] = token_row(sup if sup is not None else Exception(sup_err))
+    row.update(supply_watch(t, sup, sup_err))
     write(os.path.join(STATUS, "log.jsonl"), json.dumps(row, separators=(",", ":")) + "\n", "a")
     print("status:", json.dumps(row))
     if signer_flag:
@@ -340,6 +453,48 @@ def peers_watch(label=None):
     write(rec_path, json.dumps(rec, indent=1) + "\n")
 
 
+def supply_summary(last_row, last_read):
+    """record.json's view of the burn watch: the latest read, the baseline,
+    the change since it, and the last change and last fall with their times.
+    Absent until status/supply.jsonl has its first line, so the site shows
+    nothing rather than a placeholder."""
+    rows = [json.loads(l) for l in read(SUPPLY_LEDGER).splitlines() if l.strip()]
+    if not rows:
+        return None
+    base, newest = rows[0], rows[-1]
+    dec = int(newest.get("decimals", 6))
+    latest = last_read or dict(newest, t=newest["t"])
+    changes = [r for r in rows if not r.get("baseline")]
+    falls = [r for r in changes if int(r["delta"]) < 0]
+    since = int(latest["amount"]) - int(base["amount"])
+    fallen = sum(-int(r["delta"]) for r in falls)
+
+    def point(r):
+        return {"t": r["t"], "amount": r["amount"], "ui_amount": r["ui_amount"], "slot": r.get("slot")}
+
+    def change(r):
+        return {"t": r["t"], "prev_amount": r["prev_amount"], "amount": r["amount"], "delta": r["delta"], "ui_delta": r["ui_delta"], "slot": r.get("slot")}
+
+    out = {
+        "mint": SABL_MINT,
+        "rpc": SOLANA_RPC,
+        "method": "getTokenSupply",
+        "decimals": dec,
+        "latest": point(latest),
+        "baseline": point(base),
+        "change_since_baseline": {"amount": str(since), "ui_amount": since / (10 ** dec)},
+        "changes": len(changes),
+        "last_change": change(changes[-1]) if changes else None,
+        "falls": len(falls),
+        "last_fall": change(falls[-1]) if falls else None,
+        "total_fallen": {"amount": str(fallen), "ui_amount": fallen / (10 ** dec)},
+        "ledger": "status/supply.jsonl",
+    }
+    if last_row and last_row.get("sabl_supply") is None and last_row.get("sabl_supply_error"):
+        out["latest_error"] = {"t": last_row.get("t"), "error": last_row["sabl_supply_error"]}
+    return out
+
+
 def record_json():
     """Machine-readable summary for sable.primecircle.cloud, which reads it
     from the raw GitHub URL at page load. Built from CHANGELOG.md and the last
@@ -349,6 +504,8 @@ def record_json():
     for block in re.split(r"^## ", changelog, flags=re.M)[1:]:
         lines = block.strip().splitlines()
         label = lines[0].strip()
+        if "SABL supply" in label:
+            continue   # the burn entries are exposed under "sabl_supply" below, from status/supply.jsonl
         e = {"label": label}
         for l in lines[1:]:
             m = re.search(r"Cover says: \*\*(.+?)\*\*", l)
@@ -362,11 +519,14 @@ def record_json():
             if "First snapshot" in l: e["first"] = True
         entries.append(e)
     last = None
+    last_read = None   # the newest hourly line whose supply read succeeded
     try:
         with open(os.path.join(STATUS, "log.jsonl"), encoding="utf-8") as f:
             for line in f:
                 if line.strip():
                     last = json.loads(line)
+                    if isinstance(last.get("sabl_supply"), dict):
+                        last_read = dict(last["sabl_supply"], t=last["t"])
     except FileNotFoundError:
         pass
     out = {
@@ -378,6 +538,9 @@ def record_json():
         "entries": entries,
         "last_check": last,
     }
+    sup = supply_summary(last, last_read)
+    if sup:
+        out["sabl_supply"] = sup
     write(os.path.join(ROOT, "record.json"), json.dumps(out, indent=1) + "\n")
     print(f"record.json: {len(entries)} entries")
 
