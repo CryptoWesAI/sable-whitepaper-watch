@@ -328,6 +328,26 @@ def whitepaper(args):
     return True
 
 
+def conf_transition(prev, row):
+    """A flip of the confidential tier between verified and failing closed,
+    read from the previous ledger line and this one. Returns (kind, summary)
+    with kind "recovered" or "failed", or None when nothing flipped. Either
+    line without a boolean reading (an unreachable endpoint) is not a flip:
+    a gateway that could not be asked has not recovered or failed."""
+    if not prev or not isinstance(prev.get("conf_verified"), bool) or not isinstance(row.get("conf_verified"), bool):
+        return None
+    was, is_ok = prev["conf_verified"], row["conf_verified"]
+    if was == is_ok:
+        return None
+    if is_ok:
+        n = prev.get("conf_failures")
+        after = f" after {n:,} consecutive refusals" if isinstance(n, int) else ""
+        return ("recovered", f"Confidential tier verified again at {row['t']}{after}; last refusal seen {prev['t']}; backends {row.get('conf_backends')}")
+    n = row.get("conf_failures")
+    count = f", {n:,} consecutive refusals" if isinstance(n, int) else ""
+    return ("failed", f"Confidential tier failing closed at {row['t']}: {row.get('conf_error') or 'unknown error'}{count}; last verified {prev['t']}")
+
+
 def status_ledger():
     t = now()
     row = {"t": t.strftime("%Y-%m-%dT%H:%M:%SZ")}
@@ -380,12 +400,27 @@ def status_ledger():
         sup_err = f"{type(e).__name__}: {e}"[:200]
     row["token"] = token_row(sup if sup is not None else Exception(sup_err))
     row.update(supply_watch(t, sup, sup_err))
+    # The previous line, so a flip of the confidential tier (failing closed to
+    # verified, or the other way) gets its own commit message and a push to
+    # the app. The ledger itself is the record; this only says when to look.
+    prev_row = None
+    try:
+        lines = [l for l in read(os.path.join(STATUS, "log.jsonl")).splitlines() if l.strip()]
+        if lines:
+            prev_row = json.loads(lines[-1])
+    except Exception:
+        prev_row = None
+    flip = conf_transition(prev_row, row)
     write(os.path.join(STATUS, "log.jsonl"), json.dumps(row, separators=(",", ":")) + "\n", "a")
     print("status:", json.dumps(row))
     if signer_flag:
         print(signer_flag)
         set_output("signer_changed", "true")
         set_output("signer_summary", signer_flag)
+    if flip:
+        print(flip[1])
+        set_output("conf_flip", flip[0])
+        set_output("conf_summary", flip[1])
     return row
 
 
