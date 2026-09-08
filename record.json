@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-08T09:46:59Z",
+ "generated_at": "2026-09-08T10:38:28Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -25,13 +25,13 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-08T09:46:58Z",
+  "t": "2026-09-08T10:38:25Z",
   "status": "degraded",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
   "conf_verified": false,
   "conf_error": "measurement_mismatch",
-  "conf_failures": 7579,
+  "conf_failures": 7647,
   "conf_backends": "0/1",
   "sandbox_ok": true,
   "nodes": [
@@ -55,11 +55,48 @@
    "supply": 958374438.918883,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 325154,
-   "price_usd": 0.0003392,
-   "liq_usd": 56426.23,
-   "vol_24h": 111177.05,
-   "change_24h": -10
+   "mcap": 327427,
+   "price_usd": 0.0003416,
+   "liq_usd": 56659.84,
+   "vol_24h": 109678.24,
+   "change_24h": -16.44
+  },
+  "sabl_supply": {
+   "amount": "958374438918883",
+   "decimals": 6,
+   "ui_amount": 958374438.918883,
+   "slot": 445317506
   }
+ },
+ "sabl_supply": {
+  "mint": "DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump",
+  "rpc": "https://api.mainnet-beta.solana.com",
+  "method": "getTokenSupply",
+  "decimals": 6,
+  "latest": {
+   "t": "2026-09-08T10:38:25Z",
+   "amount": "958374438918883",
+   "ui_amount": 958374438.918883,
+   "slot": 445317506
+  },
+  "baseline": {
+   "t": "2026-09-08T08:43:49Z",
+   "amount": "958374438918883",
+   "ui_amount": 958374438.918883,
+   "slot": 445295744
+  },
+  "change_since_baseline": {
+   "amount": "0",
+   "ui_amount": 0.0
+  },
+  "changes": 0,
+  "last_change": null,
+  "falls": 0,
+  "last_fall": null,
+  "total_fallen": {
+   "amount": "0",
+   "ui_amount": 0.0
+  },
+  "ledger": "status/supply.jsonl"
  }
 }
