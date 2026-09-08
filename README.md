@@ -17,6 +17,7 @@ Sable's own whitepaper says: *"Infrastructure whitepapers routinely describe a p
 | `snapshots/` | The PDF as served, for each change. Evidence, not summary. |
 | [`status/log.jsonl`](status/log.jsonl) | One line per hour: gateway status, uptime, confidential backend verified or failing closed and why, node list, receipt signer address, model count, the `sable-fast` list price, the token's market figures, and the SABL supply as Solana reports it (`sabl_supply`: raw amount, decimals, uiAmount, slot; `null` plus `sabl_supply_error` when the node did not answer). |
 | [`status/supply.jsonl`](status/supply.jsonl) | The supply watch. A line only when the SABL supply changes: time, slot, previous amount, new amount, delta. The first line is the baseline. |
+| [`status/claims.jsonl`](status/claims.jsonl) | The route watch. A line only when an announced surface changes state: time, claim id, previous state, new state, the HTTP answer per documented route and the control route. The first line per claim is the baseline. What is asked lives in [`claims.json`](claims.json). |
 | [`watch.py`](watch.py) | The whole thing. Standard library only. |
 
 ## How it runs
@@ -48,6 +49,21 @@ pdftotext -layout snapshots/B.pdf - > b.txt
 python3 -c "import sys,watch;print(watch.sentences(open('a.txt').read()))" > a.s
 python3 -c "import sys,watch;print(watch.sentences(open('b.txt').read()))" > b.s
 diff -u a.s b.s
+```
+
+## The route watch
+
+Sable announces things as live. Some of those can be checked from outside without a key: when the docs name the routes, the public gateway either has them or it does not. On this gateway a routed path answers `401` before it looks anything up (`GET /v1/mandates` without a key says "missing Authorization header"), and an unrouted one answers `404`. So a `404` on a documented route is a missing route, not a missing permission.
+
+[`claims.json`](claims.json) lists each announcement with its documented routes and one control route. Every hourly run asks them without a key and writes the answers into the hourly line under `claims`. The state per claim is `present` when any documented route answers something other than 404, `absent` when every HTTP answer is 404, and `unreachable` when no route gave an HTTP answer. [`status/claims.jsonl`](status/claims.jsonl) gets a line only when the state changes (the first line per claim is the baseline), a route that answers for the first time gets a [`CHANGELOG.md`](CHANGELOG.md) entry, and [`record.json`](record.json) carries the summary under `claims`, which the Observatory shows in its Log. An answer from outside says the route exists on the public deployment; whether the feature works needs a key.
+
+First entry, 8 September 2026: the MCP Gateway, announced live on X that day, with a docs page that names `POST /v1/mcp-servers` and `/v1/mcp/servers/:id`. On that day every documented route answered 404 from outside.
+
+Verify it yourself, no key needed:
+
+```sh
+curl -s -o /dev/null -w "%{http_code}\n" -X POST -H "content-type: application/json" -d "{}" https://api.buildsable.com/v1/mcp-servers
+curl -s -o /dev/null -w "%{http_code}\n" https://api.buildsable.com/v1/mandates
 ```
 
 ## The supply watch

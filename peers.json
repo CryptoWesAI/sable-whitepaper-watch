@@ -2,6 +2,8 @@
   {"id": "sable-trust",    "name": "Sable · trust page",     "url": "https://www.buildsable.com/trust"},
   {"id": "sable-pricing",  "name": "Sable · pricing",        "url": "https://www.buildsable.com/pricing"},
   {"id": "sable-careers",  "name": "Sable · careers",        "url": "https://www.buildsable.com/careers"},
+  {"id": "sable-docs",     "name": "Sable · docs index",     "url": "https://www.buildsable.com/docs"},
+  {"id": "sable-docs-mcp-gateway", "name": "Sable · MCP Gateway docs", "url": "https://www.buildsable.com/docs/mcp-gateway"},
   {"id": "phala",          "name": "Phala · homepage",       "url": "https://phala.com/"},
   {"id": "near-ai",        "name": "NEAR AI · homepage",     "url": "https://near.ai/"},
   {"id": "nillion",        "name": "Nillion · docs",         "url": "https://docs.nillion.com/"},

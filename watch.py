@@ -20,6 +20,13 @@ a fall gets a CHANGELOG entry: the whitepaper says paying in SABL burns it and
 that the rail is not live yet, so the first fall of the mint supply is that
 rail going live on-chain, whatever the announcements say.
 
+The same line carries the route watch: claims.json lists what Sable has announced
+as live together with the routes its docs name, and every run asks those routes
+without a key. On this gateway a routed path answers 401 before it looks anything
+up and an unrouted one 404, so the answer says whether the route exists on the
+public deployment. status/claims.jsonl gets a line only when a claim's state
+changes, and a route that answers for the first time gets a CHANGELOG entry.
+
 Independent. Not affiliated with Sable Network. Reads only public URLs.
 
 Usage:
@@ -27,7 +34,7 @@ Usage:
   python watch.py --pdf FILE      # seed a run from a local PDF (history import)
   python watch.py --no-status     # skip the status ledger
 """
-import argparse, datetime, difflib, hashlib, json, os, re, subprocess, sys, urllib.request
+import argparse, datetime, difflib, hashlib, json, os, re, subprocess, sys, urllib.error, urllib.request
 import sections
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -186,6 +193,129 @@ def supply_watch(t, sup, err):
         print(f"sabl supply ledger failed: {type(e).__name__}: {e}")
         fields["sabl_supply_error"] = f"ledger: {type(e).__name__}: {e}"
     return fields
+
+
+# Announced, then checked. claims.json lists things Sable has announced as live
+# together with the public routes its docs give for them. Every hourly run asks
+# those routes without a key. On this gateway a routed path answers 401 before
+# it looks anything up and an unrouted one answers 404, so the answer says
+# whether the route exists on the public deployment; it does not say whether the
+# feature works, which needs a key. status/claims.jsonl gets a line only when a
+# claim's state changes (the first run writes the baseline), and a route that
+# answers for the first time gets a CHANGELOG entry.
+CLAIMS_FILE = os.path.join(ROOT, "claims.json")
+CLAIMS_LEDGER = os.path.join(STATUS, "claims.jsonl")
+
+
+def probe(method, path, timeout=12):
+    """One unauthenticated request to API + path. Returns the HTTP status as an
+    int (4xx and 5xx included), or "unreachable: <reason>" when no HTTP answer
+    came back at all."""
+    data = b"{}" if method in ("POST", "PUT", "PATCH") else None
+    headers = {"User-Agent": UA, "Accept": "application/json"}
+    if data is not None:
+        headers["Content-Type"] = "application/json"
+    req = urllib.request.Request(API + path, data=data, headers=headers, method=method)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.status
+    except urllib.error.HTTPError as e:
+        return e.code
+    except Exception as e:
+        return f"unreachable: {type(e).__name__}"
+
+
+def claim_state(codes):
+    """"present" when any probe got an HTTP answer other than 404, "absent" when
+    every HTTP answer was 404, "unreachable" when no probe got an HTTP answer."""
+    http = [c for c in codes.values() if isinstance(c, int)]
+    if not http:
+        return "unreachable"
+    return "present" if any(c != 404 for c in http) else "absent"
+
+
+def claim_transition(prev_state, state):
+    """A flip between absent and present: "reachable" or "gone". Unreachable on
+    either side is not a flip: a gateway that could not be asked has not changed."""
+    if prev_state not in ("absent", "present") or state not in ("absent", "present") or prev_state == state:
+        return None
+    return "reachable" if state == "present" else "gone"
+
+
+def run_probes(claim):
+    codes = {}
+    for p in claim.get("probes", []):
+        codes[f"{p['method']} /v1/{p['path']}"] = probe(p["method"], p["path"])
+    ctrl = claim.get("control")
+    return {"state": claim_state(codes), "http": codes,
+            "control": probe(ctrl["method"], ctrl["path"]) if ctrl else None}
+
+
+def claims_watch(t):
+    """The route watch. Returns the fields for the hourly ledger row. Never
+    raises: a miss is recorded, not fatal."""
+    ts = t.strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        claims = json.loads(read(CLAIMS_FILE, "[]"))
+    except Exception as e:
+        print(f"claims.json unreadable: {type(e).__name__}: {e}")
+        return {}
+    if not claims:
+        return {}
+    last = {}
+    try:
+        for line in read(CLAIMS_LEDGER).splitlines():
+            if line.strip():
+                r = json.loads(line)
+                last[r.get("id")] = r
+    except Exception as e:
+        print(f"claims ledger unreadable: {type(e).__name__}: {e}")
+    out, flips = {}, []
+    for c in claims:
+        cid = c["id"]
+        try:
+            res = run_probes(c)
+        except Exception as e:
+            res = {"state": "unreachable", "http": {}, "control": None, "error": f"{type(e).__name__}: {e}"[:200]}
+        out[cid] = res
+        desc = ", ".join(f"{k} {v}" for k, v in res["http"].items())
+        print(f"claim {cid}: {res['state']} ({desc}; control {res['control']})")
+        try:
+            prev = last.get(cid)
+            entry = {"t": ts, "id": cid, "from": prev.get("to") if prev else None, "to": res["state"],
+                     "http": res["http"], "control": res["control"]}
+            if prev is None:
+                entry["baseline"] = True
+                write(CLAIMS_LEDGER, json.dumps(entry, separators=(",", ":")) + "\n", "a")
+            elif prev.get("to") == "unreachable" and res["state"] != "unreachable":
+                # the first real reading after a baseline that could not ask
+                write(CLAIMS_LEDGER, json.dumps(entry, separators=(",", ":")) + "\n", "a")
+            else:
+                flip = claim_transition(prev.get("to"), res["state"])
+                if flip:
+                    write(CLAIMS_LEDGER, json.dumps(entry, separators=(",", ":")) + "\n", "a")
+                    title = c.get("title", cid)
+                    if flip == "reachable":
+                        summary = (f"{title} answered from outside at {ts}: {desc} (control {res['control']}); "
+                                   f"announced {c.get('announced')}, every answer had been 404 since {prev['t']}")
+                        head = f"## {stamp(t)}: {title} reachable"
+                        body = [f"- The routes the docs give for **{title}** answered something other than 404 for the first time: {desc} (control route {res['control']}).",
+                                f"- Announced {c.get('announced')} ({c.get('source')}); docs: {c.get('docs')}. Every hourly answer had been 404 since {prev['t']}.",
+                                "- An answer from outside says the route exists on the public gateway, not that the feature works; that needs a key. Every change of state is in [`status/claims.jsonl`](status/claims.jsonl)."]
+                    else:
+                        summary = f"{title} routes gone at {ts}: {desc}; they had answered since {prev['t']}"
+                        head = f"## {stamp(t)}: {title} routes gone"
+                        body = [f"- The routes the docs give for **{title}** answer 404 again: {desc} (control route {res['control']}). They had answered since {prev['t']}.",
+                                "- Every change of state is in [`status/claims.jsonl`](status/claims.jsonl)."]
+                    changelog_prepend([head, "", *body, "", ""])
+                    flips.append((flip, summary))
+                    print(summary)
+        except Exception as e:
+            print(f"claims ledger failed for {cid}: {type(e).__name__}: {e}")
+    if flips:
+        set_output("claim_flip", flips[0][0])
+        set_output("claim_summary", "; ".join(s for _, s in flips))
+    return {"claims": out}
 
 
 def read(path, default=""):
@@ -400,6 +530,7 @@ def status_ledger():
         sup_err = f"{type(e).__name__}: {e}"[:200]
     row["token"] = token_row(sup if sup is not None else Exception(sup_err))
     row.update(supply_watch(t, sup, sup_err))
+    row.update(claims_watch(t))
     # The previous line, so a flip of the confidential tier (failing closed to
     # verified, or the other way) gets its own commit message and a push to
     # the app. The ledger itself is the record; this only says when to look.
@@ -530,6 +661,46 @@ def supply_summary(last_row, last_read):
     return out
 
 
+def claims_summary(last_claims, claim_checks):
+    """record.json's view of the route watch: per announced surface the
+    announcement, the documented routes, the latest answers, the state and
+    since when, and every change of state. A claim is absent until
+    status/claims.jsonl has a line for it, so the site shows nothing rather
+    than a placeholder."""
+    try:
+        claims = json.loads(read(CLAIMS_FILE, "[]"))
+    except Exception:
+        return None
+    ledger = [json.loads(l) for l in read(CLAIMS_LEDGER).splitlines() if l.strip()]
+    out = []
+    for c in claims:
+        cid = c.get("id")
+        lines = [r for r in ledger if r.get("id") == cid]
+        if not lines:
+            continue
+        latest = last_claims.get(cid) or dict(lines[-1], state=lines[-1].get("to"))
+        state = latest.get("state")
+        since = next((r["t"] for r in reversed(lines) if r.get("to") == state), None)
+        changes = [r for r in lines if not r.get("baseline")]
+        ctrl = c.get("control")
+        out.append({
+            "id": cid, "title": c.get("title"), "announced": c.get("announced"),
+            "announcement": c.get("announcement"), "source": c.get("source"),
+            "docs": c.get("docs"), "docs_say": c.get("docs_say"),
+            "probes": [f"{p['method']} /v1/{p['path']}" for p in c.get("probes", [])],
+            "control": f"{ctrl['method']} /v1/{ctrl['path']}" if ctrl else None,
+            "first_checked": lines[0]["t"],
+            "checks": claim_checks.get(cid, 0),
+            "latest": {"t": latest.get("t"), "state": state, "http": latest.get("http"), "control": latest.get("control")},
+            "state": state,
+            "state_since": since,
+            "reachable_since": since if state == "present" else None,
+            "changes": [{"t": r["t"], "from": r.get("from"), "to": r.get("to"), "http": r.get("http")} for r in changes][-10:],
+            "ledger": "status/claims.jsonl",
+        })
+    return out
+
+
 def record_json():
     """Machine-readable summary for sable.primecircle.cloud, which reads it
     from the raw GitHub URL at page load. Built from CHANGELOG.md and the last
@@ -555,6 +726,7 @@ def record_json():
         entries.append(e)
     last = None
     last_read = None   # the newest hourly line whose supply read succeeded
+    last_claims, claim_checks = {}, {}   # per announced route: the newest line that got an HTTP answer, and how many did
     try:
         with open(os.path.join(STATUS, "log.jsonl"), encoding="utf-8") as f:
             for line in f:
@@ -562,6 +734,11 @@ def record_json():
                     last = json.loads(line)
                     if isinstance(last.get("sabl_supply"), dict):
                         last_read = dict(last["sabl_supply"], t=last["t"])
+                    if isinstance(last.get("claims"), dict):
+                        for cid, ce in last["claims"].items():
+                            if isinstance(ce, dict) and ce.get("state") != "unreachable":
+                                claim_checks[cid] = claim_checks.get(cid, 0) + 1
+                                last_claims[cid] = dict(ce, t=last["t"])
     except FileNotFoundError:
         pass
     out = {
@@ -576,6 +753,9 @@ def record_json():
     sup = supply_summary(last, last_read)
     if sup:
         out["sabl_supply"] = sup
+    cl = claims_summary(last_claims, claim_checks)
+    if cl:
+        out["claims"] = cl
     write(os.path.join(ROOT, "record.json"), json.dumps(out, indent=1) + "\n")
     print(f"record.json: {len(entries)} entries")
 

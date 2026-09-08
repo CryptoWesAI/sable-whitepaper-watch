@@ -1,0 +1,16 @@
+[
+ {
+  "id": "mcp-gateway",
+  "title": "MCP Gateway",
+  "announced": "2026-09-08",
+  "announcement": "MCP Gateway is live on Sable. MCP tools, with budgets and policies around them. Every call is metered and receipted. Shipped.",
+  "source": "Sable on X, 8 September 2026",
+  "docs": "https://www.buildsable.com/docs/mcp-gateway",
+  "docs_say": "Register a third-party MCP server and get a proxy URL; every tools/call through it is allowlist-checked, metered per call and receipted as kind mcp_call.",
+  "probes": [
+   {"method": "POST", "path": "mcp-servers", "note": "register a server; the docs say session auth, so a routed path answers 401 without one"},
+   {"method": "POST", "path": "mcp/servers/mcp_probe", "note": "the proxy path an agent would connect to; the docs say sk-sable_ key auth"}
+  ],
+  "control": {"method": "GET", "path": "mandates", "note": "a routed path on the same gateway that answers 401 without a key, so a 404 on the probes is a missing route and not a network problem"}
+ }
+]

@@ -46,6 +46,8 @@ jobs:
               git commit -m "${{ steps.watch.outputs.supply_summary }}"
             elif [ -n "${{ steps.watch.outputs.conf_flip }}" ]; then
               git commit -m "${{ steps.watch.outputs.conf_summary }}"
+            elif [ -n "${{ steps.watch.outputs.claim_flip }}" ]; then
+              git commit -m "${{ steps.watch.outputs.claim_summary }}"
             else
               git commit -m "Status ledger $(date -u +%Y-%m-%dT%H:%MZ)"
             fi
@@ -97,6 +99,24 @@ jobs:
           import json, os, urllib.request
           title = "Sable's confidential tier verified again" if os.environ.get("FLIP") == "recovered" else "Sable's confidential tier is failing closed"
           body = json.dumps({"title": title, "body": (os.environ.get("SUMMARY") or "The hourly watcher saw the confidential tier flip. The Log has the record.")[:200], "url": "/#log", "tag": "status"}).encode()
+          req = urllib.request.Request("https://sable.primecircle.cloud/api/game/push/notify", data=body, headers={"Content-Type": "application/json", "x-push-secret": os.environ["PUSH_SECRET"]})
+          try:
+              print(urllib.request.urlopen(req, timeout=20).read().decode())
+          except Exception as e:
+              print("push failed:", type(e).__name__, e)
+          EOF
+      - name: Tell the phones that an announced route changed state
+        if: steps.watch.outputs.claim_flip != ''
+        env:
+          PUSH_SECRET: ${{ secrets.PUSH_SECRET }}
+          FLIP: ${{ steps.watch.outputs.claim_flip }}
+          SUMMARY: ${{ steps.watch.outputs.claim_summary }}
+        run: |
+          if [ -z "$PUSH_SECRET" ]; then echo "no PUSH_SECRET, no push"; exit 0; fi
+          python3 - <<'EOF'
+          import json, os, urllib.request
+          title = "An announced Sable route answers from outside" if os.environ.get("FLIP") == "reachable" else "An announced Sable route went away"
+          body = json.dumps({"title": title, "body": (os.environ.get("SUMMARY") or "The hourly watcher saw an announced route change state. The Log has the record.")[:200], "url": "/#log", "tag": "claims"}).encode()
           req = urllib.request.Request("https://sable.primecircle.cloud/api/game/push/notify", data=body, headers={"Content-Type": "application/json", "x-push-secret": os.environ["PUSH_SECRET"]})
           try:
               print(urllib.request.urlopen(req, timeout=20).read().decode())
