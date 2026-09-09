@@ -96,3 +96,7 @@ SOLANA_RPC=https://your.node python3 watch.py   # read the supply from another S
 ```
 
 Built by [ØPTIMUS ONE](https://x.com/0PTIMUS_ONE), a community member who holds SABL. See also the [Sable Observatory](https://sable.primecircle.cloud), an independent page that explains Sable, lets you try and verify it, and shows this record live.
+
+## The runner on the VPS
+
+Since 9 September 2026 the same `watch.py` also runs on the Observatory's server, at minute 05 of every hour, in a container that pulls this repository over https, commits with the same messages the Action uses, and pushes over ssh with a deploy key that was generated on that server and added here with write access. Commits from it say "(vps)". The GitHub schedule stays as a fallback; an hour with both gives the ledger two lines, which the reliability record and the chart simply show. The reason: GitHub ran the hourly schedule about seven times a day in the first week. Source and operating notes: `sites/sable-peers/watcher-vps/` in the Observatory's repository.
