@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-10T05:05:02Z",
+ "generated_at": "2026-09-10T05:19:18Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -25,13 +25,13 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-10T05:05:01Z",
+  "t": "2026-09-10T05:19:14Z",
   "status": "degraded",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
   "conf_verified": false,
   "conf_error": "measurement_mismatch",
-  "conf_failures": 11046,
+  "conf_failures": 11065,
   "conf_backends": "0/1",
   "sandbox_ok": true,
   "nodes": [
@@ -55,17 +55,17 @@
    "supply": 958374438.918883,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 714568,
-   "price_usd": 0.0007456,
-   "liq_usd": 84642.49,
-   "vol_24h": 253267.52,
-   "change_24h": 47.35
+   "mcap": 710961,
+   "price_usd": 0.0007418,
+   "liq_usd": 84427.95,
+   "vol_24h": 253278.55,
+   "change_24h": 48.78
   },
   "sabl_supply": {
    "amount": "958374438918883",
    "decimals": 6,
    "ui_amount": 958374438.918883,
-   "slot": 445799663
+   "slot": 445802387
   },
   "claims": {
    "mcp-gateway": {
@@ -84,10 +84,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-10T05:05:01Z",
+   "t": "2026-09-10T05:19:14Z",
    "amount": "958374438918883",
    "ui_amount": 958374438.918883,
-   "slot": 445799663
+   "slot": 445802387
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -124,9 +124,9 @@
    ],
    "control": "GET /v1/mandates",
    "first_checked": "2026-09-08T14:52:27Z",
-   "checks": 42,
+   "checks": 43,
    "latest": {
-    "t": "2026-09-10T05:05:01Z",
+    "t": "2026-09-10T05:19:14Z",
     "state": "absent",
     "http": {
      "POST /v1/mcp-servers": 404,
