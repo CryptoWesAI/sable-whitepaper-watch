@@ -47,6 +47,8 @@ jobs:
               git commit -m "${{ steps.watch.outputs.supply_summary }}"
             elif [ -n "${{ steps.watch.outputs.conf_flip }}" ]; then
               git commit -m "${{ steps.watch.outputs.conf_summary }}"
+            elif [ "${{ steps.watch.outputs.counterfeit_new }}" = "true" ]; then
+              git commit -m "${{ steps.watch.outputs.counterfeit_summary }}"
             elif [ -n "${{ steps.watch.outputs.claim_flip }}" ]; then
               git commit -m "${{ steps.watch.outputs.claim_summary }}"
             else

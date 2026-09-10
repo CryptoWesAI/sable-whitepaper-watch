@@ -34,7 +34,7 @@ Usage:
   python watch.py --pdf FILE      # seed a run from a local PDF (history import)
   python watch.py --no-status     # skip the status ledger
 """
-import argparse, datetime, difflib, hashlib, json, os, re, subprocess, sys, urllib.error, urllib.request
+import argparse, datetime, difflib, hashlib, json, os, re, subprocess, sys, unicodedata, urllib.error, urllib.parse, urllib.request
 import sections
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -78,6 +78,169 @@ SABL_MINT = "DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump"
 SOLANA_RPC = os.environ.get("SOLANA_RPC") or "https://api.mainnet-beta.solana.com"
 DEXSCREENER = "https://api.dexscreener.com/latest/dex/tokens/" + SABL_MINT
 SUPPLY_LEDGER = os.path.join(STATUS, "supply.jsonl")
+
+# The counterfeit watch. Robinhood Chain (chain id 4663) is where a community
+# poll of September 2026 asked Sable to bridge. The chain's own explorer sits
+# behind a bot wall, so the watch asks DexScreener's public search, which
+# indexes the chain's pools under the id "robinhood". A hit is any token
+# trading there whose name or symbol looks like SABL. The watch reports what
+# trades under the name; it does not say why. Sable's token is on Solana only.
+DEX_SEARCH = "https://api.dexscreener.com/latest/dex/search?q="
+CF_CHAIN = "robinhood"          # DexScreener's id for Robinhood Chain
+CF_CHAIN_ID = 4663
+CF_QUERIES = ("SABL", "SABLE", "Sable")
+CF_IGNORE = ("sablier",)        # known, unrelated projects that contain the letters
+CF_LEDGER = os.path.join(STATUS, "counterfeit.jsonl")
+# letters that pass for Latin ones on a screen: Cyrillic, full-width, a dollar sign
+HOMOGLYPHS = str.maketrans({"а": "a", "е": "e", "о": "o", "р": "p", "с": "c", "ѕ": "s", "і": "i", "ӏ": "l", "ь": "b",
+                            "А": "A", "Е": "E", "О": "O", "Р": "P", "С": "C", "Ѕ": "S", "І": "I", "Ӏ": "l", "В": "B", "$": ""})
+
+
+def name_words(s):
+    """The words of a token name or symbol in a lowercase ASCII form: look-alike
+    letters folded, accents and full-width forms stripped, split on anything
+    that is not a letter or digit. Single letters written apart (S.A.B.L) are
+    also returned joined, so that spelling counts as one word."""
+    s = unicodedata.normalize("NFKD", str(s or "")).translate(HOMOGLYPHS)
+    s = "".join(c for c in s if not unicodedata.combining(c)).lower()
+    words = re.findall(r"[a-z0-9]+", s)
+    if len(words) > 1 and all(len(w) == 1 for w in words):
+        words.append("".join(words))
+    return words
+
+
+# a word that is SABL, or SABL with a wrapper prefix (wSABL, xSABL, stSABL, bSABL)
+# and a short tail (sable, sablecoin, sabl2). "reusable" or "usable" do not count.
+SABL_WORD = re.compile(r"^(?:w|x|st|b|c|a|v|ib)?sabl[a-z0-9]{0,8}$")
+
+
+def looks_like_sabl(name, symbol):
+    """True when a token's name or symbol resembles SABL: sabl, sable, $SABL,
+    wrapped SABL, dotted letters, look-alike letters. Known unrelated names
+    with the same letters in them are ignored."""
+    for s in (name, symbol):
+        for w in name_words(s):
+            if any(x in w for x in CF_IGNORE):
+                continue
+            if SABL_WORD.match(w):
+                return True
+    return False
+
+
+def dex_pairs(query):
+    j = json.loads(fetch(DEX_SEARCH + urllib.parse.quote(query), 15))
+    return j.get("pairs") or []
+
+
+def counterfeit_hits(pairs):
+    """The tokens on Robinhood Chain among DexScreener pairs whose name or
+    symbol looks like SABL, one entry per token address (its deepest pool),
+    plus the count of such tokens on every other chain, for context."""
+    hits, other = {}, set()
+    for p in pairs:
+        if not isinstance(p, dict):
+            continue
+        for side in ("baseToken", "quoteToken"):
+            tok = p.get(side) or {}
+            addr = str(tok.get("address") or "")
+            if not addr or not looks_like_sabl(tok.get("name"), tok.get("symbol")):
+                continue
+            if p.get("chainId") != CF_CHAIN:
+                other.add((p.get("chainId"), addr.lower()))
+                continue
+            liq = (p.get("liquidity") or {}).get("usd")
+            created = p.get("pairCreatedAt")
+            entry = {"address": addr, "name": tok.get("name"), "symbol": tok.get("symbol"), "pair": p.get("pairAddress"),
+                     "dex": p.get("dexId"), "url": p.get("url"), "liquidity_usd": liq, "fdv": p.get("fdv"),
+                     "pair_created": datetime.datetime.fromtimestamp(created / 1000, datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                     if isinstance(created, (int, float)) else None,
+                     "volume_24h": (p.get("volume") or {}).get("h24")}
+            h = hits.get(addr.lower())
+            if h is None or (liq or 0) > (h.get("liquidity_usd") or 0):
+                hits[addr.lower()] = entry
+    return sorted(hits.values(), key=lambda h: -(h.get("liquidity_usd") or 0)), len(other)
+
+
+def counterfeit_watch(t):
+    """The counterfeit watch. status/counterfeit.jsonl gets a line on the first
+    run (the baseline) and whenever the set of look-alike tokens on Robinhood
+    Chain changes; a new address gets a CHANGELOG entry and an output for the
+    commit message. Returns the fields for the hourly ledger row. Never raises:
+    a miss is recorded, not fatal."""
+    ts = t.strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        pairs = []
+        for q in CF_QUERIES:
+            pairs.extend(dex_pairs(q))
+        hits, n_other = counterfeit_hits(pairs)
+    except Exception as e:
+        err = f"{type(e).__name__}: {e}"[:200]
+        print(f"counterfeit watch: unreadable ({err})")
+        return {"counterfeit_4663": None, "counterfeit_4663_error": err}
+    addrs = sorted(h["address"].lower() for h in hits)
+    fields = {"counterfeit_4663": {"hits": len(hits), "addresses": addrs, "other_chains": n_other}}
+    try:
+        last = None
+        for line in read(CF_LEDGER).splitlines():
+            if line.strip():
+                last = json.loads(line)
+        prev = sorted(str(a).lower() for a in (last or {}).get("addresses", []))
+        if last is None:
+            write(CF_LEDGER, json.dumps({"t": ts, "baseline": True, "chain": CF_CHAIN_ID, "addresses": addrs, "hits": hits,
+                                         "other_chains": n_other}, separators=(",", ":")) + "\n", "a")
+            print(f"counterfeit watch: baseline, {len(hits)} look-alike token(s) on Robinhood Chain")
+        elif prev != addrs:
+            new = [h for h in hits if h["address"].lower() not in prev]
+            gone = [a for a in prev if a not in addrs]
+            write(CF_LEDGER, json.dumps({"t": ts, "chain": CF_CHAIN_ID, "addresses": addrs, "hits": hits, "other_chains": n_other,
+                                         "new": [h["address"] for h in new], "gone": gone}, separators=(",", ":")) + "\n", "a")
+            if new:
+                names = ", ".join(f"{h.get('symbol')} ({h.get('name')}) at {h['address']}" for h in new)
+                summary = f"Counterfeit watch: new token named like SABL on Robinhood Chain: {names}"
+                print(summary)
+                lines = [f"## {stamp(t)}: a token named like SABL appeared on Robinhood Chain", ""]
+                for h in new:
+                    liq = h.get("liquidity_usd") or 0
+                    lines.append(f"- **{h.get('symbol')}** ({h.get('name')}) at `{h['address']}`, {h.get('dex')} pool `{h.get('pair')}` "
+                                 f"opened {h.get('pair_created') or 'unknown'}, liquidity about ${liq:,.0f}: {h.get('url')}")
+                lines += [f"- Seen at {ts} through DexScreener's search for {', '.join(CF_QUERIES)} on chain {CF_CHAIN_ID}. "
+                          f"Sable Network's token exists only on Solana (mint `{SABL_MINT}`); nothing on Robinhood Chain is it. "
+                          "Every change of the list is in [`status/counterfeit.jsonl`](status/counterfeit.jsonl).", "", ""]
+                changelog_prepend(lines)
+                set_output("counterfeit_new", "true")
+                set_output("counterfeit_summary", summary)
+            else:
+                print(f"counterfeit watch: {len(gone)} look-alike token(s) no longer listed")
+        else:
+            print(f"counterfeit watch: unchanged, {len(hits)} look-alike token(s) on Robinhood Chain")
+    except Exception as e:
+        print(f"counterfeit ledger failed: {type(e).__name__}: {e}")
+        fields["counterfeit_4663_error"] = f"ledger: {type(e).__name__}: {e}"
+    return fields
+
+
+def counterfeit_summary(last_row):
+    """record.json's view of the counterfeit watch: the baseline, the latest
+    list with the time each token was first seen by this watch, and the last
+    hourly check. Absent until the ledger has its first line."""
+    rows = [json.loads(l) for l in read(CF_LEDGER).splitlines() if l.strip()]
+    if not rows:
+        return None
+    first_seen = {}
+    for r in rows:
+        for a in r.get("addresses", []):
+            first_seen.setdefault(str(a).lower(), r["t"])
+    newest = rows[-1]
+    hits = [dict(h, first_seen=first_seen.get(str(h.get("address", "")).lower())) for h in newest.get("hits", [])]
+    out = {"chain_id": CF_CHAIN_ID, "chain": "Robinhood Chain", "source": "DexScreener search", "queries": list(CF_QUERIES),
+           "baseline_t": rows[0]["t"], "changes": len(rows) - 1, "latest_t": newest["t"], "hits": hits,
+           "other_chains": newest.get("other_chains"), "ledger": "status/counterfeit.jsonl",
+           "note": "Sable Network's token exists only on Solana; a token on Robinhood Chain named like it is not it."}
+    if last_row and isinstance(last_row.get("counterfeit_4663"), dict):
+        out["last_check"] = {"t": last_row.get("t"), "hits": last_row["counterfeit_4663"].get("hits")}
+    elif last_row and last_row.get("counterfeit_4663_error"):
+        out["latest_error"] = {"t": last_row.get("t"), "error": last_row["counterfeit_4663_error"]}
+    return out
 
 
 def read_supply():
@@ -531,6 +694,7 @@ def status_ledger():
     row["token"] = token_row(sup if sup is not None else Exception(sup_err))
     row.update(supply_watch(t, sup, sup_err))
     row.update(claims_watch(t))
+    row.update(counterfeit_watch(t))
     # The previous line, so a flip of the confidential tier (failing closed to
     # verified, or the other way) gets its own commit message and a push to
     # the app. The ledger itself is the record; this only says when to look.
@@ -712,6 +876,8 @@ def record_json():
         label = lines[0].strip()
         if "SABL supply" in label:
             continue   # the burn entries are exposed under "sabl_supply" below, from status/supply.jsonl
+        if "named like SABL" in label:
+            continue   # the counterfeit entries are exposed under "counterfeit_4663" below, from status/counterfeit.jsonl
         e = {"label": label}
         for l in lines[1:]:
             m = re.search(r"Cover says: \*\*(.+?)\*\*", l)
@@ -756,6 +922,9 @@ def record_json():
     cl = claims_summary(last_claims, claim_checks)
     if cl:
         out["claims"] = cl
+    cf = counterfeit_summary(last)
+    if cf:
+        out["counterfeit_4663"] = cf
     write(os.path.join(ROOT, "record.json"), json.dumps(out, indent=1) + "\n")
     print(f"record.json: {len(entries)} entries")
 
@@ -770,7 +939,13 @@ def main():
                     help="only rebuild whitepaper.json (sections and sentences, with the snapshot each first appeared in) from the PDFs in snapshots/")
     ap.add_argument("--reset", action="store_true",
                     help="start the record over: removes the generated files under this directory (snapshots, diffs, status, state, texts, changelog)")
+    ap.add_argument("--counterfeit-only", action="store_true",
+                    help="only run the counterfeit watch (tokens named like SABL on Robinhood Chain) and rebuild record.json")
     args = ap.parse_args()
+    if args.counterfeit_only:
+        counterfeit_watch(now())
+        record_json()
+        return 0
     if args.reset:
         import shutil
         for d in ("state", "snapshots", "diffs", "status"):
