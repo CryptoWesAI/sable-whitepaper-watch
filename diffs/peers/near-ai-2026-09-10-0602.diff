@@ -1,0 +1,106 @@
+--- previous
++++ 2026-09-10-0602
+@@ -1,40 +1,63 @@
+-NEAR AI — Confidential AI Infrastructure BLOG OUR COMPANY GET IN TOUCH BLOG OUR COMPANY GET IN TOUCH AI agents for the work your team has been afraid to automate. >> CLIENT KEY PAIR >> ENVIRONMENT NEAR AI runs sensitive workloads for enterprises, governments, and AI applications.
+-Inference and agents execute inside hardware-enforced enclaves where requests are confidential by design and outputs are independently verifiable.
+-IronClaw Your AI agent framework, private by default.
+-Run autonomous agents inside hardware-enforced enclaves with zero operator access.
+-Explore IronClaw NEAR AI runs sensitive workloads for enterprises, governments, and AI applications.
+-Inference and agents execute inside hardware-enforced enclaves where requests are confidential by design and outputs are independently verifiable.
+-NEAR AI Cloud Deploy private models.
+-Start in minutes.
+-Scalable confidential inference for teams that can't afford to compromise.
+-Start Building Confidential AI Infrastructure IronClaw An AI agent that connects to your tools, runs your workflows, and gets things done without you babysitting it.
+-Secure by default, open source, and built to handle real business tasks.
+-Meet IronClaw NEAR AI Cloud Where everything runs.
+-Every job executes in a sealed environment with no outside access.
+-The infrastructure handles security by default so you don't have to.
+-Start Building Agent Marketplace Agents built for real business workflows.
+-Finance, legal, ops, research, and security.
+-Browse what's available, deploy what you need, list your own.
+-Browse The Marketplace How NEAR AI works EXTERNAL WORLD NEAR AI CLOUD TEE How NEAR AI works Hardware Isolation IronClaw runs inside a Trusted Execution Environment.
+-Nothing leaks out.
+-No one can see in.
+-Triple Lockout The host OS, GPU operator, and NEAR AI itself are cryptographically excluded from the execution context.
+-Independent Verification Every request returns a hardware-signed attestation certificate any third party can independently verify.
+-Read the docs Built for Real Work >> CLIENT KEY PAIR >> ENVIRONMENT #01 Repetitive Work / Ops Automation Your team is spending hours on work an agent can handle.
+-Scheduling, data pulls, document processing, reporting, summarization.
+-Connect IronClaw to your stack, define the workflow, and let it run.
+-Your team gets the output without doing the work. #02 Internal Knowledge & Research Stop losing context across tools, threads, and teammates.
+-IronClaw monitors your Slack, email, Notion, and internal docs and builds a live picture of what’s happening across your organization.
+-Ask it anything.
+-Get the answer from your own data, not a guess. #03 Any Team Buying or Building AI The hardest part isn’t the model — it’s everything around it.
+-IronClaw handles the secure execution layer so you don’t have to build it from scratch.
+-Drop it into your stack, connect your tools, and ship AI features your customers can trust.
+-Every run is verifiable.
+-PARTNERS Global enterprises and governments are using NEAR AI in production today.
+-NEAR AI Cloud and IronClaw serve production workloads for teams that cannot compromise on data confidentiality.
+-Financial Autopilot via IronClaw Financial Autopilot _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ via IronClaw AI Financial Autopilot connecting to regulated Indian bank accounts via IronClaw.
+-No credentials stored at any point. >> Backed by Times of India Group Private LLM Platform on NEAR AI Cloud Private LLM Platform _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ on NEAR AI Cloud Privacy-first AI platform running production inference on NEAR AI Cloud. >> venice.ai Browser in Brave Nightly Browser _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ in Brave Nightly Confidential inference integrated into Brave Nightly. >> brave.com Government Sovereign workload Government _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ Sovereign workload Confidential AI workloads running on NEAR AI infrastructure. >> gov.bm Inference & Infrastructure Partners / 02 Your first agent is one command away.
+-Everything you need to deploy, manage, and scale AI agents across your organization: open source, TEE-secured, running on NEAR.
+-The rest is up to you.
+-Contact Us Company Home About us Brand Careers Terms and Policies Privacy Policy NEAR AI Terms of Service Acceptable Use Policy Cookie Policy Data Processing Agreement Company Home About us Brand Careers Terms and Policies Privacy Policy NEAR AI Terms of Service Acceptable Use Policy Cookie Policy Data Processing Agreement Join the community Connect with developers and researchers. © 2026 Jasnah Inc., DBA as NEAR AI.
+-All Rights Reserved.
++Private AI you can prove Cloud How it works Company Models Blog Docs Menu Switch to dark mode Switch to light mode Sign in Start building Build Confidential Inference Cloud Private AI you can cryptographically trust.
++Run frontier open models inside hardware-secured enclaves.
++Every request is attested end to end, so you can prove your data was never seen, not just hope it.
++Get a demo Start building privately Intel TDX + NVIDIA GPU TEE Open source & auditable OpenAI-compatible API near-ai, zsh, verified inference Trusted by teams building privacy-first AI Venice Government of Bermuda Abound Member of the Confidential Computing Consortium · Part of the NVIDIA Inception Program How it works Trust that’s verified, not assumed Most “private” AI asks you to take their word for it.
++NEAR AI Cloud gives you a mathematical proof on every single request. enclave://near-ai-cloud verifying Your model + prompts running · memory encrypted Host OS ··· GPU operator ··· NEAR AI ··· generating attestation… 0 1 You encrypt the request Prompts are sent over TLS and only decrypted inside the enclave.
++Keys never touch our infrastructure.
++0 2 It runs inside a TEE Inference executes in an Intel TDX + NVIDIA confidential-GPU enclave.
++Memory is sealed from the host and operators.
++0 3 The hardware signs a proof The TEE produces a cryptographic attestation quote binding the exact model and code that ran.
++0 4 You verify the result Check the attestation yourself, in code or with our open verifier.
++Trust the math, not a promise.
++Why teams trust it Privacy guaranteed by hardware, proven by math Confidential GPU compute Models run on NVIDIA confidential computing inside Intel TDX.
++Data stays encrypted in use, not just at rest and in transit.
++Attestation on every call Each response carries a verifiable hardware quote binding the exact code and weights that served it.
++Open source & auditable The runtime, verifier, and enclave images are open.
++Reproduce the build and check it yourself.
++OpenAI-compatible API Drop-in replacement for the OpenAI SDK.
++Swap the base URL and your stack keeps working.
++No vendor lock-in Open weights and open models.
++Bring your own, or pick from a growing catalog, portable by design.
++You hold the keys Client-held encryption keys.
++We never see plaintext, and there is no operator backdoor, by construction.
++52 models available 12 confidential, in TEEs 100% TEE requests attested 0 TEE operator access, by design Why NEAR AI Cloud Privacy of on-prem.
++Power of cloud.
++NEAR AI Cloud runs models inside secure hardware enclaves, the privacy of running locally, with the scale and convenience of the cloud.
++OpenAI GPT models, closed On-Prem Any open-source or custom model NEAR AI Any open-source or custom model Data privacy Provable zero data retention Confidential compute (TEE) Hardware-signed attestation Features Cloud convenience Setup cost Low High Low Complexity Low High Low Scalability Good Poor Good No vendor lock-in Zero trust Private observability Models Open models, running confidentially A curated catalog of open-weight models, each served inside an attested enclave, with live pricing from the NEAR AI Cloud API.
++View all models → Model Context Price / 1M tokens (in / out) License DeepSeek V4 Flash DeepSeek-V4-Flash 1048K $0.17 / $0.35 out Open deepseek-v3.2 deepseek-v3.2 128K $1.1 / $1.1 out Open GLM 5.1 GLM-5.1-FP8 202K $1.4 / $4.4 out Open GLM 5.2 glm-5.2 1048K $1.4 / $4.4 out Open GLM 5.3 Flash glm-5.3-flash 1048K $0.15 / $0.5 out Open Kimi K2.6 kimi-k2.6 262K $0.81 / $3.85 out Open Kimi K3 kimi-k3 1048K $3.3 / $16.5 out Open Qwen 3.6 35B A3B FP8 Qwen3.6-35B-A3B-FP8 262K $0.17 / $1.1 out Open Qwen 3.8 27B Qwen3.8-27B 262K $0.44 / $3.3 out Open qwen3-32b qwen3-32b 128K $0.11 / $0.46 out Open Qwen3-VL-30B-A3B-Instruct Qwen3-VL-30B-A3B-Instruct 16K $0.15 / $0.55 out Open qwen3.5-397b-a17b qwen3.5-397b-a17b 128K $0.5 / $3.3 out Open Quickstart If you’ve used OpenAI, you’re done in 30 seconds No new SDK to learn.
++Change the base URL, keep your code, and gain end-to-end attestation for free.
++Get your API key View on GitHub python javascript curl # pip install openai import os from openai import OpenAI client = OpenAI ( base_url= "https://cloud-api.near.ai/v1" , api_key=os.environ[ "NEAR_AI_KEY" ], ) resp = client.chat.completions. create ( model= "Qwen/Qwen3.8-27B" , messages=[{ "role" : "user" , "content" : "Hi" }], ) print(resp.choices[0].message.content) # Verify attestation and response signatures: # https://docs.near.ai/cloud/verification Copy Pricing Confidential compute, pay-as-you-go Pay only for the tokens you use, see live per-model pricing in the catalog above .
++Enterprise plans add reserved capacity and private models.
++Pay-as-you-go Most popular Per token no minimums Only pay for the tokens you use, every open model, attested on every request.
++Per-token pricing on all open models Hardware-signed attestation on every request OpenAI-compatible, no new SDK No subscriptions or commitments Get an API key Enterprise Custom Reserved capacity, private models, and procurement on your terms.
++Reserved GPU capacity Custom & private models Volume pricing & SLAs On-prem / VPC deployment options Solutions engineering Contact sales FAQ Questions, answered What exactly is a TEE, and why does it matter?
++A Trusted Execution Environment is a hardware-isolated region of a CPU/GPU where code and data are encrypted even while running.
++It means your prompts and the model can be processed without the host machine, the operator, or NEAR AI ever being able to read them.
++How is this different from a normal “private” API?
++Most providers promise privacy in their terms of service.
++NEAR AI Cloud gives you a cryptographic attestation, a hardware-signed proof of exactly what code ran and that it ran inside a sealed enclave.
++You verify it yourself; you don’t take our word for it.
++Do I need to change my code?
++No.
++The API is OpenAI-compatible.
++Point your existing OpenAI SDK at our base URL, add your key, and you keep attestation as a bonus you can optionally verify.
++Is it really open source?
++Yes.
++The enclave runtime, the attestation verifier, and the model images are open and reproducible, so you can audit the full path your data takes.
++Which models are supported?
++A growing catalog of open-weight models such as Llama, Qwen, DeepSeek and Mixtral, all served confidentially.
++Bring-your-own and private models are available on Team and Enterprise plans.
++Latest from NEAR AI Read the blog → August 12, 2026 NEAR AI Cloud Integrates Intel® Trust Authority: Independent Attestation for Confidential Inference NEAR AI Cloud now pairs Intel TDX confidential inference with Intel® Trust Authority, an attestation verifier independent of the operator.
++Verify it yourself.
++July 30, 2026 Announcing Staking for NEAR AI: Put Your NEAR to Work Powering Confidential AI Stake NEAR to fund private inference and deploy always-on IronClaw agents.
++Credits scale with your stake.
++No credit card required.
++July 27, 2026 Introducing IronClaw 1.0: The Leader Across PinchBench, ClawBench, and OfficeQA Agent Benchmarks IronClaw 1.0 tops three agent benchmarks with a rebuilt architecture: one guard for every action, persistent memory, and no lost work on interruption.
++Start building on AI you can prove.
++Get an API key in minutes.
++Keep your OpenAI code.
++Add verifiable privacy for free. $ curl https://cloud-api.near.ai/v1/model/list Get a demo Start building privately Confidential inference infrastructure.
++Open models run inside hardware-enforced enclaves, private by default, verifiable by design.
++Open Cloud console ↗ Product NEAR AI Cloud Models Pricing Attestation Company About Blog Brand Console Docs Privacy Policy © 2026 Jasnah Inc., DBA as NEAR AI.
++All rights reserved.
++Cookie settings Terms Privacy x.com/near_ai
