@@ -2,6 +2,12 @@
 
 Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change. Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.
 
+## 2026-09-11-1005: a token named like SABL appeared on Robinhood Chain
+
+- **SABL** (Sable) at `0xE0A0c37605D5C4B4CDDc99E41B0F67664C155DAA`, uniswap pool `0x39dcd5a585ee016a10345ba4c846ce606a7bb162a89158a405bc26d66e9569f0` opened 2026-09-11T09:13:56Z, liquidity about $42: https://dexscreener.com/robinhood/0x39dcd5a585ee016a10345ba4c846ce606a7bb162a89158a405bc26d66e9569f0
+- **SABL** (Sable) at `0x2E76bA826F3DaBE23a8844e3607ac9e912b3226a`, uniswap pool `0x2622e983b68539a1e5229ff77502e025ad474ba7af289014856624ab8c21bde8` opened 2026-09-11T09:20:17Z, liquidity about $19: https://dexscreener.com/robinhood/0x2622e983b68539a1e5229ff77502e025ad474ba7af289014856624ab8c21bde8
+- Seen at 2026-09-11T10:05:01Z through DexScreener's search for SABL, SABLE, Sable on chain 4663. Sable Network's token exists only on Solana (mint `DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump`); nothing on Robinhood Chain is it. Every change of the list is in [`status/counterfeit.jsonl`](status/counterfeit.jsonl).
+
 ## 2026-09-11-0705: MCP Gateway reachable
 
 - The routes the docs give for **MCP Gateway** answered something other than 404 for the first time: POST /v1/mcp-servers 401, POST /v1/mcp/servers/mcp_probe 401 (control route 401).
