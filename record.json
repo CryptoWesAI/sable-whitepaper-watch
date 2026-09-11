@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-11T15:05:03Z",
+ "generated_at": "2026-09-11T16:05:04Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -28,7 +28,7 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-11T15:05:01Z",
+  "t": "2026-09-11T16:05:01Z",
   "status": "ok",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
@@ -51,24 +51,24 @@
    "sable-confidential-gemma4-26b"
   ],
   "sable_fast_usd_per_mtok": [
-   2.0,
-   10.0
+   2.4,
+   12.0
   ],
   "token": {
    "supply": 958371458.462027,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 448289,
-   "price_usd": 0.0004677,
-   "liq_usd": 67427.52,
-   "vol_24h": 105264.83,
-   "change_24h": -26.11
+   "mcap": 436699,
+   "price_usd": 0.0004556,
+   "liq_usd": 65934.12,
+   "vol_24h": 104164.27,
+   "change_24h": -21.27
   },
   "sabl_supply": {
    "amount": "958371458462027",
    "decimals": 6,
    "ui_amount": 958371458.462027,
-   "slot": 446186631
+   "slot": 446197963
   },
   "claims": {
    "mcp-gateway": {
@@ -96,10 +96,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-11T15:05:01Z",
+   "t": "2026-09-11T16:05:01Z",
    "amount": "958371458462027",
    "ui_amount": 958371458.462027,
-   "slot": 446186631
+   "slot": 446197963
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -150,9 +150,9 @@
    ],
    "control": "GET /v1/mandates",
    "first_checked": "2026-09-08T14:52:27Z",
-   "checks": 94,
+   "checks": 95,
    "latest": {
-    "t": "2026-09-11T15:05:01Z",
+    "t": "2026-09-11T16:05:01Z",
     "state": "present",
     "http": {
      "POST /v1/mcp-servers": 401,
@@ -234,7 +234,7 @@
   "ledger": "status/counterfeit.jsonl",
   "note": "Sable Network's token exists only on Solana; a token on Robinhood Chain named like it is not it.",
   "last_check": {
-   "t": "2026-09-11T15:05:01Z",
+   "t": "2026-09-11T16:05:01Z",
    "hits": 3
   }
  }
