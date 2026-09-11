@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-11T06:05:05Z",
+ "generated_at": "2026-09-11T06:38:31Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -25,13 +25,13 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-11T06:05:01Z",
+  "t": "2026-09-11T06:38:24Z",
   "status": "degraded",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
   "conf_verified": false,
   "conf_error": "measurement_mismatch",
-  "conf_failures": 13048,
+  "conf_failures": 13096,
   "conf_backends": "0/1",
   "sandbox_ok": true,
   "nodes": [
@@ -55,17 +55,17 @@
    "supply": 958371458.462027,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 445546,
-   "price_usd": 0.0004648,
-   "liq_usd": 66017.43,
-   "vol_24h": 132670.48,
-   "change_24h": -32.33
+   "mcap": 443415,
+   "price_usd": 0.0004626,
+   "liq_usd": 65765.22,
+   "vol_24h": 130270.81,
+   "change_24h": -31.89
   },
   "sabl_supply": {
    "amount": "958371458462027",
    "decimals": 6,
    "ui_amount": 958371458.462027,
-   "slot": 446084321
+   "slot": 446090670
   },
   "claims": {
    "mcp-gateway": {
@@ -91,10 +91,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-11T06:05:01Z",
+   "t": "2026-09-11T06:38:24Z",
    "amount": "958371458462027",
    "ui_amount": 958371458.462027,
-   "slot": 446084321
+   "slot": 446090670
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -145,9 +145,9 @@
    ],
    "control": "GET /v1/mandates",
    "first_checked": "2026-09-08T14:52:27Z",
-   "checks": 82,
+   "checks": 83,
    "latest": {
-    "t": "2026-09-11T06:05:01Z",
+    "t": "2026-09-11T06:38:24Z",
     "state": "absent",
     "http": {
      "POST /v1/mcp-servers": 404,
@@ -193,7 +193,7 @@
   "ledger": "status/counterfeit.jsonl",
   "note": "Sable Network's token exists only on Solana; a token on Robinhood Chain named like it is not it.",
   "last_check": {
-   "t": "2026-09-11T06:05:01Z",
+   "t": "2026-09-11T06:38:24Z",
    "hits": 1
   }
  }
