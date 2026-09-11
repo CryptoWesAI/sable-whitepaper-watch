@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-11T17:05:03Z",
+ "generated_at": "2026-09-11T18:05:03Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -28,7 +28,7 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-11T17:05:01Z",
+  "t": "2026-09-11T18:05:01Z",
   "status": "ok",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
@@ -58,17 +58,17 @@
    "supply": 958371458.462027,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 452961,
-   "price_usd": 0.0004726,
-   "liq_usd": 67484.28,
-   "vol_24h": 106515.91,
-   "change_24h": -17.3
+   "mcap": 411792,
+   "price_usd": 0.0004296,
+   "liq_usd": 64121.52,
+   "vol_24h": 107676.73,
+   "change_24h": -24.19
   },
   "sabl_supply": {
    "amount": "958371458462027",
    "decimals": 6,
    "ui_amount": 958371458.462027,
-   "slot": 446209280
+   "slot": 446220588
   },
   "claims": {
    "mcp-gateway": {
@@ -81,10 +81,9 @@
    }
   },
   "counterfeit_4663": {
-   "hits": 3,
+   "hits": 2,
    "addresses": [
     "0x2e76ba826f3dabe23a8844e3607ac9e912b3226a",
-    "0xd00126f6f702367808d85bded7b41bdbd59e48cf",
     "0xe0a0c37605d5c4b4cddc99e41b0f67664c155daa"
    ],
    "other_chains": 4
@@ -96,10 +95,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-11T17:05:01Z",
+   "t": "2026-09-11T18:05:01Z",
    "amount": "958371458462027",
    "ui_amount": 958371458.462027,
-   "slot": 446209280
+   "slot": 446220588
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -150,9 +149,9 @@
    ],
    "control": "GET /v1/mandates",
    "first_checked": "2026-09-08T14:52:27Z",
-   "checks": 98,
+   "checks": 99,
    "latest": {
-    "t": "2026-09-11T17:05:01Z",
+    "t": "2026-09-11T18:05:01Z",
     "state": "present",
     "http": {
      "POST /v1/mcp-servers": 401,
@@ -187,22 +186,9 @@
    "Sable"
   ],
   "baseline_t": "2026-09-10T21:58:25Z",
-  "changes": 1,
-  "latest_t": "2026-09-11T10:05:01Z",
+  "changes": 2,
+  "latest_t": "2026-09-11T18:05:01Z",
   "hits": [
-   {
-    "address": "0xd00126f6f702367808d85bdEd7b41BDBD59e48cf",
-    "name": "Sable",
-    "symbol": "SABLE",
-    "pair": "0x2451aC74804E96ea3847418Ca32E37aEE989cAe5",
-    "dex": "uniswap",
-    "url": "https://dexscreener.com/robinhood/0x2451ac74804e96ea3847418ca32e37aee989cae5",
-    "liquidity_usd": 3381.03,
-    "fdv": 3381,
-    "pair_created": "2026-07-26T10:31:10Z",
-    "volume_24h": 9.02,
-    "first_seen": "2026-09-10T21:58:25Z"
-   },
    {
     "address": "0xE0A0c37605D5C4B4CDDc99E41B0F67664C155DAA",
     "name": "Sable",
@@ -230,12 +216,12 @@
     "first_seen": "2026-09-11T10:05:01Z"
    }
   ],
-  "other_chains": 2,
+  "other_chains": 4,
   "ledger": "status/counterfeit.jsonl",
   "note": "Sable Network's token exists only on Solana; a token on Robinhood Chain named like it is not it.",
   "last_check": {
-   "t": "2026-09-11T17:05:01Z",
-   "hits": 3
+   "t": "2026-09-11T18:05:01Z",
+   "hits": 2
   }
  }
 }
