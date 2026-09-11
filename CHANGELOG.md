@@ -2,6 +2,12 @@
 
 Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change. Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.
 
+## 2026-09-11-1905: SABL supply fell
+
+- Supply fell by **10,517.475429 SABL** (10,517,475,429 base units), from 958,371,458.462027 to 958,360,940.986598.
+- Seen at 2026-09-11T19:05:02Z, Solana slot 446,231,922, by `getTokenSupply` on https://api.mainnet-beta.solana.com for mint `DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump`.
+- The whitepaper (section 06) says paying in SABL burns it. A fall of the mint supply is a burn; the chain does not say who burned it or why. Every change of the supply is in [`status/supply.jsonl`](status/supply.jsonl).
+
 ## 2026-09-11-1005: a token named like SABL appeared on Robinhood Chain
 
 - **SABL** (Sable) at `0xE0A0c37605D5C4B4CDDc99E41B0F67664C155DAA`, uniswap pool `0x39dcd5a585ee016a10345ba4c846ce606a7bb162a89158a405bc26d66e9569f0` opened 2026-09-11T09:13:56Z, liquidity about $42: https://dexscreener.com/robinhood/0x39dcd5a585ee016a10345ba4c846ce606a7bb162a89158a405bc26d66e9569f0
