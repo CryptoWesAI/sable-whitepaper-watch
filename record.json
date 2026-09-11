@@ -1,10 +1,13 @@
 {
- "generated_at": "2026-09-11T06:38:31Z",
+ "generated_at": "2026-09-11T07:05:05Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
- "cover": "v2.0, August 2026",
+ "cover": null,
  "entries": [
+  {
+   "label": "2026-09-11-0705: MCP Gateway reachable"
+  },
   {
    "label": "2026-09-04",
    "cover": "v2.0, August 2026",
@@ -25,13 +28,13 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-11T06:38:24Z",
+  "t": "2026-09-11T07:05:02Z",
   "status": "degraded",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
   "conf_verified": false,
   "conf_error": "measurement_mismatch",
-  "conf_failures": 13096,
+  "conf_failures": 24,
   "conf_backends": "0/1",
   "sandbox_ok": true,
   "nodes": [
@@ -55,24 +58,24 @@
    "supply": 958371458.462027,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 443415,
-   "price_usd": 0.0004626,
-   "liq_usd": 65765.22,
-   "vol_24h": 130270.81,
-   "change_24h": -31.89
+   "mcap": 463980,
+   "price_usd": 0.0004841,
+   "liq_usd": 67401.06,
+   "vol_24h": 133038.23,
+   "change_24h": -29.51
   },
   "sabl_supply": {
    "amount": "958371458462027",
    "decimals": 6,
    "ui_amount": 958371458.462027,
-   "slot": 446090670
+   "slot": 446095737
   },
   "claims": {
    "mcp-gateway": {
-    "state": "absent",
+    "state": "present",
     "http": {
-     "POST /v1/mcp-servers": 404,
-     "POST /v1/mcp/servers/mcp_probe": 404
+     "POST /v1/mcp-servers": 401,
+     "POST /v1/mcp/servers/mcp_probe": 401
     },
     "control": 401
    }
@@ -91,10 +94,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-11T06:38:24Z",
+   "t": "2026-09-11T07:05:02Z",
    "amount": "958371458462027",
    "ui_amount": 958371458.462027,
-   "slot": 446090670
+   "slot": 446095737
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -145,20 +148,30 @@
    ],
    "control": "GET /v1/mandates",
    "first_checked": "2026-09-08T14:52:27Z",
-   "checks": 83,
+   "checks": 84,
    "latest": {
-    "t": "2026-09-11T06:38:24Z",
-    "state": "absent",
+    "t": "2026-09-11T07:05:02Z",
+    "state": "present",
     "http": {
-     "POST /v1/mcp-servers": 404,
-     "POST /v1/mcp/servers/mcp_probe": 404
+     "POST /v1/mcp-servers": 401,
+     "POST /v1/mcp/servers/mcp_probe": 401
     },
     "control": 401
    },
-   "state": "absent",
-   "state_since": "2026-09-08T14:52:27Z",
-   "reachable_since": null,
-   "changes": [],
+   "state": "present",
+   "state_since": "2026-09-11T07:05:02Z",
+   "reachable_since": "2026-09-11T07:05:02Z",
+   "changes": [
+    {
+     "t": "2026-09-11T07:05:02Z",
+     "from": "absent",
+     "to": "present",
+     "http": {
+      "POST /v1/mcp-servers": 401,
+      "POST /v1/mcp/servers/mcp_probe": 401
+     }
+    }
+   ],
    "ledger": "status/claims.jsonl"
   }
  ],
@@ -193,7 +206,7 @@
   "ledger": "status/counterfeit.jsonl",
   "note": "Sable Network's token exists only on Solana; a token on Robinhood Chain named like it is not it.",
   "last_check": {
-   "t": "2026-09-11T06:38:24Z",
+   "t": "2026-09-11T07:05:02Z",
    "hits": 1
   }
  }

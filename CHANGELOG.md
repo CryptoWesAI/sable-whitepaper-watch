@@ -2,6 +2,12 @@
 
 Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change. Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.
 
+## 2026-09-11-0705: MCP Gateway reachable
+
+- The routes the docs give for **MCP Gateway** answered something other than 404 for the first time: POST /v1/mcp-servers 401, POST /v1/mcp/servers/mcp_probe 401 (control route 401).
+- Announced 2026-09-08 (Sable on X, 8 September 2026); docs: https://www.buildsable.com/docs/mcp-gateway. Every hourly answer had been 404 since 2026-09-08T14:52:27Z.
+- An answer from outside says the route exists on the public gateway, not that the feature works; that needs a key. Every change of state is in [`status/claims.jsonl`](status/claims.jsonl).
+
 ## 2026-09-11-0604: SABL supply fell
 
 - Supply fell by **2,979.416195 SABL** (2,979,416,195 base units), from 958,374,437.878222 to 958,371,458.462027.

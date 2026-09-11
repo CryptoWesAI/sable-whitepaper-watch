@@ -1,1 +1,2 @@
 {"t":"2026-09-08T14:52:27Z","id":"mcp-gateway","from":null,"to":"absent","http":{"POST /v1/mcp-servers":404,"POST /v1/mcp/servers/mcp_probe":404},"control":401,"baseline":true}
+{"t":"2026-09-11T07:05:02Z","id":"mcp-gateway","from":"absent","to":"present","http":{"POST /v1/mcp-servers":401,"POST /v1/mcp/servers/mcp_probe":401},"control":401}
