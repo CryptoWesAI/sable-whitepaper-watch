@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-11T13:05:03Z",
+ "generated_at": "2026-09-11T14:05:04Z",
  "pdf_url": "https://www.buildsable.com/sable-whitepaper.pdf",
  "repo": "https://github.com/CryptoWesAI/sable-whitepaper-watch",
  "raw_base": "https://github.com/CryptoWesAI/sable-whitepaper-watch/blob/main/",
@@ -28,7 +28,7 @@
   }
  ],
  "last_check": {
-  "t": "2026-09-11T13:05:02Z",
+  "t": "2026-09-11T14:05:01Z",
   "status": "ok",
   "uptime_24h": 100.0,
   "uptime_30d": 100.0,
@@ -58,17 +58,17 @@
    "supply": 958371458.462027,
    "mint_authority": null,
    "freeze_authority": null,
-   "mcap": 411537,
-   "price_usd": 0.0004294,
-   "liq_usd": 63961.64,
-   "vol_24h": 114116.04,
-   "change_24h": -29.48
+   "mcap": 418133,
+   "price_usd": 0.0004362,
+   "liq_usd": 65367.36,
+   "vol_24h": 107619.06,
+   "change_24h": -21.76
   },
   "sabl_supply": {
    "amount": "958371458462027",
    "decimals": 6,
    "ui_amount": 958371458.462027,
-   "slot": 446164000
+   "slot": 446175297
   },
   "claims": {
    "mcp-gateway": {
@@ -87,7 +87,7 @@
     "0xd00126f6f702367808d85bded7b41bdbd59e48cf",
     "0xe0a0c37605d5c4b4cddc99e41b0f67664c155daa"
    ],
-   "other_chains": 2
+   "other_chains": 4
   }
  },
  "sabl_supply": {
@@ -96,10 +96,10 @@
   "method": "getTokenSupply",
   "decimals": 6,
   "latest": {
-   "t": "2026-09-11T13:05:02Z",
+   "t": "2026-09-11T14:05:01Z",
    "amount": "958371458462027",
    "ui_amount": 958371458.462027,
-   "slot": 446164000
+   "slot": 446175297
   },
   "baseline": {
    "t": "2026-09-08T08:43:49Z",
@@ -150,9 +150,9 @@
    ],
    "control": "GET /v1/mandates",
    "first_checked": "2026-09-08T14:52:27Z",
-   "checks": 92,
+   "checks": 93,
    "latest": {
-    "t": "2026-09-11T13:05:02Z",
+    "t": "2026-09-11T14:05:01Z",
     "state": "present",
     "http": {
      "POST /v1/mcp-servers": 401,
@@ -234,7 +234,7 @@
   "ledger": "status/counterfeit.jsonl",
   "note": "Sable Network's token exists only on Solana; a token on Robinhood Chain named like it is not it.",
   "last_check": {
-   "t": "2026-09-11T13:05:02Z",
+   "t": "2026-09-11T14:05:01Z",
    "hits": 3
   }
  }
