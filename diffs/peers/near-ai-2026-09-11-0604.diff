@@ -1,0 +1,7 @@
+--- previous
++++ 2026-09-11-0604
+@@ -22,3 +22,3 @@
+ We never see plaintext, and there is no operator backdoor, by construction.
+-52 models available 12 confidential, in TEEs 100% TEE requests attested 0 TEE operator access, by design Why NEAR AI Cloud Privacy of on-prem.
++53 models available 12 confidential, in TEEs 100% TEE requests attested 0 TEE operator access, by design Why NEAR AI Cloud Privacy of on-prem.
+ Power of cloud.

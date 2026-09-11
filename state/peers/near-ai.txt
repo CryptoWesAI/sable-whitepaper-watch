@@ -20,7 +20,7 @@ No vendor lock-in Open weights and open models.
 Bring your own, or pick from a growing catalog, portable by design.
 You hold the keys Client-held encryption keys.
 We never see plaintext, and there is no operator backdoor, by construction.
-52 models available 12 confidential, in TEEs 100% TEE requests attested 0 TEE operator access, by design Why NEAR AI Cloud Privacy of on-prem.
+53 models available 12 confidential, in TEEs 100% TEE requests attested 0 TEE operator access, by design Why NEAR AI Cloud Privacy of on-prem.
 Power of cloud.
 NEAR AI Cloud runs models inside secure hardware enclaves, the privacy of running locally, with the scale and convenience of the cloud.
 OpenAI GPT models, closed On-Prem Any open-source or custom model NEAR AI Any open-source or custom model Data privacy Provable zero data retention Confidential compute (TEE) Hardware-signed attestation Features Cloud convenience Setup cost Low High Low Complexity Low High Low Scalability Good Poor Good No vendor lock-in Zero trust Private observability Models Open models, running confidentially A curated catalog of open-weight models, each served inside an attested enclave, with live pricing from the NEAR AI Cloud API.
