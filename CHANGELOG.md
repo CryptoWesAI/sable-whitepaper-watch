@@ -2,6 +2,11 @@
 
 Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change. Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.
 
+## 2026-09-12-1005: a token named like SABL appeared on Robinhood Chain
+
+- **SABLE** (Sable) at `0x5d75E9aC6Af38fAB666c3BA31d00d0cA28047777`, flapsh pool `0x4860fbdA01C9F1AB9F63Ec6d62a1BCC641E92099` opened 2026-09-12T09:56:13Z, liquidity about $9,708: https://dexscreener.com/robinhood/0x4860fbda01c9f1ab9f63ec6d62a1bcc641e92099
+- Seen at 2026-09-12T10:05:01Z through DexScreener's search for SABL, SABLE, Sable on chain 4663. Sable Network's token exists only on Solana (mint `DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump`); nothing on Robinhood Chain is it. Every change of the list is in [`status/counterfeit.jsonl`](status/counterfeit.jsonl).
+
 ## 2026-09-11-1905: SABL supply fell
 
 - Supply fell by **10,517.475429 SABL** (10,517,475,429 base units), from 958,371,458.462027 to 958,360,940.986598.
