@@ -2,6 +2,13 @@
 
 Newest first. Every entry is a snapshot of the PDF as served at buildsable.com/sable-whitepaper.pdf, with the extracted text diffed sentence by sentence so that line reflow does not count as a change. Since 8 September 2026 an entry is also written when the SABL supply on Solana falls: the whitepaper says paying in SABL burns it, so a fall of the mint supply is that rail live on-chain.
 
+## 2026-09-12-2005: a token named like SABL appeared on Robinhood Chain
+
+- **SABLE** (SABLE) at `0x96c180f6254226F23F22d9E1a6e48e6041b53a16`, uniswap pool `0x73e3cc3eb15747027ad5397d0f499486119aa832db3deb94738a3e2a10fe6fc4` opened 2026-09-12T19:29:40Z, liquidity about $3,901: https://dexscreener.com/robinhood/0x73e3cc3eb15747027ad5397d0f499486119aa832db3deb94738a3e2a10fe6fc4
+- **SABLE** (SABLE) at `0xED757f7b1E1502EB434A8FdaBE940EA0Bb3D0661`, uniswap pool `0xfd24d62a402a8b4630da9d8b367f5875619cb717c48dad56b6ae66878ad3582d` opened 2026-09-12T19:32:56Z, liquidity about $3,901: https://dexscreener.com/robinhood/0xfd24d62a402a8b4630da9d8b367f5875619cb717c48dad56b6ae66878ad3582d
+- **SABLE** (SABLE) at `0x646603D953cBd47bFBa8DF081f07D430D1196208`, uniswap pool `0xbfbdce617c5cf2625ffb09e933942cbb2588e53b616c6bce7f0b85377c57c4d2` opened 2026-09-12T19:37:58Z, liquidity about $3,899: https://dexscreener.com/robinhood/0xbfbdce617c5cf2625ffb09e933942cbb2588e53b616c6bce7f0b85377c57c4d2
+- Seen at 2026-09-12T20:05:02Z through DexScreener's search for SABL, SABLE, Sable on chain 4663. Sable Network's token exists only on Solana (mint `DaPayqzdCXcrmvgz9Wx7MySipXxcSofGPtkMgVdqpump`); nothing on Robinhood Chain is it. Every change of the list is in [`status/counterfeit.jsonl`](status/counterfeit.jsonl).
+
 ## 2026-09-12-1927: a token named like SABL appeared on Robinhood Chain
 
 - **SABLE** (sablenetwork) at `0x6eFC19dA456e2e260d7BA50b5Fc5F90E1EE82514`, uniswap pool `0x15db91961dcebff3ce66b119197bbfd811fd7d82439659fde70e9ef138a2338c` opened 2026-09-12T19:12:35Z, liquidity about $5,021: https://dexscreener.com/robinhood/0x15db91961dcebff3ce66b119197bbfd811fd7d82439659fde70e9ef138a2338c
