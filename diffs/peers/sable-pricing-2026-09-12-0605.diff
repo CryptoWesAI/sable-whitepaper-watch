@@ -1,0 +1,21 @@
+--- previous
++++ 2026-09-12-0605
+@@ -27,4 +27,5 @@
+ Signed receipts and privacy by default are on every tier, including Free.
+-A plan gates access to the confidential (TEE-attested) execution path and the double-blind lanes.
++A plan gates access to the confidential (TEE-attested) execution path, where the host provably cannot read your prompt.
+ It never gates whether your prompt is protected at all.
++Double-blind routing hides who is asking from the vendor, not what is asked: the vendor still processes the plaintext.
+ Paid in USDT.
+@@ -36,5 +37,8 @@
+ Retention 7 days Rate limit 60 /min Sandboxes 4 Support community Start free Pro $79 /mo in USDT Higher limits, 90-day retention, and signed compliance audit packs.
+-Retention 90 days Rate limit 600 /min Sandboxes 8 Support email support Get Pro Private $199 /mo in USDT Confidential (TEE-attested) and double-blind execution, plus region pinning.
+-Retention 90 days Rate limit 600 /min Sandboxes 12 Support email support Get Private Business $399 /mo in USDT Everything in Private, plus Vault issuer tools, org seats, OTel export, and an SLA.
+-Retention 365 days Rate limit 1,200 /min Sandboxes 24 Support 99.9% SLA + priority support Get Business Compare tiers Feature Free Free Pro $79 /mo Private $199 /mo Business $399 /mo Limits & retention Monthly fee (USDT) Free $79 $199 $399 Metadata retention 7 days 90 days 90 days 365 days Rate limit 60/min 600/min 600/min 1,200/min Concurrent sandboxes 4 8 12 24 Support community email support email support 99.9% SLA + priority support Universal (every tier) Signed, verifiable receipts ✓ ✓ ✓ ✓ Privacy by default ✓ ✓ ✓ ✓ Metered compute (list plus margin) ✓ ✓ ✓ ✓ Capabilities Confidential (TEE-attested) + double-blind ✓ ✓ Region pinning ✓ ✓ Compliance audit packs ✓ ✓ ✓ Vault issuer tools ✓ Org seats ✓ OpenTelemetry export ✓ Loading live pricing from the gateway… Capability gates are currently in observe-only mode on this deployment: plans are billable, and enforcement of gated capabilities is enabled by the operator.
++Retention 90 days Rate limit 600 /min Sandboxes 8 Support email support Get Pro Private $199 /mo in USDT Confidential (TEE-attested) execution, double-blind routing, and region pinning.
++Retention 90 days Rate limit 600 /min Sandboxes 12 Support email support Get Private Business $399 /mo in USDT Everything in Private, plus Vault issuer tools, org seats, OTel export, and priority support.
++Retention 365 days Rate limit 1,200 /min Sandboxes 24 Support priority support Get Business Compare tiers Feature Free Free Pro $79 /mo Private $199 /mo Business $399 /mo Limits & retention Monthly fee (USDT) Free $79 $199 $399 Metadata retention 7 days 90 days 90 days 365 days Rate limit 60/min 600/min 600/min 1,200/min Concurrent sandboxes 4 8 12 24 Support community email support email support priority support Universal (every tier) Signed, verifiable receipts ✓ ✓ ✓ ✓ Privacy by default ✓ ✓ ✓ ✓ Metered compute (list plus margin) ✓ ✓ ✓ ✓ Capabilities Confidential (TEE-attested) ✓ ✓ Region pinning ✓ ✓ Compliance audit packs ✓ ✓ ✓ Vault issuer tools ✓ Org seats ✓ OpenTelemetry export ✓ Loading live pricing from the gateway… Capability gates are in observe-only mode on this deployment: plans are billable and nothing is refused.
++Even with enforcement on, only two capabilities are checked: confidential (TEE-attested) execution and compliance audit packs.
++The other rows above, and the retention, rate-limit and sandbox numbers, are advertised but not enforced today.
++Row by row .
+ Billing & renewal Immediate charge, 30-day period.

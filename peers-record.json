@@ -3,6 +3,12 @@
   "id": "sable-trust",
   "changes": [
    {
+    "label": "2026-09-12-0605",
+    "added": 2,
+    "removed": 1,
+    "diff": "diffs/peers/sable-trust-2026-09-12-0605.diff"
+   },
+   {
     "label": "2026-09-06-1938",
     "added": 18,
     "removed": 6,
@@ -11,14 +17,20 @@
   ],
   "name": "Sable \u00b7 trust page",
   "url": "https://www.buildsable.com/trust",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853",
-  "last_change": "2026-09-06-1938"
+  "last_change": "2026-09-12-0605"
  },
  "sable-pricing": {
   "id": "sable-pricing",
   "changes": [
+   {
+    "label": "2026-09-12-0605",
+    "added": 8,
+    "removed": 4,
+    "diff": "diffs/peers/sable-pricing-2026-09-12-0605.diff"
+   },
    {
     "label": "2026-09-06-1938",
     "added": 17,
@@ -28,10 +40,10 @@
   ],
   "name": "Sable \u00b7 pricing",
   "url": "https://www.buildsable.com/pricing",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853",
-  "last_change": "2026-09-06-1938"
+  "last_change": "2026-09-12-0605"
  },
  "sable-careers": {
   "id": "sable-careers",
@@ -45,7 +57,7 @@
   ],
   "name": "Sable \u00b7 careers",
   "url": "https://www.buildsable.com/careers",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853",
   "last_change": "2026-09-06-1938"
@@ -53,6 +65,12 @@
  "phala": {
   "id": "phala",
   "changes": [
+   {
+    "label": "2026-09-12-0605",
+    "added": 2,
+    "removed": 2,
+    "diff": "diffs/peers/phala-2026-09-12-0605.diff"
+   },
    {
     "label": "2026-09-11-0604",
     "added": 1,
@@ -86,14 +104,20 @@
   ],
   "name": "Phala \u00b7 homepage",
   "url": "https://phala.com/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853",
-  "last_change": "2026-09-11-0604"
+  "last_change": "2026-09-12-0605"
  },
  "near-ai": {
   "id": "near-ai",
   "changes": [
+   {
+    "label": "2026-09-12-0605",
+    "added": 2,
+    "removed": 2,
+    "diff": "diffs/peers/near-ai-2026-09-12-0605.diff"
+   },
    {
     "label": "2026-09-11-0604",
     "added": 1,
@@ -109,17 +133,17 @@
   ],
   "name": "NEAR AI \u00b7 homepage",
   "url": "https://near.ai/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853",
-  "last_change": "2026-09-11-0604"
+  "last_change": "2026-09-12-0605"
  },
  "nillion": {
   "id": "nillion",
   "changes": [],
   "name": "Nillion \u00b7 docs",
   "url": "https://docs.nillion.com/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -128,7 +152,7 @@
   "changes": [],
   "name": "Secret AI \u00b7 site",
   "url": "https://secretai.scrtlabs.com/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -137,7 +161,7 @@
   "changes": [],
   "name": "Oasis \u00b7 ROFL docs",
   "url": "https://docs.oasis.io/build/rofl/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -146,7 +170,7 @@
   "changes": [],
   "name": "Tinfoil \u00b7 homepage",
   "url": "https://tinfoil.sh/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
@@ -155,17 +179,17 @@
   "changes": [],
   "name": "OpenGradient \u00b7 homepage",
   "url": "https://www.opengradient.ai/",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-04-1853"
  },
- "_generated_at": "2026-09-11T06:38:27Z",
+ "_generated_at": "2026-09-12T06:05:04Z",
  "sable-docs": {
   "id": "sable-docs",
   "changes": [],
   "name": "Sable \u00b7 docs index",
   "url": "https://www.buildsable.com/docs",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-08-1452"
  },
@@ -174,7 +198,7 @@
   "changes": [],
   "name": "Sable \u00b7 MCP Gateway docs",
   "url": "https://www.buildsable.com/docs/mcp-gateway",
-  "last_check": "2026-09-11T06:38:27Z",
+  "last_check": "2026-09-12T06:05:04Z",
   "ok": true,
   "first_seen": "2026-09-08-1452"
  }

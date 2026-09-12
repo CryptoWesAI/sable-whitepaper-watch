@@ -36,7 +36,8 @@ Anonymized routing hides who is asking from the vendor; it does not hide what is
 Only the confidential tier is TEE-attested.
 Operator attribution is not proof of correctness A counter-signed receipt proves which machine served a request (who to hold responsible), not that the work it returned was correct.
 We label attribution as attribution.
-Double-blind hides who, not what The double-blind path (planned, and labeled planned everywhere) separates identity from request.
+Double-blind hides who, not what The double-blind lanes are live wherever /v1/models lists them.
+They separate identity from request — the vendor never learns who is asking — but the vendor’s servers still process the plaintext.
 It is a privacy property, not a confidentiality guarantee over the payload.
 There is no marketplace Zero third-party machines serve Sable traffic today.
 What runs is this gateway and its configured backends.

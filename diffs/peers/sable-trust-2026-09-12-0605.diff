@@ -1,0 +1,8 @@
+--- previous
++++ 2026-09-12-0605
+@@ -38,3 +38,4 @@
+ We label attribution as attribution.
+-Double-blind hides who, not what The double-blind path (planned, and labeled planned everywhere) separates identity from request.
++Double-blind hides who, not what The double-blind lanes are live wherever /v1/models lists them.
++They separate identity from request — the vendor never learns who is asking — but the vendor’s servers still process the plaintext.
+ It is a privacy property, not a confidentiality guarantee over the payload.
